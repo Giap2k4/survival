@@ -2,32 +2,32 @@
 
 public class CharacterMovement : MonoBehaviour
 {
-    public float moveSpeed = 5f;        // tốc độ di chuyển
-    [SerializeField]
-    protected Rigidbody2D rb;
-    private Vector2 moveInput;          // hướng di chuyển (x,y)
+    public float moveSpeed = 2.5f;
+    [SerializeField] protected Rigidbody2D rb;
+    private Vector2 moveInput;
 
-    [SerializeField]
-    protected Animator animator;
+    [SerializeField] protected Animator animator;
+    [SerializeField] private Joystick joystick; 
 
     void Update()
     {
-        // Lấy input từ bàn phím
-        float moveX = Input.GetAxisRaw("Horizontal");  // A/D hoặc ←/→
-        float moveY = Input.GetAxisRaw("Vertical");    // W/S hoặc ↑/↓
+        // Lấy input từ joystick
+        float moveX = joystick.Horizontal();
+        float moveY = joystick.Vertical();
 
-        moveInput = new Vector2(moveX, moveY).normalized; // chuẩn hóa để không chạy chéo nhanh hơn
+        moveInput = new Vector2(moveX, moveY).normalized;
 
         // set anim
         animator.SetBool("IsMoving", moveInput.magnitude > 0);
 
-        // set anim Die: animator.SetBool("IsDie", true);
+        // lật nhân vật
         Quaternion rotation = gameObject.transform.rotation;
         if (moveX < 0)
         {
             rotation.y = 180;
             gameObject.transform.rotation = rotation;
-        } else if (moveX > 0.1)
+        }
+        else if (moveX > 0.01f)
         {
             rotation.y = 0;
             gameObject.transform.rotation = rotation;
@@ -36,7 +36,6 @@ public class CharacterMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        // Di chuyển bằng Rigidbody2D
         rb.velocity = moveInput * moveSpeed;
     }
 }
