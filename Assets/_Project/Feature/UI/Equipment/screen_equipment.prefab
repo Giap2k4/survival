@@ -1478,7 +1478,7 @@ GameObject:
   - component: {fileID: 2307629454451522567}
   - component: {fileID: 6543047897175685061}
   m_Layer: 5
-  m_Name: screen-equipment
+  m_Name: screen_equipment
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
