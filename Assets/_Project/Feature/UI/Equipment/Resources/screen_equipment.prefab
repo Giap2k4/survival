@@ -1938,6 +1938,7 @@ GameObject:
   - component: {fileID: 3797325866591308015}
   - component: {fileID: 807355585117261011}
   - component: {fileID: 2934542244408846295}
+  - component: {fileID: 2461004056937427608}
   m_Layer: 5
   m_Name: screen_equipment
   m_TagString: Untagged
@@ -2018,6 +2019,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ShowMaskGraphic: 1
+--- !u!114 &2461004056937427608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7014653487081306770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ae93c2aad55b204598cef67c1f6cc28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  feature: 2
+  btnClose: {fileID: 6161983515486200958}
 --- !u!1 &7347958057290668819
 GameObject:
   m_ObjectHideFlags: 0
