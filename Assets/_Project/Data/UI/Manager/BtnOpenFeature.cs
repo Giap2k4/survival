@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,6 +19,7 @@ public class BtnOpenFeature : MonoBehaviour
 
     protected void OnClick()
     {
+        Debug.Log("Đã vào hàm mở feature: " + feature.ToString());
         UIManager.instance.OpenFeature(feature);
     }
 }

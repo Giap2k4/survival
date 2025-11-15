@@ -25,6 +25,9 @@ public class SceneController : Singleton<SceneController>
         // Đóng các feature khi chuyển scene
         UIManager.instance.ResetDataWhenChangeScene();
 
+        // Tạo EventSystem
+        UIManager.instance.CreateEventSystemIfNeeded();
+
         // Mở feature chính của scene
         UIManager.instance.OpenFeatureMainScene();
 

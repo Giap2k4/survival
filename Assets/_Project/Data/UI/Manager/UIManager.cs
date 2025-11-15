@@ -29,7 +29,6 @@ public class UIManager : Singleton<UIManager>
     /// <summary>
     /// Tính năng chính theo từng scene
     /// </summary>
-    
     public List<MainFeatureScene> mainFeatureScene = new List<MainFeatureScene>();
 
     protected int startLayer;
@@ -123,6 +122,7 @@ public class UIManager : Singleton<UIManager>
         Canvas canvas = obj.GetComponent<Canvas>();
         canvas.overrideSorting = true;
         canvas.sortingOrder = currentLayer;
+        canvas.worldCamera = Camera.main;
     }
 
     public void CloseFeature(EnumBase.Feature feature)
@@ -170,7 +170,7 @@ public class UIManager : Singleton<UIManager>
         OpenFeature(data.feature, UIGroupName.Main);
     }
 
-    private void CreateEventSystemIfNeeded()
+    public void CreateEventSystemIfNeeded()
     {
         if (!FindObjectOfType<EventSystem>())
         {
