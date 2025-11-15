@@ -9,7 +9,8 @@ public class EnumBase
         Hero,
         Equipment,
         Pet,
-        Shop
+        Shop, 
+        Main
     }
 
     public enum Scenes
