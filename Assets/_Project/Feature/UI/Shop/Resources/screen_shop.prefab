@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2883242086114709264}
   - component: {fileID: 1438615880750096059}
   - component: {fileID: 5639241430041288868}
+  - component: {fileID: 3544772480603330970}
   m_Layer: 5
   m_Name: screen_shop
   m_TagString: Untagged
@@ -93,6 +94,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ShowMaskGraphic: 1
+--- !u!114 &3544772480603330970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 412140808367771320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ae93c2aad55b204598cef67c1f6cc28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  feature: 4
+  btnClose: {fileID: 971834226425526133}
 --- !u!1 &600356578010986441
 GameObject:
   m_ObjectHideFlags: 0
