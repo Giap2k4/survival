@@ -25,42 +25,16 @@ public class UIManager : Singleton<UIManager>
     /// </summary>
     public List<UIGroupName> deleteFeatureWhenChangeScene = new List<UIGroupName>() { UIGroupName.Main, UIGroupName.Modal};
 
+    public Dictionary<EnumBase.Scenes, EnumBase.Feature> mainFeatureScene = new Dictionary<EnumBase.Scenes, EnumBase.Feature>();
+
     protected int startLayer;
     protected int currentLayer;
     protected EnumBase.Scenes currentScene;
-    protected EnumBase.Feature mainFeature;
 
     public enum UIGroupName
     {
         Main,
         Modal
-    }
-
-    private void OnEnable()
-    {
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-
-    private void OnDisable()
-    {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-    }
-
-    /// <summary>
-    /// Xử lý khi chuyển scene
-    /// </summary>
-    /// <param name="scene"></param>
-    /// <param name="mode"></param>
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        // Đóng các feature khi chuyển scene
-        ResetDataWhenChangeScene();
-
-        // Mở feature chính của scene
-        OpenFeatureMainScene(mainFeature);
-
-        // mở các feature trong hàng đợi
-        OpenFeatureInQueue();
     }
 
     /// <summary>
@@ -80,9 +54,6 @@ public class UIManager : Singleton<UIManager>
 
     public EnumBase.Scenes GetCurrentScene() => currentScene;
     public void SetCurrentScene(EnumBase.Scenes scene) { currentScene = scene; }
-
-    public EnumBase.Feature GetMainFeature() => mainFeature;
-    public void SetMainFeature(EnumBase.Feature feature) { mainFeature = feature; }
 
 
     protected override void Awake()
@@ -178,8 +149,9 @@ public class UIManager : Singleton<UIManager>
     /// Mở tính năng chính trong scene
     /// </summary>
     /// <param name="feature"></param>
-    public void OpenFeatureMainScene(EnumBase.Feature feature)
+    public void OpenFeatureMainScene()
     {
+        var feature = mainFeatureScene[currentScene];
         OpenFeature(feature, UIGroupName.Main);
     }
 
