@@ -25,6 +25,7 @@ public class UIManager : Singleton<UIManager>
     /// </summary>
     public List<UIGroupName> deleteFeatureWhenChangeScene = new List<UIGroupName>() { UIGroupName.Main, UIGroupName.Modal};
 
+    [SerializeField]
     public Dictionary<EnumBase.Scenes, EnumBase.Feature> mainFeatureScene = new Dictionary<EnumBase.Scenes, EnumBase.Feature>();
 
     protected int startLayer;
