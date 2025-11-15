@@ -433,6 +433,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deleteFeatureWhenChangeScene: 0000000001000000
+  mainFeatureScene:
+  - scene: 0
+    feature: 4
 --- !u!4 &499165128
 Transform:
   m_ObjectHideFlags: 0
@@ -565,7 +568,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52c62d1cb6e5c64dbd607e36340b602, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scaler: {fileID: 0}
+  scaler: {fileID: 1186262766}
 --- !u!114 &1186262766
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -632,6 +635,50 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &1443422578
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1443422580}
+  - component: {fileID: 1443422579}
+  m_Layer: 0
+  m_Name: SceneController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1443422579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1443422578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ce671ed3742f764f9aec505b7f8b59d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1443422580
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1443422578}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.56741613, y: -0.07660963, z: 920.5549}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2070068805
 GameObject:
   m_ObjectHideFlags: 0
@@ -642,6 +689,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2070068806}
   - component: {fileID: 2070068807}
+  - component: {fileID: 2070068808}
   m_Layer: 5
   m_Name: BtnContinue
   m_TagString: Untagged
@@ -713,6 +761,20 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2070068808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2070068805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4cd8fe6fe2a03c4399919481ab069dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  btn: {fileID: 2070068807}
+  scene: 0
 --- !u!1 &2086853911
 GameObject:
   m_ObjectHideFlags: 0
@@ -796,5 +858,6 @@ SceneRoots:
   m_Roots:
   - {fileID: 248616570}
   - {fileID: 499165128}
+  - {fileID: 1443422580}
   - {fileID: 1186262768}
   - {fileID: 634937498}
