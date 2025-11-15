@@ -29,7 +29,7 @@ public class UIManager : Singleton<UIManager>
     /// <summary>
     /// Tính năng chính theo từng scene
     /// </summary>
-    [SerializeField]
+    
     public List<MainFeatureScene> mainFeatureScene = new List<MainFeatureScene>();
 
     protected int startLayer;
@@ -41,6 +41,8 @@ public class UIManager : Singleton<UIManager>
         Main,
         Modal
     }
+
+    [Serializable]
     public class MainFeatureScene
     {
         public EnumBase.Scenes scene;
