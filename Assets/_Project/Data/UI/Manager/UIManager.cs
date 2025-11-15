@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -25,8 +26,10 @@ public class UIManager : Singleton<UIManager>
     /// </summary>
     public List<UIGroupName> deleteFeatureWhenChangeScene = new List<UIGroupName>() { UIGroupName.Main, UIGroupName.Modal};
 
-    [SerializeField]
-    public Dictionary<EnumBase.Scenes, EnumBase.Feature> mainFeatureScene = new Dictionary<EnumBase.Scenes, EnumBase.Feature>();
+    /// <summary>
+    /// Tính năng chính theo từng scene
+    /// </summary>
+    public List<MainFeatureScene> mainFeatureScene = new List<MainFeatureScene>();
 
     protected int startLayer;
     protected int currentLayer;
@@ -36,6 +39,11 @@ public class UIManager : Singleton<UIManager>
     {
         Main,
         Modal
+    }
+    public class MainFeatureScene
+    {
+        public EnumBase.Scenes scene;
+        public EnumBase.Feature feature;
     }
 
     /// <summary>
@@ -152,8 +160,8 @@ public class UIManager : Singleton<UIManager>
     /// <param name="feature"></param>
     public void OpenFeatureMainScene()
     {
-        var feature = mainFeatureScene[currentScene];
-        OpenFeature(feature, UIGroupName.Main);
+        var data = mainFeatureScene.First(x => x.scene == currentScene);
+        OpenFeature(data.feature, UIGroupName.Main);
     }
 
     private void CreateEventSystemIfNeeded()
