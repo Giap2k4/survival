@@ -6,9 +6,11 @@ using UnityEngine.UI;
 public class FeatureBaseController : MonoBehaviour
 {
     [Header("Cấu hình chung")]
+    [SerializeField]
     protected EnumBase.Feature feature;
 
     [Header("Cấu hình chung")]
+    [SerializeField]
     protected Button btnClose;
 
     protected virtual void OnDestroy()
