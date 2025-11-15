@@ -21,6 +21,11 @@ public class FeatureBaseController : MonoBehaviour
         StopAllCoroutines();
     }
 
+    private void Start()
+    {
+        btnClose.onClick.AddListener(CloseFeature);
+    }
+
     protected void CloseFeature()
     {
         UIManager.instance.CloseFeature(feature);
