@@ -1909,6 +1909,7 @@ GameObject:
   - component: {fileID: 2759828999348896971}
   - component: {fileID: 1041702761474217425}
   - component: {fileID: 3617982990417762253}
+  - component: {fileID: 6843328312298429103}
   m_Layer: 5
   m_Name: screen_pet
   m_TagString: Untagged
@@ -1990,6 +1991,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6843328312298429103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9046472923979209563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ae93c2aad55b204598cef67c1f6cc28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  feature: 3
+  btnClose: {fileID: 5484162074002745242}
 --- !u!1 &9101373565839719018
 GameObject:
   m_ObjectHideFlags: 0
