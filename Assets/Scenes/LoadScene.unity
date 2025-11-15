@@ -435,7 +435,9 @@ MonoBehaviour:
   deleteFeatureWhenChangeScene: 0000000001000000
   mainFeatureScene:
   - scene: 0
-    feature: 4
+    feature: 0
+  - scene: 1
+    feature: 5
 --- !u!4 &499165128
 Transform:
   m_ObjectHideFlags: 0
