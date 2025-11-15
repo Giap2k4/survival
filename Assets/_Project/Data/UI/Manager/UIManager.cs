@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 public class UIManager : Singleton<UIManager>
@@ -87,6 +88,8 @@ public class UIManager : Singleton<UIManager>
     protected override void Awake()
     {
         base.Awake();
+
+        CreateEventSystemIfNeeded();
 
         // Tạo các group UI
         foreach (UIGroupName obj in Enum.GetValues(typeof(UIGroupName)))
@@ -178,5 +181,12 @@ public class UIManager : Singleton<UIManager>
     public void OpenFeatureMainScene(EnumBase.Feature feature)
     {
         OpenFeature(feature, UIGroupName.Main);
+    }
+
+    private void CreateEventSystemIfNeeded()
+    {
+        GameObject es = new GameObject("EventSystem");
+        es.AddComponent<EventSystem>();
+        es.AddComponent<StandaloneInputModule>();
     }
 }
