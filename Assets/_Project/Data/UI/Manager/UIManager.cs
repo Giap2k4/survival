@@ -13,14 +13,21 @@ public class UIManager : Singleton<UIManager>
     public Dictionary<EnumBase.Feature, GameObject> listFeatureOpen = new Dictionary<EnumBase.Feature, GameObject>();
 
     /// <summary>
-    /// Các feature sẽ được load khi chuyển đến scene này
+    /// Các feature sẽ được mở khi chuyển đến scene này
     /// </summary>
     public Dictionary<EnumBase.Scenes, Queue<EnumBase.Feature>> featureSequence = new Dictionary<EnumBase.Scenes, Queue<EnumBase.Feature>>();
 
     public Dictionary<UIGroupName, GameObject> parentFeature = new Dictionary<UIGroupName, GameObject>();
 
+    /// <summary>
+    /// Các tính năng sẽ bị đóng khi chuyển scene
+    /// </summary>
+    public List<UIGroupName> deleteFeatureWhenChangeScene = new List<UIGroupName>() { UIGroupName.Main, UIGroupName.Modal};
+
     protected int startLayer;
     protected int currentLayer;
+    protected EnumBase.Scenes currentScene;
+    protected EnumBase.Feature mainFeature;
 
     public enum UIGroupName
     {
@@ -45,8 +52,37 @@ public class UIManager : Singleton<UIManager>
     /// <param name="mode"></param>
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // đóng các feature trong Dic khi chuyển scene sẽ bị xóa
+        // Đóng các feature khi chuyển scene
+        ResetDataWhenChangeScene();
+
+        // Mở feature chính của scene
+        OpenFeatureMainScene(mainFeature);
+
+        // mở các feature trong hàng đợi
+        OpenFeatureInQueue();
     }
+
+    /// <summary>
+    /// Đăng ký khi chuyển scene
+    /// </summary>
+    public void ResetDataWhenChangeScene()
+    {
+        currentLayer = startLayer;
+        foreach (var item in deleteFeatureWhenChangeScene)
+        {
+            foreach (Transform trans in parentFeature[item].transform)
+            {
+                GameObject.Destroy(trans.gameObject);
+            }
+        }
+    }
+
+    public EnumBase.Scenes GetCurrentScene() => currentScene;
+    public void SetCurrentScene(EnumBase.Scenes scene) { currentScene = scene; }
+
+    public EnumBase.Feature GetMainFeature() => mainFeature;
+    public void SetMainFeature(EnumBase.Feature feature) { mainFeature = feature; }
+
 
     protected override void Awake()
     {
@@ -119,5 +155,28 @@ public class UIManager : Singleton<UIManager>
     public void AddFeatureOpenLoadScene(EnumBase.Scenes scene, EnumBase.Feature feature)
     {
         featureSequence[scene].Enqueue(feature);
+    }
+
+    /// <summary>
+    /// Mở các tính năng trong hàng đợi
+    /// </summary>
+    public void OpenFeatureInQueue()
+    {
+        var queue = featureSequence[currentScene];
+        
+        while (queue.Count > 0)
+        {
+            var feature = queue.Dequeue();
+            OpenFeature(feature);
+        }
+    }
+
+    /// <summary>
+    /// Mở tính năng chính trong scene
+    /// </summary>
+    /// <param name="feature"></param>
+    public void OpenFeatureMainScene(EnumBase.Feature feature)
+    {
+        OpenFeature(feature, UIGroupName.Main);
     }
 }
