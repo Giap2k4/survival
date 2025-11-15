@@ -35,5 +35,6 @@ public class SceneController : Singleton<SceneController>
     public void ChangeScene(EnumBase.Scenes scene)
     {
         SceneManager.LoadScene(scene.ToString());
+        UIManager.instance.SetCurrentScene(scene);
     }
 }

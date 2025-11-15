@@ -78,6 +78,7 @@ public class UIManager : Singleton<UIManager>
         foreach (UIGroupName obj in Enum.GetValues(typeof(UIGroupName)))
         {
             GameObject gameObject = new GameObject(obj.ToString());
+            gameObject.transform.SetParent(transform, false);
             parentFeature.Add(obj, gameObject);
         }
 
@@ -163,14 +164,20 @@ public class UIManager : Singleton<UIManager>
     /// <param name="feature"></param>
     public void OpenFeatureMainScene()
     {
-        var data = mainFeatureScene.First(x => x.scene == currentScene);
+        var data = mainFeatureScene.FirstOrDefault(x => x.scene == currentScene);
+        if (data == null || data.feature == EnumBase.Feature.None) return;
+
         OpenFeature(data.feature, UIGroupName.Main);
     }
 
     private void CreateEventSystemIfNeeded()
     {
-        GameObject es = new GameObject("EventSystem");
-        es.AddComponent<EventSystem>();
-        es.AddComponent<StandaloneInputModule>();
+        if (!FindObjectOfType<EventSystem>())
+        {
+            GameObject es = new GameObject("EventSystem");
+            es.AddComponent<EventSystem>();
+            es.AddComponent<StandaloneInputModule>();
+        }
+        
     }
 }

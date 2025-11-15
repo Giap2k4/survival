@@ -6,6 +6,7 @@ public class EnumBase
 {
     public enum Feature
     {
+        None,
         Hero,
         Equipment,
         Pet,
@@ -15,8 +16,8 @@ public class EnumBase
 
     public enum Scenes
     {
+        LoadScene,
         HomeScene,
-        BattleScene,
-        LoadScene
+        BattleScene
     }
 }
