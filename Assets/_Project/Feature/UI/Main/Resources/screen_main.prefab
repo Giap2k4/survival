@@ -1027,6 +1027,7 @@ GameObject:
   - component: {fileID: 4092897208695784215}
   - component: {fileID: 6191418205573767157}
   - component: {fileID: 3507688628874110336}
+  - component: {fileID: 288343256860865309}
   - component: {fileID: 422355285751010652}
   m_Layer: 5
   m_Name: BtnEquipment
@@ -1093,6 +1094,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &288343256860865309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2688190157642934540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7e79de78880db44ba32c2c393433888, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  btn: {fileID: 422355285751010652}
+  feature: 2
 --- !u!114 &422355285751010652
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1148,6 +1163,7 @@ GameObject:
   - component: {fileID: 3035308331094284694}
   - component: {fileID: 6421482487958618993}
   - component: {fileID: 3766613167146269071}
+  - component: {fileID: 5406098724838788657}
   - component: {fileID: 3361010588370422332}
   m_Layer: 5
   m_Name: BtnShop
@@ -1214,6 +1230,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5406098724838788657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2977805887167214842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7e79de78880db44ba32c2c393433888, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  btn: {fileID: 3361010588370422332}
+  feature: 4
 --- !u!114 &3361010588370422332
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2013,6 +2043,7 @@ GameObject:
   - component: {fileID: 2775439352211277569}
   - component: {fileID: 3677253733087403375}
   - component: {fileID: 692486711620772675}
+  - component: {fileID: 4839093126351295160}
   - component: {fileID: 4285481543109077223}
   m_Layer: 5
   m_Name: BtnHero
@@ -2079,6 +2110,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4839093126351295160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5176608685095700663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7e79de78880db44ba32c2c393433888, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  btn: {fileID: 4285481543109077223}
+  feature: 1
 --- !u!114 &4285481543109077223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2407,6 +2452,7 @@ GameObject:
   - component: {fileID: 7892474360044120834}
   - component: {fileID: 2145825139220019892}
   - component: {fileID: 397637124840508818}
+  - component: {fileID: 7328119286309776438}
   - component: {fileID: 1640111525885778568}
   m_Layer: 5
   m_Name: BtnPet
@@ -2473,6 +2519,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7328119286309776438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5873039167827329469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7e79de78880db44ba32c2c393433888, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  btn: {fileID: 1640111525885778568}
+  feature: 3
 --- !u!114 &1640111525885778568
 MonoBehaviour:
   m_ObjectHideFlags: 0
