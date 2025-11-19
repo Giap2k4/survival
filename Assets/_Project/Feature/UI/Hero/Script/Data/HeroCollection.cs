@@ -5,4 +5,9 @@ using UnityEngine;
 public class HeroCollection : ScriptableObject
 {
     public HeroModel[] dataGroups;
+
+    public HeroModel[] GetAll()
+    {
+        return dataGroups;
+    }
 }

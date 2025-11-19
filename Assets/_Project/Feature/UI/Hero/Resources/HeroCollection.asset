@@ -12,4 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7233c9b0b01b34e4e945397bbc6d3398, type: 3}
   m_Name: HeroCollection
   m_EditorClassIdentifier: 
-  dataGroups: []
+  dataGroups:
+  - id: 1
+    nameHero: "Anh H\xF9ng Thi\u1EBFu Ni\xEAn"
+    level: 1
+    powerStat: 1
+    defaultSkill: 1
+    price: 0
+  - id: 2
+    nameHero: "Cung th\u1EE7 r\u1EEBng xanh"
+    level: 1
+    powerStat: 1
+    defaultSkill: 2
+    price: 200

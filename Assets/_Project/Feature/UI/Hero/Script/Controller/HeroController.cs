@@ -2,16 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HeroController : MonoBehaviour
+public class HeroController : FeatureBaseController
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField]
+    protected GameObject item;
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
         
     }
