@@ -26,6 +26,7 @@ public class FeatureBaseController : MonoBehaviour
     protected virtual void Start()
     {
         btnClose.onClick.AddListener(CloseFeature);
+        LoadData();
     }
 
     protected virtual void OnEnable() { }
@@ -35,4 +36,6 @@ public class FeatureBaseController : MonoBehaviour
     {
         UIManager.instance.CloseFeature(feature);
     }
+
+    protected virtual void LoadData() { }
 }
