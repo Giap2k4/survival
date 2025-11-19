@@ -106,41 +106,77 @@ public static class CsvImporter
 
     private static object BuildModel(Type modelType, string[] header, List<string[]> rows)
     {
-        object model = Activator.CreateInstance(modelType);
-        var fields = modelType.GetFields();
-
-        // MAP SCALAR FIELDS (Global)
-        foreach (var field in fields.Where(f => !f.FieldType.IsArray))
+        // CASE A: dataGroups là MẢNG (HeroModel[])
+        if (modelType.IsArray)
         {
-            string colName = Normalize(field.Name);
-            int idx = Array.FindIndex(header, h => Normalize(h) == colName);
+            Type elementType = modelType.GetElementType();           // HeroModel
+            Array array = Array.CreateInstance(elementType, rows.Count);
 
-            if (idx >= 0 && !string.IsNullOrWhiteSpace(rows[0][idx]))
-                field.SetValue(model, ConvertValue(field.FieldType, rows[0][idx]));
+            var elementFields = elementType.GetFields(BindingFlags.Public | BindingFlags.Instance);
+
+            for (int i = 0; i < rows.Count; i++)
+            {
+                string[] row = rows[i];
+                object element = Activator.CreateInstance(elementType);
+
+                foreach (var f in elementFields)
+                {
+                    string fieldName = f.Name;                        // id, nameHero, level...
+                    int colIndex = Array.FindIndex(
+                        header,
+                        h => SnakeToCamel(h) == fieldName            // nameHero -> nameHero, name_hero -> nameHero
+                    );
+
+                    if (colIndex >= 0 && !string.IsNullOrWhiteSpace(row[colIndex]))
+                    {
+                        object val = ConvertValue(f.FieldType, row[colIndex]);
+                        f.SetValue(element, val);
+                    }
+                }
+
+                array.SetValue(element, i);
+            }
+
+            return array;
         }
 
-        // MAP ARRAY FIELDS
+        // CASE B: dataGroups là 1 OBJECT (SevenDayLoginModel)
+        object model = Activator.CreateInstance(modelType);
+        var fields = modelType.GetFields(BindingFlags.Public | BindingFlags.Instance);
+
+        // --- map scalar global (liveTimes, shardConvert, ...) ---
+        foreach (var field in fields.Where(f => !f.FieldType.IsArray))
+        {
+            string fieldName = field.Name;
+            int idx = Array.FindIndex(header, h => SnakeToCamel(h) == fieldName);
+
+            if (idx >= 0 && !string.IsNullOrWhiteSpace(rows[0][idx]))
+            {
+                object converted = ConvertValue(field.FieldType, rows[0][idx]);
+                field.SetValue(model, converted);
+            }
+        }
+
+        // --- phần xử lý mảng & group-by (SevenDayLogin) giữ như cũ ---
         foreach (var field in fields.Where(f => f.FieldType.IsArray))
         {
             Type elementType = field.FieldType.GetElementType();
             var subFields = elementType.GetFields();
 
-            // tìm key group (ví dụ: day)
-            var keyField = subFields.FirstOrDefault(f => f.FieldType == typeof(int) && f.Name.ToLower().Contains("day"));
-
+            var keyField = subFields.FirstOrDefault(f => f.FieldType == typeof(int) &&
+                                                         f.Name.ToLower().Contains("day"));
             if (keyField != null)
             {
-                // dạng group-by (SevenDayLogin style)
                 var group = new Dictionary<int, List<object>>();
 
                 foreach (var row in rows)
                 {
-                    int key = Convert.ToInt32(row[Array.FindIndex(header, h => Normalize(h) == Normalize(keyField.Name))]);
+                    int keyIndex = Array.FindIndex(header, h => SnakeToCamel(h) == keyField.Name);
+                    int key = Convert.ToInt32(row[keyIndex]);
 
                     if (!group.ContainsKey(key))
                         group[key] = new List<object>();
 
-                    // build nested array item (ex: PackRewards)
                     var nestedArrayField = subFields.First(sf => sf.FieldType.IsArray);
                     Type nestedType = nestedArrayField.FieldType.GetElementType();
                     var nestedFields = nestedType.GetFields();
@@ -149,15 +185,14 @@ public static class CsvImporter
 
                     foreach (var nf in nestedFields)
                     {
-                        int col = Array.FindIndex(header, h => Normalize(h) == Normalize(nf.Name));
-                        if (col >= 0)
+                        int col = Array.FindIndex(header, h => SnakeToCamel(h) == nf.Name);
+                        if (col >= 0 && !string.IsNullOrWhiteSpace(row[col]))
                             nf.SetValue(nestedObj, ConvertValue(nf.FieldType, row[col]));
                     }
 
                     group[key].Add(nestedObj);
                 }
 
-                // build group array
                 var result = new List<object>();
                 foreach (var kvp in group.OrderBy(g => g.Key))
                 {
@@ -176,6 +211,30 @@ public static class CsvImporter
 
         return model;
     }
+
+
+    private static string SnakeToCamel(string name)
+    {
+        if (string.IsNullOrEmpty(name))
+            return string.Empty;
+
+        name = name.Trim();
+
+        // Nếu không chứa '_', chỉ cần làm lowercase chữ cái đầu
+        if (!name.Contains("_"))
+            return char.ToLowerInvariant(name[0]) + name.Substring(1);
+
+        // name_hero → nameHero
+        var parts = name.ToLowerInvariant().Split('_');
+        for (int i = 1; i < parts.Length; i++)
+        {
+            if (parts[i].Length == 0) continue;
+            parts[i] = char.ToUpperInvariant(parts[i][0]) + parts[i].Substring(1);
+        }
+
+        return string.Join("", parts);
+    }
+
 
     private static string Normalize(string name)
     {
