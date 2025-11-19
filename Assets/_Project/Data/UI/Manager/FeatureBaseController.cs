@@ -21,10 +21,15 @@ public class FeatureBaseController : MonoBehaviour
         StopAllCoroutines();
     }
 
-    private void Start()
+    protected virtual void Awake() { }
+
+    protected virtual void Start()
     {
         btnClose.onClick.AddListener(CloseFeature);
     }
+
+    protected virtual void OnEnable() { }
+    protected virtual void OnDisable() { }
 
     protected void CloseFeature()
     {
