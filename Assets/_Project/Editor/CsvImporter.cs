@@ -106,111 +106,113 @@ public static class CsvImporter
 
     private static object BuildModel(Type modelType, string[] header, List<string[]> rows)
     {
-        // CASE A: dataGroups là MẢNG (HeroModel[])
+        // Không dùng header nữa cho mapping, chỉ dùng rows (dữ liệu) + thứ tự field
+
+        // CASE A: dataGroups là MẢNG (ví dụ: HeroModel[])
         if (modelType.IsArray)
         {
-            Type elementType = modelType.GetElementType();           // HeroModel
-            Array array = Array.CreateInstance(elementType, rows.Count);
+            Type elementType = modelType.GetElementType();   // HeroModel
+            int count = rows.Count;
 
-            var elementFields = elementType.GetFields(BindingFlags.Public | BindingFlags.Instance);
+            Array array = Array.CreateInstance(elementType, count);
 
-            for (int i = 0; i < rows.Count; i++)
+            for (int i = 0; i < count; i++)
             {
                 string[] row = rows[i];
-                object element = Activator.CreateInstance(elementType);
+                int colIndex = 0; // luôn bắt đầu từ cột 0 cho mỗi dòng
 
-                foreach (var f in elementFields)
-                {
-                    string fieldName = f.Name;                        // id, nameHero, level...
-                    int colIndex = Array.FindIndex(
-                        header,
-                        h => SnakeToCamel(h) == fieldName            // nameHero -> nameHero, name_hero -> nameHero
-                    );
-
-                    if (colIndex >= 0 && !string.IsNullOrWhiteSpace(row[colIndex]))
-                    {
-                        object val = ConvertValue(f.FieldType, row[colIndex]);
-                        f.SetValue(element, val);
-                    }
-                }
-
+                object element = BuildObject(elementType, row, ref colIndex);
                 array.SetValue(element, i);
             }
 
             return array;
         }
 
-        // CASE B: dataGroups là 1 OBJECT (SevenDayLoginModel)
-        object model = Activator.CreateInstance(modelType);
-        var fields = modelType.GetFields(BindingFlags.Public | BindingFlags.Instance);
+        // CASE B: dataGroups là 1 OBJECT (SevenDayLoginModel,...)
+        // Lấy từ dòng đầu tiên
+        if (rows.Count == 0)
+            return null;
 
-        // --- map scalar global (liveTimes, shardConvert, ...) ---
-        foreach (var field in fields.Where(f => !f.FieldType.IsArray))
         {
-            string fieldName = field.Name;
-            int idx = Array.FindIndex(header, h => SnakeToCamel(h) == fieldName);
-
-            if (idx >= 0 && !string.IsNullOrWhiteSpace(rows[0][idx]))
-            {
-                object converted = ConvertValue(field.FieldType, rows[0][idx]);
-                field.SetValue(model, converted);
-            }
+            string[] row = rows[0];
+            int colIndex = 0;
+            object model = BuildObject(modelType, row, ref colIndex);
+            return model;
         }
-
-        // --- phần xử lý mảng & group-by (SevenDayLogin) giữ như cũ ---
-        foreach (var field in fields.Where(f => f.FieldType.IsArray))
-        {
-            Type elementType = field.FieldType.GetElementType();
-            var subFields = elementType.GetFields();
-
-            var keyField = subFields.FirstOrDefault(f => f.FieldType == typeof(int) &&
-                                                         f.Name.ToLower().Contains("day"));
-            if (keyField != null)
-            {
-                var group = new Dictionary<int, List<object>>();
-
-                foreach (var row in rows)
-                {
-                    int keyIndex = Array.FindIndex(header, h => SnakeToCamel(h) == keyField.Name);
-                    int key = Convert.ToInt32(row[keyIndex]);
-
-                    if (!group.ContainsKey(key))
-                        group[key] = new List<object>();
-
-                    var nestedArrayField = subFields.First(sf => sf.FieldType.IsArray);
-                    Type nestedType = nestedArrayField.FieldType.GetElementType();
-                    var nestedFields = nestedType.GetFields();
-
-                    object nestedObj = Activator.CreateInstance(nestedType);
-
-                    foreach (var nf in nestedFields)
-                    {
-                        int col = Array.FindIndex(header, h => SnakeToCamel(h) == nf.Name);
-                        if (col >= 0 && !string.IsNullOrWhiteSpace(row[col]))
-                            nf.SetValue(nestedObj, ConvertValue(nf.FieldType, row[col]));
-                    }
-
-                    group[key].Add(nestedObj);
-                }
-
-                var result = new List<object>();
-                foreach (var kvp in group.OrderBy(g => g.Key))
-                {
-                    object instance = Activator.CreateInstance(elementType);
-                    keyField.SetValue(instance, kvp.Key);
-
-                    var nestedField = elementType.GetFields().First(f => f.FieldType.IsArray);
-                    nestedField.SetValue(instance, kvp.Value.ToArray());
-
-                    result.Add(instance);
-                }
-
-                field.SetValue(model, result.ToArray());
-            }
-        }
-
-        return model;
     }
+
+
+    private static bool IsSimpleType(Type t)
+    {
+        return t.IsPrimitive
+               || t.IsEnum
+               || t == typeof(string)
+               || t == typeof(decimal);
+    }
+
+    private static object ConvertValue(Type t, string value)
+    {
+        if (string.IsNullOrEmpty(value))
+            return t.IsValueType ? Activator.CreateInstance(t) : null;
+
+        if (t.IsEnum)
+        {
+            // ignore case: "Money", "money", "MONEY" đều được
+            return Enum.Parse(t, value, true);
+        }
+
+        return Convert.ChangeType(value, t);
+    }
+
+    /// <summary>
+    /// Xây 1 object từ 1 dòng CSV theo THỨ TỰ FIELD.
+    /// - Simple type (int, string, enum...) ăn 1 cột.
+    /// - Object lồng object → đệ quy, ăn tiếp các cột sau.
+    /// </summary>
+    private static object BuildObject(Type type, string[] row, ref int colIndex)
+    {
+        object obj = Activator.CreateInstance(type);
+
+        // Lấy tất cả field public instance theo đúng thứ tự khai báo
+        var fields = type.GetFields(BindingFlags.Public | BindingFlags.Instance);
+
+        foreach (var f in fields)
+        {
+            Type ft = f.FieldType;
+
+            // Kiểu mảng / List / struct phức tạp khác hiện tại bỏ qua (chỉ xử lý object đơn)
+            if (ft.IsArray)
+            {
+                // nếu sau này cần, sẽ xử lý riêng
+                continue;
+            }
+
+            if (IsSimpleType(ft))
+            {
+                // ăn 1 cột
+                if (colIndex >= row.Length)
+                    break;
+
+                string cell = row[colIndex];
+                colIndex++;
+
+                if (!string.IsNullOrWhiteSpace(cell))
+                {
+                    object val = ConvertValue(ft, cell);
+                    f.SetValue(obj, val);
+                }
+            }
+            else
+            {
+                // object lồng object → đệ quy
+                object nested = BuildObject(ft, row, ref colIndex);
+                f.SetValue(obj, nested);
+            }
+        }
+
+        return obj;
+    }
+
 
 
     private static string SnakeToCamel(string name)
@@ -242,12 +244,6 @@ public static class CsvImporter
         for (int i = 1; i < parts.Count; i++)
             parts[i] = char.ToUpper(parts[i][0]) + parts[i].Substring(1);
         return string.Join("", parts);
-    }
-
-    private static object ConvertValue(Type t, string value)
-    {
-        if (t.IsEnum) return Enum.Parse(t, value);
-        return Convert.ChangeType(value, t);
     }
 }
 #endif
