@@ -16,4 +16,17 @@ public class PlayerDataManager
 
         set => _hero = value;
     }
+
+    private static ResourceManager _resource;
+
+    public static ResourceManager Resource
+    {
+        get
+        {
+            if (_resource == null) _resource = DataPlayerBase.GetModule<ResourceManager>();
+            return _resource;
+        }
+
+        set => _resource = value;
+    }
 }
