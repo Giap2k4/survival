@@ -22,6 +22,8 @@ public class HeroItemController : MonoBehaviour
     protected TextMeshProUGUI txtPriceHero;
 
     // type resources
+    [SerializeField]
+    protected EnumBase.ResourcesType resourceType;
 
     public void InitData(HeroModel hero)
     {
