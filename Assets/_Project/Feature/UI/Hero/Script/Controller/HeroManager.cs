@@ -11,6 +11,8 @@ public class HeroManager : DataPlayer<HeroData>
         PlayerDataManager.Hero.Save();
     }
 
+    public static int SelectedHero() => PlayerDataManager.Hero.database.idHeroSelected;
+
     public static void AddHero(int idHero)
     {
         if (!PlayerDataManager.Hero.database.idHeroOwned.ContainsKey(idHero))

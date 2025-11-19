@@ -713,6 +713,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   feature: 1
   btnClose: {fileID: 81309300427832372}
+  prefab: {fileID: 2288475449062316560, guid: 0e389a922936fe04699ea40ae9b4ee50, type: 3}
+  parentPrefab: {fileID: 5220175210091633420}
 --- !u!114 &749585191878740884
 MonoBehaviour:
   m_ObjectHideFlags: 0
