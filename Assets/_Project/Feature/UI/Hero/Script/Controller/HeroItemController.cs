@@ -35,7 +35,7 @@ public class HeroItemController : MonoBehaviour
             isLock.SetActive(false);
         } else
         {
-            txtPriceHero.text = hero.price.ToString();
+            txtPriceHero.text = hero.resource.resQuantity.ToString();
         }
 
         if (hero.id == HeroManager.SelectedHero()) isSelected.SetActive(true);
