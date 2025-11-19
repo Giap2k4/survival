@@ -19,4 +19,5 @@ public class DataManager
         return data;
     }
 
+    public static HeroCollection Hero => Get<HeroCollection>();
 }
