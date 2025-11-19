@@ -8,4 +8,5 @@ public class HeroModel
     public int level;
     public int powerStat;
     public int defaultSkill;
+    public int price;
 }
