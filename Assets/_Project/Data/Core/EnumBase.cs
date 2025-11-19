@@ -20,4 +20,10 @@ public class EnumBase
         HomeScene,
         BattleScene
     }
+
+    public enum ResourcesType
+    {
+        Money,
+        Hero
+    }
 }
