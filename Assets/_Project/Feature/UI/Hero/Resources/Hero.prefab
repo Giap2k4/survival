@@ -292,6 +292,7 @@ MonoBehaviour:
   isSelected: {fileID: 4600964509413493392}
   isLock: {fileID: 7229267189714182369}
   txtPriceHero: {fileID: 4322024502491650260}
+  resourceType: {fileID: 8373733122717785243}
 --- !u!1 &3073162372850937303
 GameObject:
   m_ObjectHideFlags: 0

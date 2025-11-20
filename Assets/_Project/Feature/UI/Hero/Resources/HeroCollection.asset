@@ -20,7 +20,7 @@ MonoBehaviour:
     defaultSkill: 1
     resource:
       resType: 0
-      resId: 0
+      resId: 1
       resQuantity: 0
   - id: 2
     nameHero: "Cung th\u1EE7 r\u1EEBng xanh"
@@ -29,5 +29,5 @@ MonoBehaviour:
     defaultSkill: 2
     resource:
       resType: 0
-      resId: 0
-      resQuantity: 0
+      resId: 2
+      resQuantity: 200

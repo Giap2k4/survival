@@ -23,20 +23,24 @@ public class HeroItemController : MonoBehaviour
 
     // type resources
     [SerializeField]
-    protected EnumBase.ResourcesType resourceType;
+    protected Image resourceType;
 
     public void InitData(HeroModel hero)
     {
-        spriteHero.sprite = Resources.Load<Sprite>("Hero/Hero_" + hero.id + "/Hero_" + hero.id);
+        spriteHero.sprite = Resources.Load<Sprite>("Hero/" + hero.id);
         txtNameHero.text = hero.nameHero;
-        
+
         if (HeroManager.ListHeroOwned().TryGetValue(hero.id, out var value))
         {
             isLock.SetActive(false);
-        } else
+        }
+        else
         {
             txtPriceHero.text = hero.resource.resQuantity.ToString();
         }
+
+        resourceType.sprite = Resources.Load<Sprite>("Money/" + hero.resource.resId);
+        txtPriceHero.text = hero.resource.resQuantity.ToString();
 
         if (hero.id == HeroManager.SelectedHero()) isSelected.SetActive(true);
     }
