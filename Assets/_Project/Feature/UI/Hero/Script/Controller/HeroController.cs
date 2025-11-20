@@ -11,6 +11,18 @@ public class HeroController : FeatureBaseController
     [SerializeField]
     protected RectTransform parentPrefab;
 
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        HeroItemController.fieldHero += SetUI;
+    }
+
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        HeroItemController.fieldHero -= SetUI;
+    }
+
     protected override void LoadData()
     {
         base.LoadData();
@@ -22,5 +34,10 @@ public class HeroController : FeatureBaseController
             var component = obj.GetComponent<HeroItemController>();
             component.InitData(item);
         }
+    }
+
+    public void SetUI(HeroModel model)
+    {
+
     }
 }

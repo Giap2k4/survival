@@ -1,3 +1,4 @@
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -6,6 +7,9 @@ using UnityEngine.UI;
 
 public class HeroItemController : MonoBehaviour
 {
+    public static event Action<HeroItemController> OnAnyClicked;
+    public static event Action<HeroModel> fieldHero;
+
     [SerializeField]
     protected Image spriteHero;
 
@@ -25,8 +29,50 @@ public class HeroItemController : MonoBehaviour
     [SerializeField]
     protected Image resourceType;
 
+    [SerializeField]
+    protected Button btnClick;
+
+    [SerializeField]
+    protected GameObject spriteClick;
+
+    public HeroModel heroModel;
+
+    private void Start()
+    {
+        btnClick.onClick.AddListener(OnClick);
+    }
+
+    protected void OnClick()
+    {
+        if (OnAnyClicked != null) OnAnyClicked(this);
+        if (fieldHero != null) fieldHero(heroModel);
+    }
+
+    private void OnEnable()
+    {
+        OnAnyClicked += HandleAnyClicked;
+    }
+
+    private void OnDisable()
+    {
+        OnAnyClicked -= HandleAnyClicked;
+    }
+
+    protected void HandleAnyClicked(HeroItemController clicked)
+    {
+        bool active = (clicked == this);
+        if (active)
+        {
+            spriteClick.SetActive(true);
+        } else
+        {
+            spriteClick.SetActive(false);
+        }
+    }
+
     public void InitData(HeroModel hero)
     {
+        heroModel = hero;
         spriteHero.sprite = Resources.Load<Sprite>("Hero/" + hero.id);
         txtNameHero.text = hero.nameHero;
 
