@@ -27,12 +27,14 @@ public abstract class DataPlayerBase
         {
             // Tạo instance của mỗi derived class (Cách này thực chất là tạo Object cho mỗi loại chứ k phải tạo DataPlayerBase)
             DataPlayerBase instance = (DataPlayerBase)Activator.CreateInstance(type);
+            if (!dataInstance.ContainsKey(type.Name))
+                dataInstance.Add(type.Name, instance);
+
             instance.Load();
 
             //listInstance.Add(instance);
 
-            if (!dataInstance.ContainsKey(type.Name))
-                dataInstance.Add(type.Name, instance);
+            
         }
     }
 

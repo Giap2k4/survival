@@ -9,7 +9,8 @@ public abstract class DataPlayer<T> : DataPlayerBase
 
     public void InitData()
     {
-        T dataBase = Activator.CreateInstance<T>();
+        T data = Activator.CreateInstance<T>();
+        database = data;
         SetDataDefault();
         Save();
     }

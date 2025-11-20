@@ -7,5 +7,5 @@ public class HeroData
     public int idHeroSelected;
 
     // id, level
-    public Dictionary<int, int> idHeroOwned;
+    public Dictionary<int, int> idHeroOwned = new Dictionary<int, int>();
 }

@@ -26,4 +26,22 @@ public class HeroManager : DataPlayer<HeroData>
     {
         return PlayerDataManager.Hero.database.idHeroOwned;
     }
+
+    public override void SetDataDefault()
+    {
+        base.SetDataDefault();
+        foreach (var item in DataManager.Resource.GetAll())
+        {
+            if (item.package.resType != EnumBase.ResourcesType.Hero) continue;
+
+            var data = PlayerDataManager.Hero.database;
+
+            if (!data.idHeroOwned.TryGetValue(item.package.resId, out var value))
+            {
+                data.idHeroOwned.Add(item.package.resId, 1);
+                data.idHeroSelected = item.package.resId;
+            }
+        }
+        PlayerDataManager.Hero.Save();
+    }
 }
