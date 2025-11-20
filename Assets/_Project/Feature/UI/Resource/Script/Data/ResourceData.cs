@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class ResourceData
 {
-    public List<PackageReward> resources;
+    public List<PackageReward> resources = new List<PackageReward>();
 }
