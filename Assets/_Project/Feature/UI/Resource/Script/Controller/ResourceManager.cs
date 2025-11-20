@@ -13,4 +13,14 @@ public class ResourceManager : DataPlayer<ResourceData>
     {
 
     }
+
+    public override void SetDataDefault()
+    {
+        base.SetDataDefault();
+        foreach (var item in DataManager.Resource.GetAll())
+        {
+            PlayerDataManager.Resource.database.resources.Add(item.package);
+        }
+        PlayerDataManager.Resource.Save();
+    }
 }
