@@ -73,7 +73,7 @@ public class HeroItemController : MonoBehaviour
     public void InitData(HeroModel hero)
     {
         heroModel = hero;
-        spriteHero.sprite = Resources.Load<Sprite>("Hero/" + hero.id);
+        spriteHero.sprite = LoadSpriteResources.LoadSprite("Hero/" + hero.id);
         txtNameHero.text = hero.nameHero;
 
         if (HeroManager.ListHeroOwned().TryGetValue(hero.id, out var value))
@@ -85,7 +85,7 @@ public class HeroItemController : MonoBehaviour
             txtPriceHero.text = hero.resource.resQuantity.ToString();
         }
 
-        resourceType.sprite = Resources.Load<Sprite>("Money/" + hero.resource.resId);
+        resourceType.sprite = LoadSpriteResources.LoadSprite("Money/" + hero.resource.resId);
         txtPriceHero.text = hero.resource.resQuantity.ToString();
 
         if (hero.id == HeroManager.SelectedHero()) isSelected.SetActive(true);

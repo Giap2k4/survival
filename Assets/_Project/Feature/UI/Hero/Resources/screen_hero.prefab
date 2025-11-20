@@ -715,6 +715,8 @@ MonoBehaviour:
   btnClose: {fileID: 81309300427832372}
   prefab: {fileID: 2288475449062316560, guid: 0e389a922936fe04699ea40ae9b4ee50, type: 3}
   parentPrefab: {fileID: 5220175210091633420}
+  avatarHero: {fileID: 1851693690676095582}
+  txtNameHero: {fileID: 5214115738089681719}
 --- !u!114 &749585191878740884
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2271,6 +2273,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61bdb243bf4411944a1b0adfa58024e4, type: 3}
+--- !u!114 &5214115738089681719 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8109992978007041058, guid: 61bdb243bf4411944a1b0adfa58024e4, type: 3}
+  m_PrefabInstance: {fileID: 4093834761286342421}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &7758589855285071394 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6015741869930649911, guid: 61bdb243bf4411944a1b0adfa58024e4, type: 3}

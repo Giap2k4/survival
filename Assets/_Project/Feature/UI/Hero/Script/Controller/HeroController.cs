@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HeroController : FeatureBaseController
 {
@@ -10,6 +12,12 @@ public class HeroController : FeatureBaseController
 
     [SerializeField]
     protected RectTransform parentPrefab;
+
+    [SerializeField]
+    protected Image avatarHero;
+
+    [SerializeField]
+    protected TextMeshProUGUI txtNameHero;
 
     protected override void OnEnable()
     {
@@ -34,10 +42,14 @@ public class HeroController : FeatureBaseController
             var component = obj.GetComponent<HeroItemController>();
             component.InitData(item);
         }
+
+        HeroModel hero = DataManager.Hero.GetHeroById(HeroManager.SelectedHero());
+        SetUI(hero);
     }
 
     public void SetUI(HeroModel model)
     {
-
+        avatarHero.sprite = LoadSpriteResources.LoadSprite("Hero/" + model.id);
+        txtNameHero.text = model.nameHero;
     }
 }
