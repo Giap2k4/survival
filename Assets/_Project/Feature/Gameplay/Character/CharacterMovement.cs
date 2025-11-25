@@ -7,7 +7,7 @@ public class CharacterMovement : MonoBehaviour
     private Vector2 moveInput;
 
     [SerializeField] protected Animator animator;
-    [SerializeField] private Joystick joystick; 
+    [SerializeField] public Joystick joystick; 
 
     void Update()
     {

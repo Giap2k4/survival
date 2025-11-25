@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class BattleModeBase : MonoBehaviour
+public abstract class BattleModeBase : BattleController
 {
     protected virtual void Start()
     {

@@ -361,6 +361,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 713ccc497232c3d49bbef59047d8e732, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cam: {fileID: 1546653692}
+  joystick: {fileID: 7695527959405191739}
 --- !u!4 &882911913
 Transform:
   m_ObjectHideFlags: 0
