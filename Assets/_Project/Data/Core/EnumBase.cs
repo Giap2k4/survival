@@ -26,4 +26,10 @@ public class EnumBase
         Money,
         Hero
     }
+
+    public enum BattleMode
+    {
+        None,
+        LastSurvival
+    }
 }
