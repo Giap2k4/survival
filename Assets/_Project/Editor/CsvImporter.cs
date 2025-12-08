@@ -10,7 +10,7 @@ using System.Reflection;
 public static class CsvImporter
 {
     private const string CSV_FOLDER = "Assets/_Project/Csv/Feature/";
-    private const string FEATURE_FOLDER = "Assets/_Project/Feature/UI/";
+    private const string FEATURE_FOLDER = "Assets/_Project/Feature/";
 
     [MenuItem("Tools/CSV/Import All %#h")] // Ctrl + Shift + H
     public static void ImportAll()
@@ -43,10 +43,11 @@ public static class CsvImporter
     {
         string featureName = Path.GetFileNameWithoutExtension(csvPath);
 
-        string resourcePath = $"{FEATURE_FOLDER}{featureName}/Resources";
-        if (!Directory.Exists(resourcePath))
+        // Tìm folder Resources trong tất cả subfolder của Feature
+        string resourcePath = FindResourceFolder(featureName);
+        if (resourcePath == null)
         {
-            Debug.LogWarning($"⚠ Bỏ qua {featureName}. Folder không tồn tại: {resourcePath}");
+            Debug.LogWarning($"⚠ Bỏ qua {featureName}. Không tìm thấy folder: {featureName}/Resources trong {FEATURE_FOLDER}");
             return;
         }
 
@@ -86,6 +87,23 @@ public static class CsvImporter
 
         EditorUtility.SetDirty(so);
         Debug.Log($"<color=#00d1ff>✔ Imported → {Path.GetFileName(csvPath)}</color>");
+    }
+
+    private static string FindResourceFolder(string featureName)
+    {
+        // Tìm tất cả folder có tên featureName trong FEATURE_FOLDER
+        var featureDirs = Directory.GetDirectories(FEATURE_FOLDER, featureName, SearchOption.AllDirectories);
+
+        foreach (var dir in featureDirs)
+        {
+            string resourcePath = Path.Combine(dir, "Resources").Replace("\\", "/");
+            if (Directory.Exists(resourcePath))
+            {
+                return resourcePath;
+            }
+        }
+
+        return null;
     }
 
     private static List<string[]> ParseCsv(string text)
