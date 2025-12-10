@@ -2,22 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class BattleModeBase : BattleController
+public abstract class BattleModeBase : MonoBehaviour
 {
     protected virtual void Start()
     {
         InitData();
     }
-
-    protected virtual void OnEnable()
-    {
-
-    }
-
-    protected virtual void OnDisable()
-    {
-
-    }
+    protected virtual void OnEnable() { }
+    protected virtual void OnDisable() { }
 
     protected abstract void InitData();
 }

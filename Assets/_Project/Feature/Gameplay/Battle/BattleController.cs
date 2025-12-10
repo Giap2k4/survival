@@ -4,29 +4,32 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class BattleController : MonoBehaviour
+public class BattleController : SingletonTemporary<BattleController>
 {
     [SerializeField]
-    protected CinemachineVirtualCamera cam;
+    public CinemachineVirtualCamera cam;
 
     [SerializeField]
-    protected Joystick joystick;
+    public Joystick joystick;
+
+    private static GameObject _player;
 
     // Start is called before the first frame update
     void Start()
     {
-        if (BattleManager.battleMode == EnumBase.BattleMode.None)
+        if (BattleManager.BattleMode == EnumBase.BattleMode.None)
         {
-            BattleManager.SetBattleMode(EnumBase.BattleMode.LastSurvival);
+            BattleManager.BattleMode = (EnumBase.BattleMode.LastSurvival);
         }
 
-        switch (BattleManager.GetBattleMode())
+        switch (BattleManager.BattleMode)
         {
             case EnumBase.BattleMode.LastSurvival:
                 var obj = gameObject.GetOrAddComponent<BattleLastSurvivalMode>();
-                obj.cam = cam;
-                obj.joystick = joystick;
                 break;
         }
     }
+
+    public void SetPlayer(GameObject obj) => _player = obj;
+    public GameObject GetPlayer() => _player;
 }
