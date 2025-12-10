@@ -2,11 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class MoveSystemBase : MonoBehaviour
+public abstract class MoveSystemBase : MonoBehaviour, IUpdateManager
 {
     public float moveSpeed = 0;
     protected abstract void MoveAction(); // xử lý di chuyển
     public void SetSpeed(float speed) => moveSpeed = speed;
-    protected abstract void OnEnable(); // đăng ký vào update
-    protected abstract void OnDisable(); // hủy đăng ký update
+    protected virtual void OnEnable()
+    {
+        UpdateManager.instance.Register(this);
+    }
+
+    protected virtual void OnDisable()
+    {
+        UpdateManager.instance.UnRegister(this);
+    }
+
+    public virtual void UpdateMe()
+    {
+        MoveAction();
+    }
 }

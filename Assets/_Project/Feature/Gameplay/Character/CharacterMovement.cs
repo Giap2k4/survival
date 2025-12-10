@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class CharacterMovement : MoveSystemBase, IUpdateManager
+public class CharacterMovement : MoveSystemBase
 {
     [SerializeField] protected Rigidbody2D rb;
     private Vector2 moveInput;
@@ -11,21 +11,6 @@ public class CharacterMovement : MoveSystemBase, IUpdateManager
     void FixedUpdate()
     {
         rb.velocity = moveInput * moveSpeed;
-    }
-
-    protected override void OnEnable()
-    {
-        UpdateManager.instance.Register(this);
-    }
-
-    protected override void OnDisable()
-    {
-        UpdateManager.instance.UnRegister(this);
-    }
-
-    public void UpdateMe()
-    {
-        MoveAction();
     }
 
     protected override void MoveAction()
