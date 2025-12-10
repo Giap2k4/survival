@@ -16,7 +16,9 @@ public class BattleLastSurvivalMode : BattleModeBase
         GameObject obj = Instantiate(prefab);
         obj.transform.position = Vector3.zero;
 
-        obj.GetComponent<CharacterMovement>().joystick = joystick;
-        cam.Follow = obj.transform;
+        BattleController.instance.SetPlayer(obj);
+
+        obj.GetComponent<CharacterMovement>().joystick = BattleController.instance.joystick;
+        BattleController.instance.cam.Follow = obj.transform;
     }
 }

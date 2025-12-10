@@ -1,15 +1,34 @@
 ﻿using UnityEngine;
 
-public class CharacterMovement : MonoBehaviour
+public class CharacterMovement : MoveSystemBase, IUpdateManager
 {
-    public float moveSpeed = 2.5f;
     [SerializeField] protected Rigidbody2D rb;
     private Vector2 moveInput;
 
     [SerializeField] protected Animator animator;
-    [SerializeField] public Joystick joystick; 
+    [SerializeField] public Joystick joystick;
 
-    void Update()
+    void FixedUpdate()
+    {
+        rb.velocity = moveInput * moveSpeed;
+    }
+
+    protected override void OnEnable()
+    {
+        UpdateManager.instance.Register(this);
+    }
+
+    protected override void OnDisable()
+    {
+        UpdateManager.instance.UnRegister(this);
+    }
+
+    public void UpdateMe()
+    {
+        MoveAction();
+    }
+
+    protected override void MoveAction()
     {
         // Lấy input từ joystick
         float moveX = joystick.Horizontal();
@@ -32,10 +51,5 @@ public class CharacterMovement : MonoBehaviour
             rotation.y = 0;
             gameObject.transform.rotation = rotation;
         }
-    }
-
-    void FixedUpdate()
-    {
-        rb.velocity = moveInput * moveSpeed;
     }
 }

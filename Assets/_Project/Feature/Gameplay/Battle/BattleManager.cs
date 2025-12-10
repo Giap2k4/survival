@@ -4,8 +4,5 @@ using UnityEngine;
 
 public static class BattleManager
 {
-    public static EnumBase.BattleMode battleMode;
-
-    public static void SetBattleMode(EnumBase.BattleMode battle) {  battleMode = battle; }
-    public static EnumBase.BattleMode GetBattleMode() => battleMode;
+    public static EnumBase.BattleMode BattleMode {  get; set; }
 }
