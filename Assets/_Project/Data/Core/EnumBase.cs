@@ -61,4 +61,14 @@ public class EnumBase
         Percent = 1,
         Number = 2,
     }
+
+    public enum SpawnEnemyType
+    {
+        None = 0,
+        Top = 1,
+        Bot = 2,
+        Left = 3,
+        Right = 4,
+        All = 5,
+    }
 }

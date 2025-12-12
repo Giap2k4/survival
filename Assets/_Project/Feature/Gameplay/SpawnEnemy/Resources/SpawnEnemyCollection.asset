@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96dced2062e334248ada286971523651, type: 3}
+  m_Name: SpawnEnemyCollection
+  m_EditorClassIdentifier: 
+  dataGroups:
+  - idMap: 0
+    details:
+    - idEnemy: 1
+      quantityEnemy: 2
+      spawnEnemyType: 1
+      timeStart: 0
+      timeEnd: 0
+      interval: 0
+    - idEnemy: 1
+      quantityEnemy: 2
+      spawnEnemyType: 2
+      timeStart: 1
+      timeEnd: 1
+      interval: 0
+    - idEnemy: 1
+      quantityEnemy: 3
+      spawnEnemyType: 3
+      timeStart: 2
+      timeEnd: 2
+      interval: 0
+    - idEnemy: 1
+      quantityEnemy: 3
+      spawnEnemyType: 4
+      timeStart: 3
+      timeEnd: 3
+      interval: 0
+    - idEnemy: 1
+      quantityEnemy: 3
+      spawnEnemyType: 5
+      timeStart: 4
+      timeEnd: 999999
+      interval: 1
