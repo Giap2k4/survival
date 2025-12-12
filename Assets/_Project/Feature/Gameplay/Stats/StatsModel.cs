@@ -4,7 +4,13 @@ using System;
 public class StatsModel
 {
     public int idStat;
-    public float hp;
-    public float dmg;
-    public float moveSpeed;
+    public StatDetail[] statDetail;
+}
+
+[Serializable]
+public class StatDetail
+{
+    public EnumBase.RPGStatType statType;
+    public EnumBase.ValueType valueType;
+    public float statValue;
 }

@@ -1,3 +1,14 @@
-﻿idStat,hp,dmg,moveSpeed
-1,150,30,2.5
-2,150,25,2.5
+﻿idStat,statType,valueType,statValue
+1,Health,Number,150
+,Damager,Number,30
+,MoveSpeed,Number,2.5
+,CritRate,Percent,0.1
+,CritDamager,Percent,0.2
+2,Health,Number,120
+,Damager,Number,40
+,MoveSpeed,Number,2.5
+,CritRate,Percent,0.1
+,CritDamager,Percent,0.2
+501,1,2,70
+,2,2,7
+,3,2,1.8

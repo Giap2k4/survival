@@ -124,39 +124,129 @@ public static class CsvImporter
 
     private static object BuildModel(Type modelType, string[] header, List<string[]> rows)
     {
-        // Không dùng header nữa cho mapping, chỉ dùng rows (dữ liệu) + thứ tự field
-
-        // CASE A: dataGroups là MẢNG (ví dụ: HeroModel[])
+        // CASE A: dataGroups là MẢNG
         if (modelType.IsArray)
         {
-            Type elementType = modelType.GetElementType();   // HeroModel
-            int count = rows.Count;
-
-            Array array = Array.CreateInstance(elementType, count);
-
-            for (int i = 0; i < count; i++)
-            {
-                string[] row = rows[i];
-                int colIndex = 0; // luôn bắt đầu từ cột 0 cho mỗi dòng
-
-                object element = BuildObject(elementType, row, ref colIndex);
-                array.SetValue(element, i);
-            }
-
-            return array;
+            Type elementType = modelType.GetElementType();
+            return BuildArrayRecursive(elementType, rows, 0);
         }
 
-        // CASE B: dataGroups là 1 OBJECT (SevenDayLoginModel,...)
-        // Lấy từ dòng đầu tiên
+        // CASE B: dataGroups là 1 OBJECT
         if (rows.Count == 0)
             return null;
 
+        string[] row = rows[0];
+        int colIndex = 0;
+        return BuildObjectWithNestedArray(modelType, rows, ref colIndex, 0);
+    }
+
+    /// <summary>
+    /// Build mảng đệ quy - hỗ trợ mảng lồng mảng
+    /// startCol: cột bắt đầu để check xem row có phải element mới không
+    /// </summary>
+    private static object BuildArrayRecursive(Type elementType, List<string[]> rows, int startCol)
+    {
+        if (rows.Count == 0)
+            return Array.CreateInstance(elementType, 0);
+
+        // Tính số cột của các field đơn giản (không phải array) trong element
+        int simpleFieldCols = CountSimpleFieldColumns(elementType);
+
+        // Group rows theo logic: cột startCol có giá trị = element mới
+        var groups = new List<List<string[]>>();
+        List<string[]> currentGroup = null;
+
+        foreach (var row in rows)
         {
-            string[] row = rows[0];
-            int colIndex = 0;
-            object model = BuildObject(modelType, row, ref colIndex);
-            return model;
+            if (row.Length <= startCol) continue;
+
+            // Cột startCol có giá trị → element mới
+            if (!string.IsNullOrWhiteSpace(row[startCol]))
+            {
+                currentGroup = new List<string[]>();
+                groups.Add(currentGroup);
+            }
+
+            if (currentGroup != null)
+                currentGroup.Add(row);
         }
+
+        // Build từng element
+        Array result = Array.CreateInstance(elementType, groups.Count);
+
+        for (int i = 0; i < groups.Count; i++)
+        {
+            var group = groups[i];
+            int colIndex = startCol;
+            object element = BuildObjectWithNestedArray(elementType, group, ref colIndex, startCol);
+            result.SetValue(element, i);
+        }
+
+        return result;
+    }
+
+    /// <summary>
+    /// Build object có thể chứa nested array
+    /// </summary>
+    private static object BuildObjectWithNestedArray(Type type, List<string[]> rows, ref int colIndex, int startCol)
+    {
+        object obj = Activator.CreateInstance(type);
+        string[] firstRow = rows[0];
+
+        var fields = type.GetFields(BindingFlags.Public | BindingFlags.Instance);
+
+        foreach (var f in fields)
+        {
+            Type ft = f.FieldType;
+
+            if (ft.IsArray)
+            {
+                // Đây là array field → build đệ quy với startCol mới
+                Type arrayElementType = ft.GetElementType();
+                object nestedArray = BuildArrayRecursive(arrayElementType, rows, colIndex);
+                f.SetValue(obj, nestedArray);
+                // Không tăng colIndex ở đây vì array đã xử lý các cột của nó
+            }
+            else if (IsSimpleType(ft))
+            {
+                // Simple type → lấy giá trị từ row đầu tiên
+                if (colIndex < firstRow.Length && !string.IsNullOrWhiteSpace(firstRow[colIndex]))
+                {
+                    object val = ConvertValue(ft, firstRow[colIndex]);
+                    f.SetValue(obj, val);
+                }
+                colIndex++;
+            }
+            else
+            {
+                // Nested object (không phải array) → đệ quy
+                object nested = BuildObjectWithNestedArray(ft, rows, ref colIndex, startCol);
+                f.SetValue(obj, nested);
+            }
+        }
+
+        return obj;
+    }
+
+    /// <summary>
+    /// Đếm số cột của các field đơn giản (không phải array)
+    /// </summary>
+    private static int CountSimpleFieldColumns(Type type)
+    {
+        int count = 0;
+        var fields = type.GetFields(BindingFlags.Public | BindingFlags.Instance);
+
+        foreach (var f in fields)
+        {
+            if (f.FieldType.IsArray)
+                continue; // Bỏ qua array
+
+            if (IsSimpleType(f.FieldType))
+                count++;
+            else
+                count += CountSimpleFieldColumns(f.FieldType);
+        }
+        return count;
     }
 
 

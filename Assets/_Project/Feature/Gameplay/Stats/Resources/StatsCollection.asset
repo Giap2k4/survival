@@ -14,10 +14,47 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dataGroups:
   - idStat: 1
-    hp: 150
-    dmg: 30
-    moveSpeed: 2.5
+    statDetail:
+    - statType: 1
+      valueType: 2
+      statValue: 150
+    - statType: 2
+      valueType: 2
+      statValue: 30
+    - statType: 3
+      valueType: 2
+      statValue: 2.5
+    - statType: 4
+      valueType: 1
+      statValue: 0.1
+    - statType: 5
+      valueType: 1
+      statValue: 0.2
   - idStat: 2
-    hp: 150
-    dmg: 25
-    moveSpeed: 2.5
+    statDetail:
+    - statType: 1
+      valueType: 2
+      statValue: 120
+    - statType: 2
+      valueType: 2
+      statValue: 40
+    - statType: 3
+      valueType: 2
+      statValue: 2.5
+    - statType: 4
+      valueType: 1
+      statValue: 0.1
+    - statType: 5
+      valueType: 1
+      statValue: 0.2
+  - idStat: 501
+    statDetail:
+    - statType: 1
+      valueType: 2
+      statValue: 70
+    - statType: 2
+      valueType: 2
+      statValue: 7
+    - statType: 3
+      valueType: 2
+      statValue: 1.8

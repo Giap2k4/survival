@@ -18,6 +18,10 @@ public class BattleLastSurvivalMode : BattleModeBase
 
         BattleController.instance.SetPlayer(obj);
 
+        
+        var hero = DataManager.Hero.GetHeroById(idHero);
+        obj.GetComponent<CharacterBaseController>().AddStatBase(hero.powerStat);
+
         obj.GetComponent<CharacterMovement>().joystick = BattleController.instance.joystick;
         BattleController.instance.cam.Follow = obj.transform;
     }
