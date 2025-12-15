@@ -12,6 +12,9 @@ public class BattleController : SingletonTemporary<BattleController>
     [SerializeField]
     public Joystick joystick;
 
+    [SerializeField]
+    public Camera mainCamera;
+
     private static GameObject _player;
 
     // Start is called before the first frame update

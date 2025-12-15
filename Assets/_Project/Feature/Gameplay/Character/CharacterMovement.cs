@@ -8,9 +8,15 @@ public class CharacterMovement : MoveSystemBase
     [SerializeField] protected Animator animator;
     [SerializeField] public Joystick joystick;
 
-    void FixedUpdate()
+    private Vector3 scaleStart;
+    private Vector3 scale;
+
+    protected override void Start()
     {
-        rb.velocity = moveInput * moveSpeed;
+        base.Start();
+        scaleStart = transform.localScale;
+        scale = scaleStart;
+        scale.x *= -1;
     }
 
     protected override void MoveAction()
@@ -21,20 +27,13 @@ public class CharacterMovement : MoveSystemBase
 
         moveInput = new Vector2(moveX, moveY).normalized;
 
+        transform.position += (Vector3)moveInput * moveSpeed * Time.deltaTime;
+
         // set anim
         animator.SetBool("IsMoving", moveInput.magnitude > 0);
 
         // lật nhân vật
-        Quaternion rotation = gameObject.transform.rotation;
-        if (moveX < 0)
-        {
-            rotation.y = 180;
-            gameObject.transform.rotation = rotation;
-        }
-        else if (moveX > 0.01f)
-        {
-            rotation.y = 0;
-            gameObject.transform.rotation = rotation;
-        }
+        if (moveX < -0.01f) transform.localScale = scale;
+        else if (moveX > 0.01f) transform.localScale = scaleStart;
     }
 }

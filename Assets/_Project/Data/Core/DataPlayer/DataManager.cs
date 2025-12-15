@@ -22,4 +22,6 @@ public class DataManager
     public static HeroCollection Hero => Get<HeroCollection>();
     public static ResourceCollection Resource => Get<ResourceCollection>();
     public static StatsCollection Stats => Get<StatsCollection>();
+    public static SpawnEnemyCollection SpawnEnemy => Get<SpawnEnemyCollection>();
+    public static EnemyCollection Enemy => Get<EnemyCollection>();
 }

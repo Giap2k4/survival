@@ -1,9 +1,10 @@
-using System;
+﻿using System;
 
 [Serializable]
 public class SpawnEnemyModel
 {
     public int idMap;
+    public int totalTime; // tính bằng giây
     public SpawnEnemyDetails[] details;
 }
 

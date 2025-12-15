@@ -20,6 +20,7 @@ public abstract class MoveSystemBase : MonoBehaviour, IUpdateManager
 
     protected virtual void OnDisable()
     {
+        if (UpdateManager.instance == null) return;
         UpdateManager.instance.UnRegister(this);
     }
 

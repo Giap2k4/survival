@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//[Serializable]
 public class RPGStatCollection
 {
     private Dictionary<EnumBase.RPGStatType, RPGStat> _stats = new Dictionary<EnumBase.RPGStatType, RPGStat> ();

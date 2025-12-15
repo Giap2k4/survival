@@ -407,6 +407,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 1546653692}
   joystick: {fileID: 7695527959405191739}
+  mainCamera: {fileID: 1680331361}
 --- !u!4 &882911913
 Transform:
   m_ObjectHideFlags: 0

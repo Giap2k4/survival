@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dataGroups:
   - idMap: 0
+    totalTime: 300
     details:
     - idEnemy: 1
       quantityEnemy: 2
@@ -40,8 +41,8 @@ MonoBehaviour:
       timeEnd: 3
       interval: 0
     - idEnemy: 1
-      quantityEnemy: 3
-      spawnEnemyType: 5
+      quantityEnemy: 5
+      spawnEnemyType: 4
       timeStart: 4
-      timeEnd: 999999
-      interval: 1
+      timeEnd: 4
+      interval: 0
