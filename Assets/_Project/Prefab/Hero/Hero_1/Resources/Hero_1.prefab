@@ -126,6 +126,7 @@ MonoBehaviour:
   rb: {fileID: 0}
   animator: {fileID: 6799326765245375188}
   joystick: {fileID: 0}
+  spriteRenderer: {fileID: 6745802836686835528}
 --- !u!114 &636943690391341190
 MonoBehaviour:
   m_ObjectHideFlags: 0

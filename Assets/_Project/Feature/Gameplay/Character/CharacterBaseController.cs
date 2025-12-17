@@ -17,12 +17,20 @@ public class CharacterBaseController : MonoBehaviour
         var stat = DataManager.Stats.GetStatsById(idStat);
         foreach (var item in stat.statDetail)
         {
-            stats.AddModifier(item.statType, new StatModifier(item.valueType, item.statValue, "base"));
+            //stats.AddModifier(item.statType, new StatModifier(item.valueType, item.statValue, "base"));
+            stats.SetValueBase(item.statType, item.statValue);
         }
     }
 
     public virtual void OnTriggerEnter2D(Collider2D collision)
     {
         
+    }
+
+    public virtual void InitSkillDefault(int idSkill)
+    {
+        var skill = Resources.Load<GameObject>("SkillController_" + idSkill);
+        GameObject obj = Instantiate(skill);
+        obj.transform.position = Vector3.zero;
     }
 }

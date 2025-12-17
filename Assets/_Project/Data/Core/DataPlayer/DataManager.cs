@@ -24,4 +24,5 @@ public class DataManager
     public static StatsCollection Stats => Get<StatsCollection>();
     public static SpawnEnemyCollection SpawnEnemy => Get<SpawnEnemyCollection>();
     public static EnemyCollection Enemy => Get<EnemyCollection>();
+    public static SkillCollection Skill => Get<SkillCollection>();
 }

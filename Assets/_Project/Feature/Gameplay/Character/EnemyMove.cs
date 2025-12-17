@@ -15,16 +15,12 @@ public class EnemyMove : MoveSystemBase
 
     public bool isDie;
 
-    private Vector3 scaleStart;
-    private Vector3 scale;
+    [SerializeField] private SpriteRenderer spriteRenderer;
 
     protected override void Start()
     {
         base.Start();
         hero = BattleController.instance.GetPlayer();
-        scaleStart = transform.localScale;
-        scale = scaleStart;
-        scale.x *= -1;
     }
 
     protected override void MoveAction()
@@ -33,7 +29,7 @@ public class EnemyMove : MoveSystemBase
 
         transform.position = Vector3.MoveTowards(transform.position, hero.transform.position, moveSpeed * Time.deltaTime);
 
-        if (hero.transform.position.x <= transform.position.x + 0.1f) transform.localScale = scale;
-        else transform.localScale = scaleStart;
+        if (hero.transform.position.x <= transform.position.x + 0.1f) spriteRenderer.flipX = true;
+        else spriteRenderer.flipX = false;
     }
 }

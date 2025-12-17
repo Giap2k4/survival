@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//[Serializable]
+[Serializable]
 public class RPGStatCollection
 {
     private Dictionary<EnumBase.RPGStatType, RPGStat> _stats = new Dictionary<EnumBase.RPGStatType, RPGStat> ();
@@ -15,6 +15,11 @@ public class RPGStatCollection
             _stats.Add (statType, new RPGStat ());
         }
         return _stats[statType];
+    }
+
+    public void SetValueBase(EnumBase.RPGStatType statType, float valueStat)
+    {
+        GetOrCreateStat(statType).SetValueStatBase(valueStat);
     }
 
     public void AddModifier(EnumBase.RPGStatType statType, StatModifier statMod)

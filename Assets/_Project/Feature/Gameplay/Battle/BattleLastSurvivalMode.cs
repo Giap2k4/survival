@@ -27,6 +27,9 @@ public class BattleLastSurvivalMode : BattleModeBase
         var hero = DataManager.Hero.GetHeroById(idHero);
         obj.GetComponent<CharacterBaseController>().AddStatBase(hero.powerStat);
 
+        // khởi tạo skill default
+        obj.GetComponent<CharacterBaseController>().InitSkillDefault(hero.defaultSkill);
+
         obj.GetComponent<CharacterMovement>().joystick = BattleController.instance.joystick;
         BattleController.instance.cam.Follow = obj.transform;
     }

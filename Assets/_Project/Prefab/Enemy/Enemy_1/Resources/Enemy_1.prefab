@@ -87,6 +87,7 @@ MonoBehaviour:
   animator: {fileID: 7743290791568111037}
   hero: {fileID: 0}
   isDie: 0
+  spriteRenderer: {fileID: 2707549423222534795}
 --- !u!212 &2707549423222534795
 SpriteRenderer:
   m_ObjectHideFlags: 0

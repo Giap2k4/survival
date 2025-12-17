@@ -71,4 +71,19 @@ public class EnumBase
         Right = 4,
         All = 5,
     }
+
+    public enum MechanicTypes
+    {
+        Cooldown = 1,
+        Duration = 2,
+        Damage = 3,
+        Range = 4,
+        DetectRang = 5,
+        ProjectileNumber = 6,
+        ProjectileSpeed = 7,
+        ProjectileSize = 8,
+        TargetFrom = 9,
+        TargetTo = 10,
+        FireRate = 11, // Khoảng cách thời gian bắn giữa các viên đạn
+    }
 }

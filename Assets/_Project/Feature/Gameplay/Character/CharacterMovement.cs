@@ -7,17 +7,7 @@ public class CharacterMovement : MoveSystemBase
 
     [SerializeField] protected Animator animator;
     [SerializeField] public Joystick joystick;
-
-    private Vector3 scaleStart;
-    private Vector3 scale;
-
-    protected override void Start()
-    {
-        base.Start();
-        scaleStart = transform.localScale;
-        scale = scaleStart;
-        scale.x *= -1;
-    }
+    [SerializeField] private SpriteRenderer spriteRenderer;
 
     protected override void MoveAction()
     {
@@ -33,7 +23,7 @@ public class CharacterMovement : MoveSystemBase
         animator.SetBool("IsMoving", moveInput.magnitude > 0);
 
         // lật nhân vật
-        if (moveX < -0.01f) transform.localScale = scale;
-        else if (moveX > 0.01f) transform.localScale = scaleStart;
+        if (moveX < -0.01f) spriteRenderer.flipX = true;
+        else if (moveX > 0.01f) spriteRenderer.flipX = false;
     }
 }

@@ -41,25 +41,49 @@ public static class CsvImporter
 
     private static void Import(string csvPath)
     {
-        string featureName = Path.GetFileNameWithoutExtension(csvPath);
+        string fileName = Path.GetFileNameWithoutExtension(csvPath);
+
+        // Xác định typeName và assetName dựa trên cấu trúc folder
+        // - File ở root: Stats.csv → typeName = "Stats", assetName = "Stats"
+        // - File ở subfolder: Skill/Skill_1.csv → typeName = "Skill", assetName = "Skill_1"
+        string relativePath = csvPath.Replace("\\", "/").Replace(CSV_FOLDER, "");
+        string[] pathParts = relativePath.Split('/');
+
+        string typeName;
+        string assetName;
+
+        if (pathParts.Length > 1)
+        {
+            // File ở subfolder → dùng tên folder cho type, tên file cho asset
+            // Ví dụ: Skill/Skill_1.csv → typeName = "Skill", assetName = "Skill_1"
+            typeName = pathParts[0];
+            assetName = fileName;
+        }
+        else
+        {
+            // File ở root → dùng tên file cho type, asset là {typeName}Collection
+            // Ví dụ: Hero.csv → typeName = "Hero", assetName = "HeroCollection"
+            typeName = fileName;
+            assetName = $"{typeName}Collection";
+        }
 
         // Tìm folder Resources trong tất cả subfolder của Feature
-        string resourcePath = FindResourceFolder(featureName);
+        string resourcePath = FindResourceFolder(typeName);
         if (resourcePath == null)
         {
-            Debug.LogWarning($"⚠ Bỏ qua {featureName}. Không tìm thấy folder: {featureName}/Resources trong {FEATURE_FOLDER}");
+            Debug.LogWarning($"⚠ Bỏ qua {fileName}. Không tìm thấy folder: {typeName}/Resources trong {FEATURE_FOLDER}");
             return;
         }
 
         // tìm scriptableObject collection
-        Type collectionType = FindType($"{featureName}Collection");
+        Type collectionType = FindType($"{typeName}Collection");
         if (collectionType == null)
         {
-            Debug.LogWarning($"⚠ Không tìm thấy class: {featureName}Collection");
+            Debug.LogWarning($"⚠ Không tìm thấy class: {typeName}Collection");
             return;
         }
 
-        string assetPath = $"{resourcePath}/{featureName}Collection.asset";
+        string assetPath = $"{resourcePath}/{assetName}.asset";
         ScriptableObject so = AssetDatabase.LoadAssetAtPath(assetPath, collectionType) as ScriptableObject;
 
         if (so == null)
@@ -72,7 +96,7 @@ public static class CsvImporter
         var modelField = collectionType.GetField("dataGroups", BindingFlags.Public | BindingFlags.Instance);
         if (modelField == null)
         {
-            Debug.LogError($"❌ {featureName}Collection không có biến public dataGroups");
+            Debug.LogError($"❌ {typeName}Collection không có biến public dataGroups");
             return;
         }
 
@@ -86,7 +110,7 @@ public static class CsvImporter
         modelField.SetValue(so, modelBuilt);
 
         EditorUtility.SetDirty(so);
-        Debug.Log($"<color=#00d1ff>✔ Imported → {Path.GetFileName(csvPath)}</color>");
+        Debug.Log($"<color=#00d1ff>✔ Imported → {Path.GetFileName(csvPath)} → {assetName}.asset (using {typeName}Collection)</color>");
     }
 
     private static string FindResourceFolder(string featureName)
@@ -111,8 +135,41 @@ public static class CsvImporter
         return text.Replace("\r", "")
                    .Split('\n')
                    .Where(l => !string.IsNullOrWhiteSpace(l))
-                   .Select(l => l.Split(','))
+                   .Select(l => ParseCsvLine(l))
                    .ToList();
+    }
+
+    /// <summary>
+    /// Parse 1 dòng CSV, xử lý đúng giá trị có chứa dấu phẩy được bọc trong quotes
+    /// Ví dụ: 1,Damage,"1,0,1",3 → ["1", "Damage", "1,0,1", "3"]
+    /// </summary>
+    private static string[] ParseCsvLine(string line)
+    {
+        var result = new List<string>();
+        bool inQuotes = false;
+        string currentValue = "";
+
+        for (int i = 0; i < line.Length; i++)
+        {
+            char c = line[i];
+
+            if (c == '"')
+            {
+                inQuotes = !inQuotes;
+            }
+            else if (c == ',' && !inQuotes)
+            {
+                result.Add(currentValue);
+                currentValue = "";
+            }
+            else
+            {
+                currentValue += c;
+            }
+        }
+
+        result.Add(currentValue); // Thêm giá trị cuối cùng
+        return result.ToArray();
     }
 
     private static Type FindType(string name)
