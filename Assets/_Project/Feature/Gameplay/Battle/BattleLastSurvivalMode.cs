@@ -71,6 +71,9 @@ public class BattleLastSurvivalMode : BattleModeBase
 
             var enemy = DataManager.Enemy.GetEnemyById(idEnemy);
             obj.GetComponent<CharacterBaseController>().AddStatBase(enemy.powerStat);
+            obj.name = "Enemy_" + idEnemy;
+
+            // set level cho character 
         }
     }
 

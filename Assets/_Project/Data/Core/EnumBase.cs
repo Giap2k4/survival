@@ -37,10 +37,10 @@ public class EnumBase
     {
         None,
         Health = 1,
-        Damager = 2,
+        Damage = 2,
         MoveSpeed = 3,
         CritRate = 4,
-        CritDamager = 5,
+        CritDamage = 5,
     }
 
     public enum EffectType
@@ -78,12 +78,21 @@ public class EnumBase
         Duration = 2,
         Damage = 3,
         Range = 4,
-        DetectRang = 5,
+        DetectRange = 5,
         ProjectileNumber = 6,
         ProjectileSpeed = 7,
         ProjectileSize = 8,
         TargetFrom = 9,
         TargetTo = 10,
         FireRate = 11, // Khoảng cách thời gian bắn giữa các viên đạn
+
+        // các eff
+        effect_1,
+        effect_2,
+        effect_3,
+
+        // custom value
+        custom_value_1,
+        custom_value_2,
     }
 }

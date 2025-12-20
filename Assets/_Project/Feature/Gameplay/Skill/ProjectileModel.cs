@@ -15,6 +15,7 @@ public class ProjectileModel
     public Vector3 targetFrom;
     public Vector3 targetTo;
     public float? fireRate;
+    public Vector2 direction;
 
     public ProjectileModel(
         float? cooldown,
@@ -27,7 +28,8 @@ public class ProjectileModel
         float? projectileSize,
         Vector3 targetFrom,
         Vector3 targetTo,
-        float? fireRate
+        float? fireRate,
+        Vector2 direction
     )
     {
         this.cooldown = cooldown;
@@ -41,5 +43,6 @@ public class ProjectileModel
         this.targetFrom = targetFrom;
         this.targetTo = targetTo;
         this.fireRate = fireRate;
+        this.direction = direction;
     }
 }

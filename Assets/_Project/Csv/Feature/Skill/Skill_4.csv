@@ -1,0 +1,8 @@
+﻿id,nameSkill,level,mechanicTypes,values
+1,Sóng xung kích,1,Cooldown,2
+,,,Damage,"1, 0, 1"
+,,,ProjectileNumber,1
+,,,ProjectileSpeed,10
+,,,TargetFrom,0
+,,,TargetTo,3
+,,,effect_1,"5, -1"

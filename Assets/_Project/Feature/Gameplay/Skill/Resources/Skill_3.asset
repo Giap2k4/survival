@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ac993d253d0412458fa79a1da876fe0, type: 3}
+  m_Name: Skill_3
+  m_EditorClassIdentifier: 
+  dataGroups:
+    id: 1
+    nameSkill: "L\u01B0\u1EE1i \u0111ao"
+    details:
+    - level: 1
+      mechanicType:
+      - mechanicTypes: 1
+        values: 2
+      - mechanicTypes: 3
+        values: 1, 0, 1
+      - mechanicTypes: 6
+        values: 3
+      - mechanicTypes: 7
+        values: 15
+      - mechanicTypes: 9
+        values: 0
+      - mechanicTypes: 10
+        values: 0
+      - mechanicTypes: 12
+        values: 5, -1
+      - mechanicTypes: 15
+        values: 0.3
+      - mechanicTypes: 4
+        values: 8
+      - mechanicTypes: 5
+        values: 20

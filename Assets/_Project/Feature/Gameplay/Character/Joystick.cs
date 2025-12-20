@@ -9,6 +9,7 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointer
     [SerializeField]
     private RectTransform handle; // con
     private Vector2 inputVector;
+    private Vector2 lastDirection = Vector2.right; // hướng cuối cùng
 
     public void OnDrag(PointerEventData eventData)
     {
@@ -21,6 +22,8 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointer
 
         inputVector = new Vector2(pos.x, pos.y);
         inputVector = (inputVector.magnitude > 1.0f) ? inputVector.normalized : inputVector;
+
+        if (inputVector.sqrMagnitude > 0.0001f) lastDirection = inputVector.normalized;
 
         // di chuyển handle
         handle.anchoredPosition = new Vector2(
@@ -41,5 +44,5 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointer
 
     public float Horizontal() { return inputVector.x; }
     public float Vertical() { return inputVector.y; }
-    public Vector2 Direction() { return inputVector; }
+    public Vector2 Direction() { return lastDirection; }
 }

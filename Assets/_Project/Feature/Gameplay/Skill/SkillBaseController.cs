@@ -21,13 +21,18 @@ public class SkillBaseController : MonoBehaviour
     [SerializeField]
     protected List<GameObject> pooling = new List<GameObject>();
 
+    protected SkillModel skillModel;
     protected SkillDetails skillDetails;
-
+    protected AttackData attackData = new AttackData();
+    protected CharacterBaseController characterBaseController;
+    public Dictionary<EnumBase.EffectType, float[]> effect = new Dictionary<EnumBase.EffectType, float[]>();
     protected virtual void Start()
     {
-        string nameSkill = "Skill_" + idSkill;
-        var skill = Resources.Load<SkillCollection>(nameSkill).dataGroups;
-        StartCoroutine(StartSpawnProjectile(skill));
+        string nameSkill = "Skill_" + idSkill; 
+        skillModel = Resources.Load<SkillCollection>(nameSkill).dataGroups;
+        characterBaseController = BattleController.instance.GetPlayer().GetComponent<CharacterBaseController>();
+        
+        StartCoroutine(StartSpawnProjectile(skillModel));
     }
 
     /// <summary>
@@ -38,9 +43,9 @@ public class SkillBaseController : MonoBehaviour
     protected virtual IEnumerator StartSpawnProjectile(SkillModel skill)
     {
         skillDetails = skill.details.First(x => x.level == levelCurrent);
-        Debug.Log(skillDetails.level);
         var cooldown = skillDetails.mechanicType.FirstOrDefault(x => x.mechanicTypes == EnumBase.MechanicTypes.Cooldown);
-
+        AddEffect();
+        InitAttackData();
     Start:
 
         if (cooldown == null)
@@ -67,30 +72,16 @@ public class SkillBaseController : MonoBehaviour
     /// <param name="skillDetails"></param>
     protected virtual IEnumerator Spawn()
     {
-        var cooldown = GetCooldown();
-        var duration = GetDuration();
-        var damage = GetDamage();
-        var range = GetRange();
-        var detectRange = GetDetectRange();
-        var projectileNumber = GetProjectileNumberModify();
-        var projectileSpeed = GetProjectileSpeed();
-        var projectileSize = GetProjectileSize();
-        var targetFrom = GetTargetFrom();
-        var targetTo = GetTargetTo();
-        var rotate = GetDirection(targetTo, targetFrom);
-        var fireRate = GetFireRate();
-        parentProjectile = GetParentProjectile();
-
-        ProjectileModel data = new ProjectileModel(cooldown, duration, damage, range, detectRange, projectileNumber, projectileSpeed, projectileSize, targetFrom, targetTo, fireRate);
+        ProjectileModel data = InitProjectileData();
 
         BeforeSpawnProjectile();
 
-        if (projectileNumber > 0)
+        if (GetProjectileNumberModify() > 0)
         {
-            for (int i = 0; i < projectileNumber; i++)
+            for (int i = 0; i < GetProjectileNumberModify(); i++)
             {
-                if (fireRate != null) yield return new WaitForSeconds(1/fireRate.Value);
-                SpawnProjectile(projectile, data, parentProjectile, rotate);
+                if (GetFireRate() != null) yield return new WaitForSeconds(1/ GetFireRate().Value);
+                SpawnProjectile(projectile, data, parentProjectile, GetRotate(GetTargetTo(), GetTargetFrom()));
             }
         }
 
@@ -108,18 +99,82 @@ public class SkillBaseController : MonoBehaviour
 
         if (prefab != null)
         {
+            
             prefab.transform.SetParent(parent == null ? null : parent, false);
             prefab.transform.SetLocalPositionAndRotation(data.targetFrom, rotate);
             InitDataProjectile(data, prefab);
             prefab.SetActive(true);
 
-            RemoveObjPooling(prefab);
             return;
         }
 
         prefab = Instantiate(obj, data.targetFrom, rotate, parent == null ? null : parent);
+        // truyền AttackData vào cho projectile
+        prefab.GetComponent<ProjectileBaseController>().SetAttackData(attackData);
         InitDataProjectile(data, prefab);
-        prefab.name = "Projectile" + typeof(SkillBaseController).ToString();
+        prefab.name = "Projectile" + this.GetType().Name;
+        AfterSpawn1Projectile();
+    }
+
+    /// <summary>
+    /// Làm gì đó sau khi spawn 1 projectile
+    /// </summary>
+    protected virtual void AfterSpawn1Projectile() { }
+
+    protected virtual void InitAttackData()
+    {
+        // add các giá trị stat cần (nhân với chỉ số đã config trong csv)
+        attackData.stats.Add(EnumBase.RPGStatType.Damage, GetValueStat(EnumBase.RPGStatType.Damage));
+        attackData.stats.Add(EnumBase.RPGStatType.CritRate, GetValueStat(EnumBase.RPGStatType.CritRate));
+        attackData.stats.Add(EnumBase.RPGStatType.CritDamage, GetValueStat(EnumBase.RPGStatType.CritDamage));
+
+        // add các eff từ skill
+        foreach (var item in effect)
+        {
+            // Add eff
+            attackData.effects.Add((EnumBase.EffectType)item.Value[0], item.Value);
+        }
+    }
+
+    protected virtual ProjectileModel InitProjectileData()
+    {
+        var cooldown = GetCooldown();
+        var duration = GetDuration();
+        var damage = GetDamage();
+        var range = GetRange();
+        var detectRange = GetDetectRange();
+        var projectileNumber = GetProjectileNumberModify();
+        var projectileSpeed = GetProjectileSpeed();
+        var projectileSize = GetProjectileSize();
+        var targetFrom = GetTargetFrom();
+        var targetTo = GetTargetTo();
+        var direction = GetDirection(targetTo, targetFrom);
+        var fireRate = GetFireRate();
+        parentProjectile = GetParentProjectile();
+
+        return new ProjectileModel(cooldown, duration, damage, range, detectRange, projectileNumber, projectileSpeed, projectileSize, targetFrom, targetTo, fireRate, (Vector2)direction);
+    }
+
+    protected void AddEffect()
+    {
+        foreach (var item in skillDetails.mechanicType)
+        {
+            if (item.mechanicTypes.ToString().StartsWith("effect_"))
+            {
+                float[] values = item.values
+                            .Split(',')
+                            .Select(s => float.Parse(s.Trim()))
+                            .ToArray();
+
+                effect.Add((EnumBase.EffectType)values[0], values);
+            }
+        }
+    }
+
+    protected float GetValueStat(EnumBase.RPGStatType type)
+    {
+        // nhân với các chỉ số trong csv nữa
+        return characterBaseController.stats.GetOrCreateStat(type).valueStat;
     }
 
     /// <summary>
@@ -138,15 +193,8 @@ public class SkillBaseController : MonoBehaviour
     /// <returns></returns>
     protected virtual GameObject GetPooling()
     {
-        if (pooling.Count > 0)
-        {
-            GameObject obj = pooling[0];
-            return obj;
-        }
-        return null;
+        return PoolingManager.GetProjectilePooling("Projectile" + this.GetType().Name);
     }
-
-    protected virtual void RemoveObjPooling(GameObject obj) => pooling.Remove(obj);
 
     /// <summary>
     /// Lấy giá trị cooldown từ config
@@ -217,7 +265,7 @@ public class SkillBaseController : MonoBehaviour
     /// <returns></returns>
     protected virtual float? GetDetectRange()
     {
-        var detectRange = skillDetails.mechanicType.FirstOrDefault(x => x.mechanicTypes == EnumBase.MechanicTypes.DetectRang);
+        var detectRange = skillDetails.mechanicType.FirstOrDefault(x => x.mechanicTypes == EnumBase.MechanicTypes.DetectRange);
 
         if (detectRange != null)
         {
@@ -298,6 +346,13 @@ public class SkillBaseController : MonoBehaviour
             case 0:
                 posFrom = GetPosHero();
                 break;
+            case 1:
+                posFrom = GetNearest();
+                break;
+
+            case 2:
+                posFrom = GetRandom();
+                break;
         }
 
         return posFrom;
@@ -319,6 +374,19 @@ public class SkillBaseController : MonoBehaviour
             case 0:
                 posTo = GetPosHero();
                 break;
+
+            case 1:
+                posTo = GetNearest();
+                break;
+
+            case 2:
+                posTo = GetRandom();
+                break;
+
+            case 3:
+                posTo = GetJoyStick();
+                break;
+
         }
 
         return posTo;
@@ -342,14 +410,37 @@ public class SkillBaseController : MonoBehaviour
     }
 
     /// <summary>
-    /// Tính hướng bay của viên đạn
+    /// Hướng bay
     /// </summary>
     /// <param name="posTo"></param>
     /// <param name="posFrom"></param>
     /// <returns></returns>
-    protected virtual Quaternion GetDirection (Vector3 posTo, Vector3 posFrom)
+    protected virtual Vector2 GetDirection (Vector3 posTo, Vector3 posFrom)
     {
-        return Quaternion.LookRotation((posTo - posFrom).normalized);
+        Vector2 dir;
+
+        var targetTo = skillDetails.mechanicType.First(x => x.mechanicTypes == EnumBase.MechanicTypes.TargetTo);
+        if (Convert.ToInt32(targetTo.values) == 3)
+        {
+            dir = BattleController.instance.joystick.Direction();
+            return dir;
+        }
+
+        dir = ((Vector2)posTo - (Vector2)posFrom).normalized;
+
+        return dir;
+    }
+
+    protected virtual Quaternion GetRotate(Vector3 posTo, Vector3 posFrom)
+    {
+        Vector2 dir = GetDirection(posTo, posFrom);
+
+        if (dir.sqrMagnitude < 0.0001f)
+            return Quaternion.identity;
+
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+
+        return Quaternion.Euler(0f, 0f, angle);
     }
 
     /// <summary>
@@ -384,6 +475,74 @@ public class SkillBaseController : MonoBehaviour
     /// <returns></returns>
     protected Vector3 GetPosHero() => BattleController.instance.GetPlayer().transform.position;
 
+    /// <summary>
+    /// Lấy vị trí quái gần nhất, nếu k có trả về vị trí hero
+    /// </summary>
+    /// <returns></returns>
+    protected Vector3 GetNearest()
+    {
+        Vector3 posNearest = Vector3.zero;
+        var listObjEnemy = DetectInCircle(GetPosHero(), GetDetectRange().Value);
+
+        Vector3 posHero = GetPosHero();
+        if (listObjEnemy.Count == 0) return posHero;
+        float distance = 0;
+        float temp = 0;
+
+        for (int i = 0; i < listObjEnemy.Count; i++)
+        {
+            if (i == 0)
+            {
+                distance = Vector3.Distance(posHero, listObjEnemy[i].transform.position);
+                posNearest = listObjEnemy[i].transform.position;
+                continue;
+            }
+
+            temp = Vector3.Distance(posHero, listObjEnemy[i].transform.position);
+
+            if (distance > temp)
+            {
+                posNearest = listObjEnemy[i].transform.position;
+                distance = temp;
+            }
+        }
+
+        return posNearest;
+    }
+
+    /// <summary>
+    /// Lấy random 1 trong số các quái detect được
+    /// </summary>
+    /// <returns></returns>
+    public Vector3 GetRandom()
+    {
+        var listObjEnemy = DetectInCircle(GetPosHero(), GetDetectRange().Value);
+
+        var random = UnityEngine.Random.Range(0, listObjEnemy.Count + 1);
+
+        return listObjEnemy[random].transform.position;
+    }
+
+    public Vector3 GetJoyStick()
+    {
+        return (Vector3)BattleController.instance.joystick.Direction();
+    }
+
+    public static List<GameObject> DetectInCircle(Vector3 center, float detectRange)
+    {
+        var col = Physics2D.OverlapCircleAll(center, detectRange);
+        List<GameObject> list = new List<GameObject>();
+
+        foreach (var item in col)
+        {
+            if (item.gameObject.tag == "Enemy")
+            {
+                list.Add(item.gameObject);
+            }
+        }
+        return list;
+    }
+
     public void SetLevelSkill(int level) => levelCurrent = level;
 
     /// <summary>
@@ -391,6 +550,24 @@ public class SkillBaseController : MonoBehaviour
     /// </summary>
     protected virtual void HandlerProjectile(ProjectileBaseController projectile)
     {
+
+    }
+
+    public virtual void LevelUp()
+    {
+        SetLevelSkill(levelCurrent + 1);
+        // khởi động lại spawn , Set lại AttackData
+    }
+
+    public virtual float HandleCustomValue1()
+    {
+        return float.Parse( skillDetails.mechanicType.FirstOrDefault(x => x.mechanicTypes == EnumBase.MechanicTypes.custom_value_1).values);
+        
+    }
+
+    public virtual float HandleCustomValue2()
+    {
+        return float.Parse(skillDetails.mechanicType.FirstOrDefault(x => x.mechanicTypes == EnumBase.MechanicTypes.custom_value_2).values);
 
     }
 }

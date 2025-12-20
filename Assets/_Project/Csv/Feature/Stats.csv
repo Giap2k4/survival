@@ -1,14 +1,14 @@
-﻿idStat,statType,valueType,statValue
-1,Health,Number,150
-,Damager,Number,30
-,MoveSpeed,Number,2.5
-,CritRate,Percent,0.1
-,CritDamager,Percent,0.2
-2,Health,Number,120
-,Damager,Number,40
-,MoveSpeed,Number,2.5
-,CritRate,Percent,0.1
-,CritDamager,Percent,0.2
-501,1,2,70
-,2,2,7
-,3,2,1.8
+﻿idStat,formula,statType,valueType,statValue,bonusValue
+1,a + b * (c - 1),Health,Number,150,10
+,,Damage,Number,10,5
+,,MoveSpeed,Number,2.5,0
+,,CritRate,Percent,0.1,0
+,,CritDamage,Percent,0.2,0
+2,a + b * (c - 1),Health,Number,12,15
+,,Damage,Number,40,10
+,,MoveSpeed,Number,2.5,0
+,,CritRate,Percent,0.1,0
+,,CritDamage,Percent,0.2,0
+501,a + b * (c - 1),1,2,70,10
+,,2,2,7,5
+,,3,2,1.8,0

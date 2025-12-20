@@ -25,7 +25,7 @@ MonoBehaviour:
       - mechanicTypes: 6
         values: 3
       - mechanicTypes: 7
-        values: 10
+        values: 90
       - mechanicTypes: 9
         values: 0
       - mechanicTypes: 10
@@ -41,7 +41,7 @@ MonoBehaviour:
       - mechanicTypes: 6
         values: 4
       - mechanicTypes: 7
-        values: 10
+        values: 90
       - mechanicTypes: 9
         values: 0
       - mechanicTypes: 10
@@ -57,7 +57,7 @@ MonoBehaviour:
       - mechanicTypes: 6
         values: 5
       - mechanicTypes: 7
-        values: 10
+        values: 90
       - mechanicTypes: 9
         values: 0
       - mechanicTypes: 10
@@ -73,7 +73,7 @@ MonoBehaviour:
       - mechanicTypes: 6
         values: 5
       - mechanicTypes: 7
-        values: 10
+        values: 90
       - mechanicTypes: 9
         values: 0
       - mechanicTypes: 10
@@ -89,7 +89,7 @@ MonoBehaviour:
       - mechanicTypes: 6
         values: 6
       - mechanicTypes: 7
-        values: 10
+        values: 90
       - mechanicTypes: 9
         values: 0
       - mechanicTypes: 10

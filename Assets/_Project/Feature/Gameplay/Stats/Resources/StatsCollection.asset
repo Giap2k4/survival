@@ -14,47 +14,63 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dataGroups:
   - idStat: 1
+    formula: a + b * (c - 1)
     statDetail:
     - statType: 1
       valueType: 2
       statValue: 150
+      bonusValue: 10
     - statType: 2
       valueType: 2
-      statValue: 30
+      statValue: 10
+      bonusValue: 5
     - statType: 3
       valueType: 2
       statValue: 2.5
+      bonusValue: 0
     - statType: 4
       valueType: 1
       statValue: 0.1
+      bonusValue: 0
     - statType: 5
       valueType: 1
       statValue: 0.2
+      bonusValue: 0
   - idStat: 2
+    formula: a + b * (c - 1)
     statDetail:
     - statType: 1
       valueType: 2
-      statValue: 120
+      statValue: 12
+      bonusValue: 15
     - statType: 2
       valueType: 2
       statValue: 40
+      bonusValue: 10
     - statType: 3
       valueType: 2
       statValue: 2.5
+      bonusValue: 0
     - statType: 4
       valueType: 1
       statValue: 0.1
+      bonusValue: 0
     - statType: 5
       valueType: 1
       statValue: 0.2
+      bonusValue: 0
   - idStat: 501
+    formula: a + b * (c - 1)
     statDetail:
     - statType: 1
       valueType: 2
       statValue: 70
+      bonusValue: 10
     - statType: 2
       valueType: 2
       statValue: 7
+      bonusValue: 5
     - statType: 3
       valueType: 2
       statValue: 1.8
+      bonusValue: 0

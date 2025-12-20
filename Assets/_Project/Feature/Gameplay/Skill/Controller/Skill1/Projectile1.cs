@@ -15,7 +15,7 @@ public class Projectile1 : ProjectileBaseController
     protected override void OnEnable()
     {
         base.OnEnable();
-        //if (checkInitData) SetRotateAndPositionSword();
+        if (checkInitData) SetRotateAndPositionSword();
     }
 
     protected override void UpdateProjectile()
@@ -38,6 +38,7 @@ public class Projectile1 : ProjectileBaseController
             for (int i = 0; i < count; i++)
             {
                 GameObject obj = Instantiate(projectileSword, transform);
+                obj.GetComponent<ProjectileSword1>().SetAttackData(attackData);
                 listSword.Add(obj);
             }
         }
