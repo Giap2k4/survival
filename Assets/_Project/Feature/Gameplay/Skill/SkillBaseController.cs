@@ -347,11 +347,11 @@ public class SkillBaseController : MonoBehaviour
                 posFrom = GetPosHero();
                 break;
             case 1:
-                posFrom = GetNearest();
+                posFrom = GetNearest().transform.position;
                 break;
 
             case 2:
-                posFrom = GetRandom();
+                posFrom = GetRandom().transform.position;
                 break;
         }
 
@@ -376,11 +376,11 @@ public class SkillBaseController : MonoBehaviour
                 break;
 
             case 1:
-                posTo = GetNearest();
+                posTo = GetNearest().transform.position;
                 break;
 
             case 2:
-                posTo = GetRandom();
+                posTo = GetRandom().transform.position;
                 break;
 
             case 3:
@@ -479,13 +479,13 @@ public class SkillBaseController : MonoBehaviour
     /// Lấy vị trí quái gần nhất, nếu k có trả về vị trí hero
     /// </summary>
     /// <returns></returns>
-    protected Vector3 GetNearest()
+    public GameObject GetNearest()
     {
-        Vector3 posNearest = Vector3.zero;
+        GameObject obj = null;
         var listObjEnemy = DetectInCircle(GetPosHero(), GetDetectRange().Value);
 
         Vector3 posHero = GetPosHero();
-        if (listObjEnemy.Count == 0) return posHero;
+        if (listObjEnemy.Count == 0) return BattleController.instance.GetPlayer();
         float distance = 0;
         float temp = 0;
 
@@ -494,7 +494,7 @@ public class SkillBaseController : MonoBehaviour
             if (i == 0)
             {
                 distance = Vector3.Distance(posHero, listObjEnemy[i].transform.position);
-                posNearest = listObjEnemy[i].transform.position;
+                obj = listObjEnemy[i];
                 continue;
             }
 
@@ -502,25 +502,25 @@ public class SkillBaseController : MonoBehaviour
 
             if (distance > temp)
             {
-                posNearest = listObjEnemy[i].transform.position;
+                obj = listObjEnemy[i];
                 distance = temp;
             }
         }
 
-        return posNearest;
+        return obj;
     }
 
     /// <summary>
     /// Lấy random 1 trong số các quái detect được
     /// </summary>
     /// <returns></returns>
-    public Vector3 GetRandom()
+    public GameObject GetRandom()
     {
         var listObjEnemy = DetectInCircle(GetPosHero(), GetDetectRange().Value);
 
         var random = UnityEngine.Random.Range(0, listObjEnemy.Count + 1);
 
-        return listObjEnemy[random].transform.position;
+        return listObjEnemy[random];
     }
 
     public Vector3 GetJoyStick()

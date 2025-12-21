@@ -19,10 +19,10 @@ public class Projectile3 : ProjectileBaseController
         checkLimitRange = false;
     }
 
-    protected override void UpdateProjectile()
+    protected override void ProjectileMove()
     {
         sprite.transform.Rotate(0f, 0f, 1000f * Time.deltaTime);
-        CheckViewPort();
+        //CheckViewPort();
 
         if (checkLimitRange) return;
 

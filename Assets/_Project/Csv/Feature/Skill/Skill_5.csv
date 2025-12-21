@@ -1,0 +1,8 @@
+﻿id,nameSkill,level,mechanicTypes,values
+1,Boom,1,Cooldown,1.5
+,,,Damage,"1, 0, 1"
+,,,ProjectileNumber,1
+,,,ProjectileSpeed,15
+,,,TargetFrom,0
+,,,TargetTo,1
+,,,DetectRange,20

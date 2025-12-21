@@ -45,4 +45,7 @@ public class Joystick : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointer
     public float Horizontal() { return inputVector.x; }
     public float Vertical() { return inputVector.y; }
     public Vector2 Direction() { return lastDirection; }
+
+    public float HorizontalLast() { return lastDirection.x; }
+    public float VerticalLast() { return lastDirection.y; }
 }

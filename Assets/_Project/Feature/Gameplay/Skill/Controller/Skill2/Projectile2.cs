@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class Projectile2 : ProjectileBaseController
 {
-    protected override void UpdateProjectile()
+    protected override void ProjectileMove()
     {
         transform.position += transform.right * Time.deltaTime * GetProjectileSpeed();
-        CheckViewPort();
     }
 }

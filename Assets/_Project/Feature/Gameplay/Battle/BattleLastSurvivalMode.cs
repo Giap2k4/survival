@@ -106,7 +106,7 @@ public class BattleLastSurvivalMode : BattleModeBase
 
         // Chuyển từ viewport sang world position
         Vector3 worldPos = BattleController.instance.mainCamera.ViewportToWorldPoint(new Vector3(vx, vy, BattleController.instance.mainCamera.nearClipPlane));
-        worldPos.z = 0f; // Đảm bảo z=0 cho 2D game
+        worldPos.z = 0f;
 
         return worldPos;
     }

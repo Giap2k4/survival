@@ -10,27 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ac993d253d0412458fa79a1da876fe0, type: 3}
-  m_Name: Skill_4
+  m_Name: Skill_5
   m_EditorClassIdentifier: 
   dataGroups:
     id: 1
-    nameSkill: "S\xF3ng xung k\xEDch"
+    nameSkill: Boom
     details:
     - level: 1
       mechanicType:
       - mechanicTypes: 1
-        values: 2
+        values: 1.5
       - mechanicTypes: 3
         values: 1, 0, 1
       - mechanicTypes: 6
         values: 1
       - mechanicTypes: 7
-        values: 10
+        values: 15
       - mechanicTypes: 9
         values: 0
       - mechanicTypes: 10
-        values: 3
-      - mechanicTypes: 12
-        values: 5, -1
-      - mechanicTypes: 13
-        values: 1, 1, 0.5
+        values: 1
+      - mechanicTypes: 5
+        values: 20

@@ -62,6 +62,11 @@ public class ProjectileBaseController : MonoBehaviour, IUpdateManager
     {
         CheckViewPort();
         if (!checkDuration) StartCoroutine(HandleDuration());
+        ProjectileMove();
+    }
+
+    protected virtual void ProjectileMove()
+    {
         transform.position += (Vector3)GetDirection() * GetProjectileSpeed() * Time.deltaTime;
     }
 
