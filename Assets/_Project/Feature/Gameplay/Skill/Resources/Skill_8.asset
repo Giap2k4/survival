@@ -10,33 +10,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ac993d253d0412458fa79a1da876fe0, type: 3}
-  m_Name: Skill_7
+  m_Name: Skill_8
   m_EditorClassIdentifier: 
   dataGroups:
     id: 1
-    nameSkill: "C\u1EA7u \u0111i\u1EC7n"
+    nameSkill: Aura
     details:
     - level: 1
       mechanicType:
-      - mechanicTypes: 1
-        values: 2
       - mechanicTypes: 3
-        values: 1, 0, 1
+        values: 1, 0, 0.5
       - mechanicTypes: 6
         values: 1
       - mechanicTypes: 7
-        values: 0.7
+        values: 50
       - mechanicTypes: 9
         values: 0
       - mechanicTypes: 10
-        values: 1
+        values: 0
       - mechanicTypes: 12
         values: 5, -1
+      - mechanicTypes: 8
+        values: 5
       - mechanicTypes: 15
-        values: 1
-      - mechanicTypes: 16
-        values: 0.3
-      - mechanicTypes: 2
-        values: 4
-      - mechanicTypes: 5
-        values: 20
+        values: 1.5

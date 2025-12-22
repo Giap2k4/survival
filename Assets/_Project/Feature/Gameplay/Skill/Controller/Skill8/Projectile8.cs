@@ -1,31 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class Projectile7 : ProjectileBaseController
+public class Projectile8 : ProjectileBaseController
 {
     protected HashSet<Collider2D> collider2Ds = new HashSet<Collider2D>();
-    protected AttackData dataProjectile;
-    protected bool checkCloneData;
 
     protected override void ProjectileMove()
     {
-        base.ProjectileMove();
         transform.Rotate(0, 0, 50 * Time.deltaTime);
     }
 
-    protected override void ResetData()
-    {
-        base.ResetData();
-        if (!checkCloneData)
-        {
-            dataProjectile = new AttackData(attackData);
-
-            dataProjectile.stats[EnumBase.RPGStatType.Damage] *= skillBaseController.HandleCustomValue2();
-            checkCloneData = true;
-        }
-    }
     protected override void OnTriggerEnter2D(Collider2D collision)
     {
         base.OnTriggerEnter2D(collision);
@@ -39,6 +24,13 @@ public class Projectile7 : ProjectileBaseController
     IEnumerator DamageOverTime(Collider2D col)
     {
         var wait = new WaitForSeconds(skillBaseController.HandleCustomValue1());
+        var enemy = col.gameObject.GetComponent<CharacterBaseController>();
+        // truyền damage
+        if (enemy != null)
+        {
+            enemy.TakeDamage(attackData);
+            HandleEffect();
+        }
 
         while (collider2Ds.Contains(col) && col != null)
         {
@@ -52,13 +44,10 @@ public class Projectile7 : ProjectileBaseController
                 yield break;
             }
 
-            var enemy = col.gameObject.GetComponent<CharacterBaseController>();
-
-            
             // truyền damage
             if (enemy != null)
             {
-                enemy.TakeDamage(dataProjectile);
+                enemy.TakeDamage(attackData);
                 HandleEffect();
             }
         }

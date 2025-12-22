@@ -72,5 +72,5 @@ MonoBehaviour:
       bonusValue: 5
     - statType: 3
       valueType: 2
-      statValue: 1.8
+      statValue: 1
       bonusValue: 0

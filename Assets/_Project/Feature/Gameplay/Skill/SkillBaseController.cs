@@ -27,6 +27,7 @@ public class SkillBaseController : MonoBehaviour
     {
         string nameSkill = "Skill_" + idSkill; 
         skillModel = Resources.Load<SkillCollection>(nameSkill).dataGroups;
+        Debug.Log(skillModel);
         characterBaseController = BattleController.instance.GetPlayer().GetComponent<CharacterBaseController>();
         
         StartCoroutine(StartSpawnProjectile(skillModel));
@@ -99,6 +100,7 @@ public class SkillBaseController : MonoBehaviour
             prefab.transform.SetLocalPositionAndRotation(data.targetFrom, rotate);
             InitDataProjectile(data, prefab);
             prefab.SetActive(true);
+            if (GetProjectileSize() != null) prefab.transform.localScale = new Vector3(GetProjectileSize().Value, GetProjectileSize().Value, GetProjectileSize().Value);
 
             return;
         }
@@ -108,6 +110,8 @@ public class SkillBaseController : MonoBehaviour
         prefab.GetComponent<ProjectileBaseController>().SetAttackData(attackData);
         InitDataProjectile(data, prefab);
         prefab.name = "Projectile" + this.GetType().Name;
+        if (GetProjectileSize() != null) prefab.transform.localScale = new Vector3(GetProjectileSize().Value, GetProjectileSize().Value, GetProjectileSize().Value);
+
         AfterSpawn1Projectile();
     }
 
@@ -513,7 +517,9 @@ public class SkillBaseController : MonoBehaviour
     {
         var listObjEnemy = DetectInCircle(GetPosHero(), GetDetectRange().Value);
 
-        var random = UnityEngine.Random.Range(0, listObjEnemy.Count + 1);
+        var random = UnityEngine.Random.Range(0, listObjEnemy.Count);
+        
+        if (listObjEnemy.Count <= 0) return BattleController.instance.GetPlayer();
 
         return listObjEnemy[random];
     }
@@ -530,11 +536,12 @@ public class SkillBaseController : MonoBehaviour
 
         foreach (var item in col)
         {
-            if (item.gameObject.tag == "Enemy")
+            if (item.gameObject.tag == "Enemy" && item.gameObject.activeInHierarchy)
             {
                 list.Add(item.gameObject);
             }
         }
+
         return list;
     }
 

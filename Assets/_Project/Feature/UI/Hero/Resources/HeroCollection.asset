@@ -17,7 +17,7 @@ MonoBehaviour:
     nameHero: "Anh H\xF9ng Thi\u1EBFu Ni\xEAn"
     level: 1
     powerStat: 1
-    defaultSkill: 1
+    defaultSkill: 9
     resource:
       resType: 0
       resId: 1
