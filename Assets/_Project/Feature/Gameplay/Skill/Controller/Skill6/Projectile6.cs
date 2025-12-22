@@ -6,6 +6,9 @@ public class Projectile6 : ProjectileBaseController
 {
     [SerializeField]
     protected Collider2D col;
+
+    [SerializeField]
+    protected GameObject sprite;
     protected float rotate;
     protected Quaternion targetRotate;
     protected Quaternion rotateFirst;
@@ -19,12 +22,17 @@ public class Projectile6 : ProjectileBaseController
     {
         base.InitData(data, skillBaseController);
         checkLeft = false;
-        Vector3 rotateLeft = transform.eulerAngles;
+        //Vector3 rotateLeft = transform.eulerAngles;
         if (BattleController.instance.joystick.HorizontalLast() < -0.01f)
         {
             checkLeft = true;
+            sprite.GetComponent<SpriteRenderer>().flipX = false;
+        } else
+        {
+            sprite.GetComponent<SpriteRenderer>().flipX = true;
+
         }
-        transform.rotation = Quaternion.Euler(rotateLeft);
+        //transform.rotation = Quaternion.Euler(rotateLeft);
 
         SetRotate(checkLeft);
         SetTargetRotate(checkLeft);
@@ -39,7 +47,7 @@ public class Projectile6 : ProjectileBaseController
         if (!checkGoBack)
         {
             transform.localScale = Vector3.MoveTowards(transform.localScale, scale, 100 * Time.deltaTime);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotate, 500 * Time.deltaTime);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotate, 350 * Time.deltaTime);
             if (Quaternion.Angle(transform.rotation, targetRotate) < 0.1f)
             {
                 RegisterCoroutine(WaitEff());
@@ -47,8 +55,8 @@ public class Projectile6 : ProjectileBaseController
             return;
         }
 
-        transform.localScale = Vector3.MoveTowards(transform.localScale, scaleFirst, 100 * Time.deltaTime);
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, rotateFirst, 500 * Time.deltaTime);
+        transform.localScale = Vector3.MoveTowards(transform.localScale, scaleFirst, 20 * Time.deltaTime);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, rotateFirst, 1200 * Time.deltaTime);
 
         if (Quaternion.Angle(transform.rotation, rotateFirst) < 0.1f)
         {

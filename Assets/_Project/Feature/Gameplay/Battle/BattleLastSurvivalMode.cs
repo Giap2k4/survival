@@ -49,7 +49,7 @@ public class BattleLastSurvivalMode : BattleModeBase
         yield return new WaitForSeconds(spawn.timeStart);
         Spawn(spawn.idEnemy, spawn.spawnEnemyType, spawn.quantityEnemy);
 
-        if (spawn.interval == 0) yield return null;
+        if (spawn.interval == 0) yield break;
 
 
         for (int i = 0; i < (spawn.timeEnd - spawn.timeStart)/spawn.interval; i++)

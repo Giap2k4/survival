@@ -10,31 +10,33 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ac993d253d0412458fa79a1da876fe0, type: 3}
-  m_Name: Skill_3
+  m_Name: Skill_7
   m_EditorClassIdentifier: 
   dataGroups:
     id: 1
-    nameSkill: "L\u01B0\u1EE1i \u0111ao"
+    nameSkill: "C\u1EA7u \u0111i\u1EC7n"
     details:
     - level: 1
       mechanicType:
       - mechanicTypes: 1
-        values: 2
+        values: 2.5
       - mechanicTypes: 3
         values: 1, 0, 1
       - mechanicTypes: 6
-        values: 3
+        values: 1
       - mechanicTypes: 7
-        values: 15
+        values: 4
       - mechanicTypes: 9
         values: 0
       - mechanicTypes: 10
-        values: 0
+        values: 1
       - mechanicTypes: 12
         values: 5, -1
       - mechanicTypes: 15
+        values: 0.4
+      - mechanicTypes: 16
         values: 0.3
-      - mechanicTypes: 4
-        values: 2
+      - mechanicTypes: 2
+        values: 4
       - mechanicTypes: 5
         values: 20

@@ -18,9 +18,6 @@ public class SkillBaseController : MonoBehaviour
     [SerializeField]
     protected Transform parentProjectile;
 
-    [SerializeField]
-    protected List<GameObject> pooling = new List<GameObject>();
-
     protected SkillModel skillModel;
     protected SkillDetails skillDetails;
     protected AttackData attackData = new AttackData();
@@ -51,7 +48,7 @@ public class SkillBaseController : MonoBehaviour
         if (cooldown == null)
         {
             StartCoroutine(Spawn());
-            yield return null;
+            yield break;
         }
         else
         {
@@ -86,8 +83,6 @@ public class SkillBaseController : MonoBehaviour
         }
 
         AfterSpawnProjectile();
-
-        yield return null;
     }
 
     /// <summary>

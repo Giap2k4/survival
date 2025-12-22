@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ProjectileBaseController : MonoBehaviour, IUpdateManager
@@ -17,10 +18,13 @@ public class ProjectileBaseController : MonoBehaviour, IUpdateManager
 
     protected List<IEnumerator> listCoroutine = new List<IEnumerator>();
 
+    protected virtual void Awake() { }
+
     protected virtual void OnEnable()
     {
         UpdateManager.instance.Register(this);
-        ResetData();
+        checkDuration = false;
+        //ResetData();
     }
 
     protected virtual void OnDisable()
@@ -45,6 +49,8 @@ public class ProjectileBaseController : MonoBehaviour, IUpdateManager
     {
         this.data = data;
         this.skillBaseController = skillBaseController;
+
+        ResetData();
     }
 
     public void UpdateMe()
@@ -73,9 +79,10 @@ public class ProjectileBaseController : MonoBehaviour, IUpdateManager
     IEnumerator HandleDuration()
     {
         checkDuration = true;
-        if (GetDuration() == 0) yield return null;
+        if (GetDuration() == 0) yield break;
         yield return new WaitForSeconds(GetDuration());
         // cho vào pool
+        Die();
     }
 
     protected virtual void CheckViewPort()
@@ -110,43 +117,7 @@ public class ProjectileBaseController : MonoBehaviour, IUpdateManager
             collision.gameObject.GetComponent<CharacterBaseController>().TakeDamage(attackData);
 
             // xử lý nếu có effect (đa phần chỉ cần add eff vào attackData rồi enemy tự xử lý)
-            if (attackData.effects.Count > 0)
-            {
-                foreach (var item in attackData.effects)
-                {
-                    switch ((EnumBase.EffectType)item.Value[0])
-                    {
-                        case EnumBase.EffectType.KnockBack:
-                            HandleEffectKnockBack();
-                            break;
-
-                        case EnumBase.EffectType.Freeze:
-                            HandleEffectFreeze();
-                            break;
-
-                        case EnumBase.EffectType.Poison:
-                            HandleEffectPoison();
-                            break;
-
-                        case EnumBase.EffectType.Burn:
-                            HandleEffectBurn();
-                            break;
-
-                        case EnumBase.EffectType.Pierce:
-                            HandleEffectPierce();
-                            break;
-
-                        case EnumBase.EffectType.Slow:
-                            HandleEffectSlow();
-                            break;
-
-                        case EnumBase.EffectType.Stun:
-                            HandleEffectStun();
-                            break;
-                    }
-                }
-            }
-
+            HandleEffect();
 
             if (isPierceAllEnemy) return;
             countPierce++;
@@ -154,6 +125,49 @@ public class ProjectileBaseController : MonoBehaviour, IUpdateManager
         }
 
     }
+
+    protected virtual void HandleEffect()
+    {
+        if (attackData.effects.Count > 0)
+        {
+            foreach (var item in attackData.effects)
+            {
+                switch ((EnumBase.EffectType)item.Value[0])
+                {
+                    case EnumBase.EffectType.KnockBack:
+                        HandleEffectKnockBack();
+                        break;
+
+                    case EnumBase.EffectType.Freeze:
+                        HandleEffectFreeze();
+                        break;
+
+                    case EnumBase.EffectType.Poison:
+                        HandleEffectPoison();
+                        break;
+
+                    case EnumBase.EffectType.Burn:
+                        HandleEffectBurn();
+                        break;
+
+                    case EnumBase.EffectType.Pierce:
+                        HandleEffectPierce();
+                        break;
+
+                    case EnumBase.EffectType.Slow:
+                        HandleEffectSlow();
+                        break;
+
+                    case EnumBase.EffectType.Stun:
+                        HandleEffectStun();
+                        break;
+                }
+            }
+        }
+    }
+
+    protected virtual void OnTriggerStay2D(Collider2D collision) { }
+    protected virtual void OnTriggerExit2D(Collider2D collision) { }
 
     /// <summary>
     /// Projectile chết
