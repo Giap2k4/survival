@@ -33,7 +33,7 @@ MonoBehaviour:
       - mechanicTypes: 2
         values: 4
       - mechanicTypes: 5
-        values: 8
+        values: 5
       - mechanicTypes: 1
         values: 4
       - mechanicTypes: 15

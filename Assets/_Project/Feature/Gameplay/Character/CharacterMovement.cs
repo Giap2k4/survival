@@ -6,14 +6,14 @@ public class CharacterMovement : MoveSystemBase
     private Vector2 moveInput;
 
     [SerializeField] protected Animator animator;
-    [SerializeField] public Joystick joystick;
+    //[SerializeField] public Joystick joystick;
     [SerializeField] private SpriteRenderer spriteRenderer;
 
     protected override void MoveAction()
     {
         // Lấy input từ joystick
-        float moveX = joystick.Horizontal();
-        float moveY = joystick.Vertical();
+        float moveX = BattleController.instance.joystick.Horizontal();
+        float moveY = BattleController.instance.joystick.Vertical();
 
         moveInput = new Vector2(moveX, moveY).normalized;
 

@@ -31,6 +31,6 @@ MonoBehaviour:
       - mechanicTypes: 10
         values: 3
       - mechanicTypes: 15
-        values: 45
+        values: 120
       - mechanicTypes: 12
         values: 5, -1

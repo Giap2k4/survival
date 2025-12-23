@@ -4,6 +4,7 @@ using UnityEngine;
 
 public abstract class MoveSystemBase : MonoBehaviour, IUpdateManager
 {
+    public bool isDie;
     public float moveSpeed = 0;
     protected abstract void MoveAction(); // xử lý di chuyển
     public void SetSpeed(float speed) => moveSpeed = speed;
@@ -11,6 +12,7 @@ public abstract class MoveSystemBase : MonoBehaviour, IUpdateManager
     protected virtual void Start()
     {
         moveSpeed = gameObject.GetComponent<CharacterBaseController>().stats.GetOrCreateStat(EnumBase.RPGStatType.MoveSpeed).valueStat;
+        isDie = false;
     }
 
     protected virtual void OnEnable()

@@ -9,7 +9,7 @@ public class Projectile9 : Projectile8
 
     public float pulseSpeed = 2f;     // tốc độ nháy
     public float minAlpha = 0.3f;
-    public float maxAlpha = 0.8f;
+    public float maxAlpha = 0.6f;
     protected Vector3 scale;
 
     protected override void ResetData()

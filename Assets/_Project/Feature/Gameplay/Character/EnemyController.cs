@@ -12,12 +12,14 @@ public class EnemyController : CharacterBaseController
     protected float damage;
 
     protected AttackData attackData;
+    protected EnemyMove enemyMove;
 
     protected override void OnEnable()
     {
         base.OnEnable();
         // add modify stat nếu có level > 1
         //SetData();
+        enemyMove = gameObject.GetComponent<EnemyMove>();
     }
 
     public override void SetLevel(int level) => this.level = level;
@@ -136,10 +138,11 @@ public class EnemyController : CharacterBaseController
     {
         base.IsDead(dmg);
         hp -= dmg;
-        if (hp < 0)
+        if (hp <= 0)
         {
+            enemyMove.SetIsDie();
+            enemyMove.isDie = true;
             hp = 0;
-            gameObject.SetActive(false);
         }
     }
 
