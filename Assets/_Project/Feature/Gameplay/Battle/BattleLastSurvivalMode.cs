@@ -17,7 +17,7 @@ public class BattleLastSurvivalMode : BattleModeBase
     protected void InitHero()
     {
         int idHero = PlayerDataManager.Hero.database.idHeroSelected;
-        var prefab = Resources.Load<GameObject>("Hero_" + idHero);
+        var prefab = Resources.Load<GameObject>("_Prefab/Hero/Hero_" + idHero);
         GameObject obj = Instantiate(prefab);
         obj.transform.position = Vector3.zero;
 
@@ -64,7 +64,7 @@ public class BattleLastSurvivalMode : BattleModeBase
             Vector3 pos = GetRandomOutsidePosition(spawnType);
 
             // cho vào pool
-            var prefab = Resources.Load<GameObject>("Enemy_" + idEnemy);
+            var prefab = Resources.Load<GameObject>("_Prefab/Enemy/Enemy_" + idEnemy);
             GameObject obj = Instantiate(prefab, pos, Quaternion.identity);
 
             var enemy = DataManager.Enemy.GetEnemyById(idEnemy);

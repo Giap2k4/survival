@@ -5,21 +5,26 @@ using UnityEngine;
 public class EnemyMove : MoveSystemBase
 {
     [SerializeField]
-    protected Rigidbody2D rb;
-
-    [SerializeField]
     protected Animator animator;
 
     [SerializeField]
     protected GameObject hero;
 
     [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] protected Collider2D col;
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        col.enabled = true;
+        animator.ResetTrigger("IsDead");
+        animator.Play("run");
+    }
 
     protected override void Start()
     {
         base.Start();
         hero = BattleController.instance.GetPlayer();
-        animator.SetBool("IsDie", false);
     }
 
     protected override void MoveAction()
@@ -35,15 +40,15 @@ public class EnemyMove : MoveSystemBase
     public void SetIsDie()
     {
         // set collider nữa
+        col.enabled = false;
         animator.SetTrigger("IsDead");
     }
 
     public void OnDieAnimEnd()
     {
-        Debug.Log("Đã vào đây") ;
         // cho vào pooling
+        
         gameObject.SetActive(false);
-
     }
 
 }
