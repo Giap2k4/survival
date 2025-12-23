@@ -19,6 +19,7 @@ public class EnemyMove : MoveSystemBase
         col.enabled = true;
         animator.ResetTrigger("IsDead");
         animator.Play("run");
+        isDie = false;
     }
 
     protected override void Start()
@@ -42,13 +43,6 @@ public class EnemyMove : MoveSystemBase
         // set collider nữa
         col.enabled = false;
         animator.SetTrigger("IsDead");
-    }
-
-    public void OnDieAnimEnd()
-    {
-        // cho vào pooling
-        
-        gameObject.SetActive(false);
     }
 
 }

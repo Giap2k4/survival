@@ -13,6 +13,7 @@ public class EnemyController : CharacterBaseController
 
     protected AttackData attackData;
     protected EnemyMove enemyMove;
+    protected int typeEnemy;
 
     protected override void OnEnable()
     {
@@ -29,6 +30,8 @@ public class EnemyController : CharacterBaseController
         hp = stats.GetOrCreateStat(EnumBase.RPGStatType.Health).valueStat;
         damage = stats.GetOrCreateStat(EnumBase.RPGStatType.Damage).valueStat;
     }
+
+    public float GetDamageAttack() => damage;
 
     public AttackData GetAttackData() => attackData;
 
@@ -143,6 +146,7 @@ public class EnemyController : CharacterBaseController
             enemyMove.SetIsDie();
             enemyMove.isDie = true;
             hp = 0;
+            PoolingManager.AddEnemyDisable(gameObject);
         }
     }
 
@@ -152,5 +156,34 @@ public class EnemyController : CharacterBaseController
         GameObject obj = DamageTextManager.instance.DamageText(transform.position);
 
         obj.GetComponent<DamageTextController>().SetText(Convert.ToString(dmg), isCrit);
+    }
+
+    public void OnDieAnimEnd()
+    {
+        gameObject.SetActive(false);
+        // spawn exp ra vị trí đó luôn (có nhiều loại exp)
+        SpawnExp();
+    }
+
+    public void SetTypeEnemy(int type) => typeEnemy = type;
+
+    /// <summary>
+    /// Spawn gameObject exp
+    /// </summary>
+    protected void SpawnExp()
+    {
+        var obj = PoolingManager.GetExp("Exp" + typeEnemy);
+        if (obj != null)
+        {
+            obj.transform.SetPositionAndRotation(transform.position, Quaternion.identity);
+            obj.SetActive(true);
+            return;
+        }
+
+        var prefab = Resources.Load<GameObject>("Exp" + typeEnemy);
+        if (prefab == null) return;
+
+        GameObject gObj = Instantiate(prefab, transform.position, Quaternion.identity);
+        gObj.name = "Exp" + typeEnemy.ToString();
     }
 }

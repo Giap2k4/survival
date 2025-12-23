@@ -19,7 +19,6 @@ public class BtnChangeScene : MonoBehaviour
 
     protected void OnClick()
     {
-        Debug.Log(scene.ToString());
         SceneController.instance.ChangeScene(scene);
     }
 }

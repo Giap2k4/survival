@@ -1,2 +1,2 @@
-﻿id,nameEnemy,powerStat,isBoss,defaultSkill
-1,Sói con,501,FALSE,0
+﻿id,nameEnemy,typeNumber,powerStat,isBoss,defaultSkill
+1,Sói con,1,501,FALSE,0

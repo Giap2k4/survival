@@ -9,13 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa49a91d01f33ee469b4e454bb5b976c, type: 3}
-  m_Name: EnemyCollection
+  m_Script: {fileID: 11500000, guid: 3b178ed7bbe7fb24ab219660ebbda2e7, type: 3}
+  m_Name: ExpBattleCollection
   m_EditorClassIdentifier: 
   dataGroups:
-  - id: 1
-    nameEnemy: "S\xF3i con"
-    typeEnemy: 1
-    powerStat: 501
-    isBoss: 0
-    defaultSkill: 0
+  - typeExp: 1
+    expNumber: 5

@@ -9,13 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa49a91d01f33ee469b4e454bb5b976c, type: 3}
-  m_Name: EnemyCollection
+  m_Script: {fileID: 11500000, guid: 6265be90c1f38f64e88082ee935084d6, type: 3}
+  m_Name: FormulaExpBattleCollection
   m_EditorClassIdentifier: 
   dataGroups:
-  - id: 1
-    nameEnemy: "S\xF3i con"
-    typeEnemy: 1
-    powerStat: 501
-    isBoss: 0
-    defaultSkill: 0
+  - battleMode: 1
+    valueBase: 30
+    bonus: 30
+    formula: a + b * (c - 1)
+    formulaLevel: (d - a)/b + 1

@@ -27,7 +27,6 @@ public class SkillBaseController : MonoBehaviour
     {
         string nameSkill = "Skill_" + idSkill; 
         skillModel = Resources.Load<SkillCollection>(nameSkill).dataGroups;
-        Debug.Log(skillModel);
         characterBaseController = BattleController.instance.GetPlayer().GetComponent<CharacterBaseController>();
         
         StartCoroutine(StartSpawnProjectile(skillModel));
@@ -192,7 +191,7 @@ public class SkillBaseController : MonoBehaviour
     /// <returns></returns>
     protected virtual GameObject GetPooling()
     {
-        return PoolingManager.GetProjectilePooling("Projectile" + this.GetType().Name);
+        return PoolingManager.GetProjectile("Projectile" + this.GetType().Name);
     }
 
     /// <summary>

@@ -7,11 +7,7 @@ public class ProjectileSword1 : MonoBehaviour
     [SerializeField]
     protected AttackData attackData;
 
-    public void SetAttackData(AttackData data)
-    {
-        Debug.Log(data);
-        attackData = data;
-    }
+    public void SetAttackData(AttackData data) => attackData = data;
 
     protected void OnTriggerEnter2D(Collider2D collision)
     {

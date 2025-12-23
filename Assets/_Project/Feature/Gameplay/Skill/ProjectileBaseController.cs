@@ -176,7 +176,7 @@ public class ProjectileBaseController : MonoBehaviour, IUpdateManager
     {
         // cho vào pool
         gameObject.SetActive(false);
-        PoolingManager.AddProjectilePooling(gameObject);
+        PoolingManager.AddProjectile(gameObject);
     }
 
     public virtual void SetAttackData(AttackData data) => attackData = data;

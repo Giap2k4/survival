@@ -1,6 +1,8 @@
-﻿idMap,totalTime,idEnemy,quantityEnemy,spawnEnemyType,timeStart,timeEnd,interval
-0,300,1,2,1,0,0,0
-,,1,2,2,1,1,0
-,,1,3,3,2,2,0
-,,1,3,4,3,3,0
-,,1,5,4,4,4,0
+﻿battleMode,idMap,totalTime,idEnemy,levelEnemy,quantityEnemy,spawnEnemyType,timeStart,timeEnd,interval
+LastSurvival,0,300,1,1,2,1,0,0,0
+,,,1,1,2,2,1,1,0
+,,,1,1,3,3,2,2,0
+,,,1,1,3,4,3,3,0
+,,,1,1,5,4,4,4,0
+,,,1,2,3,4,15,15,0
+,,,1,3,3,4,20,20,0
