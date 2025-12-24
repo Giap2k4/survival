@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class EnemyController : CharacterBaseController
@@ -14,6 +15,10 @@ public class EnemyController : CharacterBaseController
     protected AttackData attackData;
     protected EnemyMove enemyMove;
     protected int typeEnemy;
+    protected bool checkDmgAttack; // kiểm tra đã đủ thời gian gây dmg chưa
+    [SerializeField]
+    protected float damageInterval;
+    protected float nextDamageTime = 0f;
 
     protected override void OnEnable()
     {
@@ -185,5 +190,24 @@ public class EnemyController : CharacterBaseController
 
         GameObject gObj = Instantiate(prefab, transform.position, Quaternion.identity);
         gObj.name = "Exp" + typeEnemy.ToString();
+    }
+
+    public override void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (!collision.collider.CompareTag("Hero")) return;
+        DamageInterval(collision);
+    }
+
+    public override void OnCollisionStay2D(Collision2D collision)
+    {
+        if (!collision.collider.CompareTag("Hero")) return;
+        DamageInterval(collision);
+    }
+    
+    protected void DamageInterval(Collision2D col)
+    {
+        if (Time.time < nextDamageTime) return;
+        col.gameObject.GetComponent<PlayerController>().HandleDamageAttack(damage);
+        nextDamageTime = Time.time + damageInterval;
     }
 }

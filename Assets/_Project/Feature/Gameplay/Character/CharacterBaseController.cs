@@ -25,10 +25,10 @@ public class CharacterBaseController : MonoBehaviour
         SetData();
     }
 
-    public virtual void OnTriggerEnter2D(Collider2D collision)
-    {
-        
-    }
+    public virtual void OnTriggerEnter2D(Collider2D collision) { }
+
+    public virtual void OnCollisionEnter2D(Collision2D collision) { }
+    public virtual void OnCollisionStay2D(Collision2D collision) { }
 
     public virtual void InitSkillDefault(int idSkill)
     {

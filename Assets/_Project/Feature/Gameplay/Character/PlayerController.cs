@@ -14,9 +14,13 @@ public class PlayerController : CharacterBaseController
     [SerializeField]
     protected float levelExp; // level exp hiện tại
 
+    [SerializeField]
+    protected Collider2D colliderHero;
+
     protected float levelExpStart; // level exp trước khi tăng level
     protected float numberSidebar;
     protected FormulaExpBattleModel model;
+    protected bool checkAttack;
 
     protected override void SetData()
     {
@@ -58,22 +62,14 @@ public class PlayerController : CharacterBaseController
         if (numberLevel <= 0) return;
 
         // xử lý tăng level
+
     }
 
-    public override void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Enemy")
-        {
-            var dmgAttack = collision.gameObject.GetComponent<EnemyController>().GetDamageAttack();
-            HandleDamageAttack(dmgAttack);
-        }
-    }
-
-    protected void HandleDamageAttack(float dmg)
+    public void HandleDamageAttack(float dmg)
     {
         hp -= dmg;
         if (hp <= 0) hp = 0;
-
+        // xử lý khi bị trừ HP
     }
 
     protected void UpdateUI()

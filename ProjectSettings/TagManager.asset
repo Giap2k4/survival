@@ -16,10 +16,10 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - Hero
+  - HeroPickup
+  - Enemy
+  - Exp
   - 
   - 
   - 

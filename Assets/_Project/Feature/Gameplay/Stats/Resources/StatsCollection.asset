@@ -68,8 +68,8 @@ MonoBehaviour:
       bonusValue: 10
     - statType: 2
       valueType: 2
-      statValue: 7
-      bonusValue: 5
+      statValue: 2
+      bonusValue: 1
     - statType: 3
       valueType: 2
       statValue: 1

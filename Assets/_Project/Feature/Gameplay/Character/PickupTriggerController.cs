@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,9 +15,14 @@ public class PickupTriggerController : MonoBehaviour
             var exp = DataManager.ExpBattle.GetExpBattleById(type);
             playerController.AddExp(exp.expNumber);
 
-            // cho obj exp v�o pooling
+            // cho obj exp vào pooling
             collision.gameObject.SetActive(false);
             PoolingManager.AddExpPooling(collision.gameObject);
+        }
+        else if (collision.gameObject.tag == "Enemy")
+        {
+            Debug.Log("Chạm enemy");
+            return;
         }
     }
 }

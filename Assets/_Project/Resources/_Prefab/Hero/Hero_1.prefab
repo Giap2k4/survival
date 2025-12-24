@@ -9,13 +9,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3198410150713233638}
+  - component: {fileID: 636943690391341190}
+  - component: {fileID: 8968647089899670069}
   - component: {fileID: 6799326765245375188}
   - component: {fileID: 6745802836686835528}
-  - component: {fileID: 8968647089899670069}
-  - component: {fileID: 636943690391341190}
   - component: {fileID: 7728043496426646021}
   - component: {fileID: 3457090710051535344}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Hero_1
   m_TagString: Hero
   m_Icon: {fileID: 0}
@@ -38,6 +38,39 @@ Transform:
   - {fileID: 1625997681276463171}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &636943690391341190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3978804670201725813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86dfc3c1f7eece249a3354cde964bfe3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 0
+  expCurrent: 0
+  levelExp: 0
+  colliderHero: {fileID: 7728043496426646021}
+--- !u!114 &8968647089899670069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3978804670201725813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60f0a5a741fb5c64194f0e013267bac2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDie: 0
+  moveSpeed: 2.5
+  rb: {fileID: 0}
+  animator: {fileID: 6799326765245375188}
+  spriteRenderer: {fileID: 6745802836686835528}
 --- !u!95 &6799326765245375188
 Animator:
   serializedVersion: 5
@@ -111,38 +144,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8968647089899670069
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3978804670201725813}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60f0a5a741fb5c64194f0e013267bac2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isDie: 0
-  moveSpeed: 2.5
-  rb: {fileID: 0}
-  animator: {fileID: 6799326765245375188}
-  spriteRenderer: {fileID: 6745802836686835528}
---- !u!114 &636943690391341190
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3978804670201725813}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86dfc3c1f7eece249a3354cde964bfe3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hp: 0
-  expCurrent: 0
-  levelExp: 0
 --- !u!70 &7728043496426646021
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -216,13 +217,13 @@ GameObject:
   - component: {fileID: 1625997681276463171}
   - component: {fileID: 4476301785658226854}
   - component: {fileID: 8169829427193472791}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PickupTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1625997681276463171
 Transform:
   m_ObjectHideFlags: 0
@@ -272,7 +273,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 6
+  m_Radius: 15
 --- !u!114 &8169829427193472791
 MonoBehaviour:
   m_ObjectHideFlags: 0
