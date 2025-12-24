@@ -61,13 +61,8 @@ public class HeroItemController : MonoBehaviour
     protected void HandleAnyClicked(HeroItemController clicked)
     {
         bool active = (clicked == this);
-        if (active)
-        {
-            spriteClick.SetActive(true);
-        } else
-        {
-            spriteClick.SetActive(false);
-        }
+        if (active) spriteClick.SetActive(true);
+        else spriteClick.SetActive(false);
     }
 
     public void InitData(HeroModel hero)
@@ -76,14 +71,8 @@ public class HeroItemController : MonoBehaviour
         spriteHero.sprite = LoadSpriteResources.LoadSprite("Hero/" + hero.id);
         txtNameHero.text = hero.nameHero;
 
-        if (HeroManager.ListHeroOwned().TryGetValue(hero.id, out var value))
-        {
-            isLock.SetActive(false);
-        }
-        else
-        {
-            txtPriceHero.text = hero.resource.resQuantity.ToString();
-        }
+        if (HeroManager.ListHeroOwned().TryGetValue(hero.id, out var value)) isLock.SetActive(false);
+        else txtPriceHero.text = hero.resource.resQuantity.ToString();
 
         resourceType.sprite = LoadSpriteResources.LoadSprite("Money/" + hero.resource.resId);
         txtPriceHero.text = hero.resource.resQuantity.ToString();
