@@ -18,11 +18,12 @@ public class SkillBaseController : MonoBehaviour
     [SerializeField]
     protected Transform parentProjectile;
 
+    protected MechanicTypes cooldown;
     protected SkillModel skillModel;
     protected SkillDetails skillDetails;
     protected AttackData attackData = new AttackData();
     protected CharacterBaseController characterBaseController;
-    public Dictionary<EnumBase.EffectType, float[]> effect = new Dictionary<EnumBase.EffectType, float[]>();
+    //public Dictionary<EnumBase.EffectType, float[]> effect = new Dictionary<EnumBase.EffectType, float[]>();
     protected virtual void Start()
     {
         string nameSkill = "Skill_" + idSkill; 
@@ -33,15 +34,15 @@ public class SkillBaseController : MonoBehaviour
     }
 
     /// <summary>
-    /// Khởi động spawn đạn
+    /// Khởi động spawn đạn (lên level sẽ chạy lại hàm này)
     /// </summary>
     /// <param name="skill"></param>
     /// <returns></returns>
     protected virtual IEnumerator StartSpawnProjectile(SkillModel skill)
     {
         skillDetails = skill.details.First(x => x.level == levelCurrent);
-        var cooldown = skillDetails.mechanicType.FirstOrDefault(x => x.mechanicTypes == EnumBase.MechanicTypes.Cooldown);
-        AddEffect();
+        cooldown = skillDetails.mechanicType.FirstOrDefault(x => x.mechanicTypes == EnumBase.MechanicTypes.Cooldown);
+        //AddEffect();
         InitAttackData();
     Start:
 
@@ -66,7 +67,6 @@ public class SkillBaseController : MonoBehaviour
     /// <summary>
     /// Spawn projectile 
     /// </summary>
-    /// <param name="skillDetails"></param>
     protected virtual IEnumerator Spawn()
     {
         ProjectileModel data = InitProjectileData();
@@ -114,6 +114,8 @@ public class SkillBaseController : MonoBehaviour
         AfterSpawn1Projectile();
     }
 
+
+
     /// <summary>
     /// Làm gì đó sau khi spawn 1 projectile
     /// </summary>
@@ -127,10 +129,28 @@ public class SkillBaseController : MonoBehaviour
         attackData.stats.Add(EnumBase.RPGStatType.CritDamage, GetValueStat(EnumBase.RPGStatType.CritDamage));
 
         // add các eff từ skill
-        foreach (var item in effect)
+        AddEffect();
+        //foreach (var item in effect)
+        //{
+        //    // Add eff
+        //    attackData.effects.Add((EnumBase.EffectType)item.Value[0], item.Value);
+        //}
+    }
+
+    protected void AddEffect()
+    {
+        foreach (var item in skillDetails.mechanicType)
         {
-            // Add eff
-            attackData.effects.Add((EnumBase.EffectType)item.Value[0], item.Value);
+            if (item.mechanicTypes.ToString().StartsWith("effect_"))
+            {
+                float[] values = item.values
+                            .Split(',')
+                            .Select(s => float.Parse(s.Trim()))
+                            .ToArray();
+
+                //effect.Add((EnumBase.EffectType)values[0], values);
+                attackData.effects.Add((EnumBase.EffectType)values[0], values);
+            }
         }
     }
 
@@ -151,22 +171,6 @@ public class SkillBaseController : MonoBehaviour
         parentProjectile = GetParentProjectile();
 
         return new ProjectileModel(cooldown, duration, damage, range, detectRange, projectileNumber, projectileSpeed, projectileSize, targetFrom, targetTo, fireRate, (Vector2)direction);
-    }
-
-    protected void AddEffect()
-    {
-        foreach (var item in skillDetails.mechanicType)
-        {
-            if (item.mechanicTypes.ToString().StartsWith("effect_"))
-            {
-                float[] values = item.values
-                            .Split(',')
-                            .Select(s => float.Parse(s.Trim()))
-                            .ToArray();
-
-                effect.Add((EnumBase.EffectType)values[0], values);
-            }
-        }
     }
 
     protected float GetValueStat(EnumBase.RPGStatType type)
@@ -559,6 +563,9 @@ public class SkillBaseController : MonoBehaviour
         SetLevelSkill(levelCurrent + 1);
         // khởi động lại spawn , Set lại AttackData
     }
+
+    public int GetLevelCurrent() => levelCurrent;
+    public int GetIdSkill() => idSkill;
 
     public virtual float HandleCustomValue1()
     {

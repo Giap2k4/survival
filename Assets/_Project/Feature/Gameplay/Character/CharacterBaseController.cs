@@ -30,11 +30,14 @@ public class CharacterBaseController : MonoBehaviour
     public virtual void OnCollisionEnter2D(Collision2D collision) { }
     public virtual void OnCollisionStay2D(Collision2D collision) { }
 
-    public virtual void InitSkillDefault(int idSkill)
+    public virtual SkillBaseController InitSkillDefault(int idSkill)
     {
         var skill = Resources.Load<GameObject>("SkillController_" + idSkill);
         GameObject obj = Instantiate(skill);
         obj.transform.position = Vector3.zero;
+
+
+        return obj.GetComponent<SkillBaseController>();
     }
 
     public virtual void TakeDamage(AttackData data) { }

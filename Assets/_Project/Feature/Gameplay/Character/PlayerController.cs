@@ -22,6 +22,9 @@ public class PlayerController : CharacterBaseController
     protected FormulaExpBattleModel model;
     protected bool checkAttack;
 
+    protected List<SkillBaseController> skill; // skill, value: level skill
+    protected int defaultSkill; // id default skill
+
     protected override void SetData()
     {
         base.SetData();
@@ -76,4 +79,20 @@ public class PlayerController : CharacterBaseController
     {
 
     }
+
+    public override SkillBaseController InitSkillDefault(int idSkill)
+    {
+        var skill = AddSkill(base.InitSkillDefault(idSkill));
+        defaultSkill = skill.GetIdSkill();
+        return skill;
+    }
+
+    public List<SkillBaseController> GetAllSkill() => skill;
+    public SkillBaseController AddSkill(SkillBaseController skill) 
+    {
+        this.skill.Add(skill);
+        return skill;
+    }
+
+    public int GetIdDefaultSkill() => defaultSkill;
 }

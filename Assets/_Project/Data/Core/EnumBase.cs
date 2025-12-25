@@ -11,7 +11,9 @@ public class EnumBase
         Equipment,
         Pet,
         Shop, 
-        Main
+        Main,
+
+        SelectSkill
     }
 
     public enum Scenes

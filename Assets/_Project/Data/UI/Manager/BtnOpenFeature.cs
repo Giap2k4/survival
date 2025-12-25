@@ -19,7 +19,6 @@ public class BtnOpenFeature : MonoBehaviour
 
     protected void OnClick()
     {
-        Debug.Log("Đã vào hàm mở feature: " + feature.ToString());
         UIManager.instance.OpenFeature(feature);
     }
 }
