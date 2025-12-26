@@ -1,22 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Projectile1 : ProjectileBaseController
 {
     [SerializeField]
     protected List<GameObject> listSword = new List<GameObject>();
+    protected List<GameObject> listSwordPooling = new List<GameObject>();
 
     [SerializeField]
     protected GameObject projectileSword;
 
     private bool checkInitData;
 
-    protected override void OnEnable()
-    {
-        base.OnEnable();
-        if (checkInitData) SetRotateAndPositionSword();
-    }
+    //protected override void OnEnable()
+    //{
+    //    base.OnEnable();
+    //    if (checkInitData) SetRotateAndPositionSword();
+    //}
 
     protected override void UpdateProjectile()
     {
@@ -27,35 +29,50 @@ public class Projectile1 : ProjectileBaseController
     {
         base.InitData(data, skillBaseController);
         SetRotateAndPositionSword();
-        checkInitData = true;
+        //checkInitData = true;
     }
 
-    protected void SetRotateAndPositionSword()
+    public void SetRotateAndPositionSword()
     {
+        foreach(var item in listSword)
+        {
+            item.SetActive(false);
+            if (!listSwordPooling.Contains(item)) listSwordPooling.Add(item);
+        }
+        listSword.Clear();
         if (listSword.Count < data.projectileNumber)
         {
             var count = (data.projectileNumber - listSword.Count);
             for (int i = 0; i < count; i++)
             {
-                GameObject obj = Instantiate(projectileSword, transform);
+                GameObject obj = listSwordPooling.FirstOrDefault(x => x.activeInHierarchy == false);
+                if (obj == null)
+                {
+                    obj = Instantiate(projectileSword, transform);
+                    obj.GetComponent<ProjectileSword1>().SetAttackData(attackData);
+                    listSword.Add(obj);
+                    continue;
+                }
                 obj.GetComponent<ProjectileSword1>().SetAttackData(attackData);
+                obj.SetActive(true);
                 listSword.Add(obj);
             }
         }
 
         // tính số lượng rồi chia đều kiếm ra
-        var rotate = 360 / listSword.Count;
-        listSword[0].transform.rotation = Quaternion.Euler(0, 0 , 0);
 
-        Vector3 pos = new Vector3(data.range.Value, listSword[0].transform.position.y, listSword[0].transform.position.z);
-        listSword[0].transform.localPosition = pos;
+        float rotate = 360f / listSword.Count;
+        float a = 0f;
 
-        for (int i = 1; i < listSword.Count; i++)
+        Vector3 basePos = new Vector3(data.range.Value, 0f, 0f);
+
+        for (int i = 0; i < listSword.Count; i++)
         {
-            listSword[i].transform.rotation = Quaternion.Euler(0, 0, rotate);
+            a = i * rotate;
 
-            listSword[i].transform.localPosition = Quaternion.Euler(0, 0, rotate) * listSword[0].transform.localPosition;
-            rotate += rotate;
+            listSword[i].transform.localRotation = Quaternion.Euler(0f, 0f, a);
+            listSword[i].transform.localPosition = Quaternion.Euler(0f, 0f, a) * basePos;
         }
+
     }
 }

@@ -146,11 +146,6 @@ public class SkillBaseController : MonoBehaviour
 
         // add các eff từ skill
         AddEffect();
-        //foreach (var item in effect)
-        //{
-        //    // Add eff
-        //    attackData.effects.Add((EnumBase.EffectType)item.Value[0], item.Value);
-        //}
     }
 
     protected void AddEffect()
@@ -196,10 +191,11 @@ public class SkillBaseController : MonoBehaviour
     /// Truyền data vào cho projectile
     /// </summary>
     /// <param name="data"></param>
-    protected virtual void InitDataProjectile(ProjectileModel data, GameObject projectile)
+    protected virtual GameObject InitDataProjectile(ProjectileModel data, GameObject projectile)
     {
         var component = projectile.GetComponent<ProjectileBaseController>();
         component.InitData(data, this);
+        return projectile;
     }
 
     /// <summary>
@@ -569,7 +565,7 @@ public class SkillBaseController : MonoBehaviour
 
     }
 
-    public void HandleLevelUP()
+    public virtual void HandleLevelUP()
     {
         if (skillModel == null)
         {
@@ -582,14 +578,8 @@ public class SkillBaseController : MonoBehaviour
         skillDetails = skillModel.details.First(x => x.level == levelCurrent);
         cooldown = skillDetails.mechanicType.FirstOrDefault(x => x.mechanicTypes == EnumBase.MechanicTypes.Cooldown);
         checkLevelUp = true;
-        //AddEffect();
+
         InitAttackData();
-        //foreach (var item in listProjectile)
-        //{
-        //    item.gameObject.SetActive(false);
-        //    PoolingManager.AddProjectile(item);
-        //}
-        //listProjectile.Clear();
         StartCoroutine(Spawn());
 
         if (cooldown == null) return;
