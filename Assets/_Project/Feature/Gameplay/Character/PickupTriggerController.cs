@@ -13,7 +13,7 @@ public class PickupTriggerController : MonoBehaviour
         {
             var type = collision.gameObject.GetComponent<ItemExpBattleController>().GetTypeExp();
             var exp = DataManager.ExpBattle.GetExpBattleById(type);
-            playerController.AddExp(exp.expNumber);
+            LevelExpController.instance.AddExp(exp.expNumber);
 
             // cho obj exp vào pooling
             collision.gameObject.SetActive(false);

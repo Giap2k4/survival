@@ -55,7 +55,7 @@ public class SkillInfoController : FeatureBaseController
         if (quantityLevel <= 0)
         {
             UIManager.instance.CloseFeature(feature);
-            Time.timeScale = 1;
+            LevelExpController.instance.SetTimeScale();
             return;
         }
 
