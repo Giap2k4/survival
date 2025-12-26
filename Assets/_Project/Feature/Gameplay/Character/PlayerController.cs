@@ -22,7 +22,7 @@ public class PlayerController : CharacterBaseController
     protected FormulaExpBattleModel model;
     protected bool checkAttack;
 
-    protected List<SkillBaseController> skill; // skill, value: level skill
+    //protected List<SkillBaseController> skill;
     protected int defaultSkill; // id default skill
 
     protected override void SetData()
@@ -65,7 +65,9 @@ public class PlayerController : CharacterBaseController
         if (numberLevel <= 0) return;
 
         // xử lý tăng level
-
+        Time.timeScale = 0;
+        var obj = UIManager.instance.OpenFeature(EnumBase.Feature.SkillInfo).GetComponent<SkillInfoController>();
+        obj.SetQuantityLevel(numberLevel);
     }
 
     public void HandleDamageAttack(float dmg)
@@ -75,22 +77,10 @@ public class PlayerController : CharacterBaseController
         // xử lý khi bị trừ HP
     }
 
-    protected void UpdateUI()
-    {
-
-    }
-
     public override SkillBaseController InitSkillDefault(int idSkill)
     {
-        var skill = AddSkill(base.InitSkillDefault(idSkill));
+        var skill = SkillManager.instance.AddSkillDefault(base.InitSkillDefault(idSkill)); // add skill default vào list
         defaultSkill = skill.GetIdSkill();
-        return skill;
-    }
-
-    public List<SkillBaseController> GetAllSkill() => skill;
-    public SkillBaseController AddSkill(SkillBaseController skill) 
-    {
-        this.skill.Add(skill);
         return skill;
     }
 

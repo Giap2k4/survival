@@ -19,10 +19,6 @@ public class PickupTriggerController : MonoBehaviour
             collision.gameObject.SetActive(false);
             PoolingManager.AddExpPooling(collision.gameObject);
         }
-        else if (collision.gameObject.tag == "Enemy")
-        {
-            Debug.Log("Chạm enemy");
-            return;
-        }
+        else if (collision.gameObject.tag == "Enemy") return;
     }
 }

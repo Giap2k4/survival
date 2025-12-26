@@ -24,7 +24,7 @@ public class FeatureBaseController : MonoBehaviour
 
     protected virtual void Start()
     {
-        btnClose.onClick.AddListener(CloseFeature);
+        if (btnClose != null) btnClose.onClick.AddListener(CloseFeature);
         LoadData();
     }
 

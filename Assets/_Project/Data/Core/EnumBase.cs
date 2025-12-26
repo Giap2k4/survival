@@ -13,7 +13,7 @@ public class EnumBase
         Shop, 
         Main,
 
-        SelectSkill
+        SkillInfo
     }
 
     public enum Scenes

@@ -17,33 +17,39 @@ public class SkillBaseController : MonoBehaviour
 
     [SerializeField]
     protected Transform parentProjectile;
+    protected Coroutine startSpawnProjectile;
 
+    public bool checkLevelUp;
     protected MechanicTypes cooldown;
     protected SkillModel skillModel;
     protected SkillDetails skillDetails;
     protected AttackData attackData = new AttackData();
     protected CharacterBaseController characterBaseController;
+    //protected List<GameObject> listProjectile = new();
     //public Dictionary<EnumBase.EffectType, float[]> effect = new Dictionary<EnumBase.EffectType, float[]>();
     protected virtual void Start()
     {
         string nameSkill = "Skill_" + idSkill; 
         skillModel = Resources.Load<SkillCollection>(nameSkill).dataGroups;
         characterBaseController = BattleController.instance.GetPlayer().GetComponent<CharacterBaseController>();
-        
-        StartCoroutine(StartSpawnProjectile(skillModel));
+
+        if (startSpawnProjectile == null) startSpawnProjectile = StartCoroutine(StartSpawnProjectile());
     }
 
     /// <summary>
     /// Khởi động spawn đạn (lên level sẽ chạy lại hàm này)
     /// </summary>
-    /// <param name="skill"></param>
     /// <returns></returns>
-    protected virtual IEnumerator StartSpawnProjectile(SkillModel skill)
+    protected virtual IEnumerator StartSpawnProjectile()
     {
-        skillDetails = skill.details.First(x => x.level == levelCurrent);
-        cooldown = skillDetails.mechanicType.FirstOrDefault(x => x.mechanicTypes == EnumBase.MechanicTypes.Cooldown);
-        //AddEffect();
-        InitAttackData();
+        if (!checkLevelUp)
+        {
+            skillDetails = skillModel.details.First(x => x.level == levelCurrent);
+            cooldown = skillDetails.mechanicType.FirstOrDefault(x => x.mechanicTypes == EnumBase.MechanicTypes.Cooldown);
+            //AddEffect();
+            InitAttackData();
+        }
+
     Start:
 
         if (cooldown == null)
@@ -100,6 +106,7 @@ public class SkillBaseController : MonoBehaviour
             InitDataProjectile(data, prefab);
             prefab.SetActive(true);
             if (GetProjectileSize() != null) prefab.transform.localScale = new Vector3(GetProjectileSize().Value, GetProjectileSize().Value, GetProjectileSize().Value);
+            //listProjectile.Add(prefab);
 
             return;
         }
@@ -110,6 +117,7 @@ public class SkillBaseController : MonoBehaviour
         InitDataProjectile(data, prefab);
         prefab.name = "Projectile" + this.GetType().Name;
         if (GetProjectileSize() != null) prefab.transform.localScale = new Vector3(GetProjectileSize().Value, GetProjectileSize().Value, GetProjectileSize().Value);
+        //listProjectile.Add(prefab);
 
         AfterSpawn1Projectile();
     }
@@ -123,8 +131,16 @@ public class SkillBaseController : MonoBehaviour
 
     protected virtual void InitAttackData()
     {
+        attackData.stats.Clear();
+        attackData.effects.Clear();
+
         // add các giá trị stat cần (nhân với chỉ số đã config trong csv)
-        attackData.stats.Add(EnumBase.RPGStatType.Damage, GetValueStat(EnumBase.RPGStatType.Damage));
+        var valueDmg = GetValueStat(EnumBase.RPGStatType.Damage);
+        float[] value = FormulaEvaluator.ConvertStringToFloat(skillDetails.mechanicType.FirstOrDefault(x => x.mechanicTypes == EnumBase.MechanicTypes.Damage).values);
+        if (value[0] == 1) valueDmg *= value[2];
+        else valueDmg = value[2];
+
+        attackData.stats.Add(EnumBase.RPGStatType.Damage, valueDmg);
         attackData.stats.Add(EnumBase.RPGStatType.CritRate, GetValueStat(EnumBase.RPGStatType.CritRate));
         attackData.stats.Add(EnumBase.RPGStatType.CritDamage, GetValueStat(EnumBase.RPGStatType.CritDamage));
 
@@ -143,10 +159,7 @@ public class SkillBaseController : MonoBehaviour
         {
             if (item.mechanicTypes.ToString().StartsWith("effect_"))
             {
-                float[] values = item.values
-                            .Split(',')
-                            .Select(s => float.Parse(s.Trim()))
-                            .ToArray();
+                float[] values = FormulaEvaluator.ConvertStringToFloat(item.values);
 
                 //effect.Add((EnumBase.EffectType)values[0], values);
                 attackData.effects.Add((EnumBase.EffectType)values[0], values);
@@ -291,6 +304,7 @@ public class SkillBaseController : MonoBehaviour
             var value = int.Parse(ProjectileNumber.values);
             return value;
         }
+        
         return null;
     }
 
@@ -547,25 +561,46 @@ public class SkillBaseController : MonoBehaviour
 
         return list;
     }
-
-    public void SetLevelSkill(int level) => levelCurrent = level;
-
     /// <summary>
     /// Làm gì đó với projectile khi nó vừa được sinh ra
     /// </summary>
-    protected virtual void HandlerProjectile(ProjectileBaseController projectile)
+    protected virtual void HandleProjectile(ProjectileBaseController projectile)
     {
 
     }
 
-    public virtual void LevelUp()
+    public void HandleLevelUP()
     {
-        SetLevelSkill(levelCurrent + 1);
-        // khởi động lại spawn , Set lại AttackData
+        if (skillModel == null)
+        {
+            string nameSkill = "Skill_" + idSkill;
+            skillModel = Resources.Load<SkillCollection>(nameSkill).dataGroups;
+        }
+
+        if (characterBaseController == null) characterBaseController = BattleController.instance.GetPlayer().GetComponent<CharacterBaseController>();
+
+        skillDetails = skillModel.details.First(x => x.level == levelCurrent);
+        cooldown = skillDetails.mechanicType.FirstOrDefault(x => x.mechanicTypes == EnumBase.MechanicTypes.Cooldown);
+        checkLevelUp = true;
+        //AddEffect();
+        InitAttackData();
+        //foreach (var item in listProjectile)
+        //{
+        //    item.gameObject.SetActive(false);
+        //    PoolingManager.AddProjectile(item);
+        //}
+        //listProjectile.Clear();
+        StartCoroutine(Spawn());
+
+        if (cooldown == null) return;
+        if (startSpawnProjectile != null) StopCoroutine(startSpawnProjectile);
+        startSpawnProjectile = StartCoroutine(StartSpawnProjectile());
     }
 
     public int GetLevelCurrent() => levelCurrent;
     public int GetIdSkill() => idSkill;
+    public void SetLevelSkill() => levelCurrent++;
+
 
     public virtual float HandleCustomValue1()
     {

@@ -1,6 +1,7 @@
-using System;
+﻿using System;
 using System.Data;
 using System.Globalization;
+using System.Linq;
 
 public static class FormulaEvaluator
 {
@@ -39,5 +40,15 @@ public static class FormulaEvaluator
 
         if (value < 0) return (int)value + 1;
         return (int)value + 2;
+    }
+
+    /// <summary>
+    /// convert string sang mảng float
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns></returns>
+    public static float[] ConvertStringToFloat(string value)
+    { 
+        return value.Split(',').Select(s => float.Parse(s.Trim())).ToArray();
     }
 }

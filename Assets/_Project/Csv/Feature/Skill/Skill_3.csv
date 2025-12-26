@@ -9,3 +9,13 @@
 ,,,custom_value_1,0.3
 ,,,Range,2
 ,,,DetectRange,20
+,,2,Cooldown,2
+,,,Damage,"1, 0, 1.2"
+,,,ProjectileNumber,5
+,,,ProjectileSpeed,15
+,,,TargetFrom,0
+,,,TargetTo,0
+,,,effect_1,"5, -1"
+,,,custom_value_1,0.3
+,,,Range,2
+,,,DetectRange,20
