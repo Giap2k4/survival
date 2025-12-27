@@ -61,6 +61,8 @@ public class UIManager : Singleton<UIManager>
                 GameObject.Destroy(trans.gameObject);
             }
         }
+
+        listFeatureOpen.Clear();
     }
 
     public EnumBase.Scenes GetCurrentScene() => currentScene;

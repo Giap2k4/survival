@@ -30,17 +30,19 @@ public class LevelExpController : SingletonTemporary<LevelExpController>
     protected bool checkTimeScale;
     [SerializeField]
     protected int tempTimeScale;
-    
-
+    [SerializeField]
+    protected Button btnPause;
 
     protected void Start()
     {
+        tempTimeScale = 1;
         levelExp = 1;
         txtLevel.text = levelExp.ToString();
         expCurrent = 0;
         model = DataManager.FormulaExpBattle.GetByBattleMode(BattleManager.BattleMode);
         fillImage.fillAmount = 0f;
         btnTimeScale.onClick.AddListener(OnClick);
+        btnPause.onClick.AddListener(OnClickPause);
         txtSpeedBattle.text = "x1";
     }
 
@@ -112,5 +114,11 @@ public class LevelExpController : SingletonTemporary<LevelExpController>
         }
     }
 
-    public void SetTimeScale() => Time.timeScale = tempTimeScale;
+    public void TimeScale() => Time.timeScale = tempTimeScale;
+
+    public void OnClickPause()
+    {
+        UIManager.instance.OpenFeature(EnumBase.Feature.PauseGame);
+        Time.timeScale = 0;
+    }
 }

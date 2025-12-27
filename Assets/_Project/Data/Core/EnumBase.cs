@@ -13,7 +13,8 @@ public class EnumBase
         Shop, 
         Main,
 
-        SkillInfo
+        SkillInfo,
+        PauseGame
     }
 
     public enum Scenes

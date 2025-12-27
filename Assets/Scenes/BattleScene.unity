@@ -1146,6 +1146,9 @@ MonoBehaviour:
   fillImage: {fileID: 7352914277962651774}
   btnTimeScale: {fileID: 638198772}
   txtSpeedBattle: {fileID: 1796287169}
+  checkTimeScale: 0
+  tempTimeScale: 0
+  btnPause: {fileID: 8333082719634928408}
 --- !u!222 &114303029241577939
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -9,7 +9,7 @@ public class ResourceManager : DataPlayer<ResourceData>
     /// Check có đủ tiền để mua k, nếu đủ hiển thị popup nhận phần thưởng vừa mua
     /// </summary>
     /// <param name="res"></param>
-    public static void UseResource(PackageReward res)
+    public static void ResourceUse(PackageReward res)
     {
 
     }
