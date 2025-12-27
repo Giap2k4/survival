@@ -33,8 +33,19 @@ public class LevelExpController : SingletonTemporary<LevelExpController>
     [SerializeField]
     protected Button btnPause;
 
+    protected float timeGame;
+    protected float timeSurvival;
+
+    [SerializeField]
+    protected TextMeshProUGUI txtTime;
+
+    [SerializeField]
+    protected CanvasGroup canvasGroup;
+
     protected void Start()
     {
+        StartCoroutine(Cooldown());
+
         tempTimeScale = 1;
         levelExp = 1;
         txtLevel.text = levelExp.ToString();
@@ -44,6 +55,36 @@ public class LevelExpController : SingletonTemporary<LevelExpController>
         btnTimeScale.onClick.AddListener(OnClick);
         btnPause.onClick.AddListener(OnClickPause);
         txtSpeedBattle.text = "x1";
+    }
+
+    IEnumerator Cooldown()
+    {
+        var valueTimeEndCsv = DataManager.SpawnEnemy.GetSpawnEnemyById(BattleManager.idMap).totalTime;
+        var timeEnd = Time.time + valueTimeEndCsv;
+
+    Start:
+        timeGame = TimeManager.Cooldown(timeEnd);
+        long seconds = Mathf.CeilToInt(timeGame);
+        txtTime.text = TimeManager.FormatTime(seconds);
+
+        if (timeGame <= 0)
+        {
+            EndGame();
+            yield break;
+        }
+
+        yield return new WaitForSeconds(1f);
+        timeSurvival++;
+        goto Start;
+    }
+
+    /// <summary>
+    /// Xử lý khi xong màn chơi
+    /// </summary>
+    protected virtual void EndGame()
+    {
+        // giết hết quái mới end game đó
+        Debug.Log("EndGame");
     }
 
     public void AddExp(int value)
@@ -121,4 +162,7 @@ public class LevelExpController : SingletonTemporary<LevelExpController>
         UIManager.instance.OpenFeature(EnumBase.Feature.PauseGame);
         Time.timeScale = 0;
     }
+
+    public float GetTimeSurvival() => timeSurvival;
+    public void SetCanvasGroup(bool block) => canvasGroup.blocksRaycasts = block;
 }

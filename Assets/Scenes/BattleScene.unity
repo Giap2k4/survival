@@ -1149,6 +1149,8 @@ MonoBehaviour:
   checkTimeScale: 0
   tempTimeScale: 0
   btnPause: {fileID: 8333082719634928408}
+  txtTime: {fileID: 6456560310073974239}
+  canvasGroup: {fileID: 9018575232472885059}
 --- !u!222 &114303029241577939
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1788,6 +1790,7 @@ GameObject:
   - component: {fileID: 2161849616452426702}
   - component: {fileID: 8293488842584688005}
   - component: {fileID: 9018575232472885058}
+  - component: {fileID: 9018575232472885059}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -2130,6 +2133,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61bdb243bf4411944a1b0adfa58024e4, type: 3}
+--- !u!114 &6456560310073974239 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8109992978007041058, guid: 61bdb243bf4411944a1b0adfa58024e4, type: 3}
+  m_PrefabInstance: {fileID: 6456560310073974238}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6613008065915684801
 GameObject:
   m_ObjectHideFlags: 0
@@ -2462,6 +2476,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scaler: {fileID: 2161849616452426702}
+--- !u!225 &9018575232472885059
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5776385212184348660}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!224 &9143428507987428657
 RectTransform:
   m_ObjectHideFlags: 0

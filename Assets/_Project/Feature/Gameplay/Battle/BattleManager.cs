@@ -5,4 +5,5 @@ using UnityEngine;
 public static class BattleManager
 {
     public static EnumBase.BattleMode BattleMode {  get; set; }
+    public static int idMap { get; set; }
 }

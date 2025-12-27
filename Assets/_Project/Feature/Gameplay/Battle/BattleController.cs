@@ -20,10 +20,7 @@ public class BattleController : SingletonTemporary<BattleController>
     // Start is called before the first frame update
     void Start()
     {
-        if (BattleManager.BattleMode == EnumBase.BattleMode.None)
-        {
-            BattleManager.BattleMode = (EnumBase.BattleMode.LastSurvival);
-        }
+        if (BattleManager.BattleMode == EnumBase.BattleMode.None) BattleManager.BattleMode = (EnumBase.BattleMode.LastSurvival);
 
         switch (BattleManager.BattleMode)
         {

@@ -83,4 +83,13 @@ public static class PoolingManager
         }
         return null;
     }
+
+    public static void Clear()
+    {
+        _listDamageText.Clear();
+        _listProjectile.Clear();
+        _enemyActive.Clear();
+        _enemyDisable.Clear();
+        _exp.Clear();
+    }
 }

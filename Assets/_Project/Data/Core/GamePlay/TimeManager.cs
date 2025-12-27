@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 
 public static class TimeManager
 {
@@ -26,5 +27,18 @@ public static class TimeManager
             return $"{t.Hours:D2}:{t.Minutes:D2}:{t.Seconds:D2}";
 
         return $"{t.Minutes:D2}:{t.Seconds:D2}";
+    }
+
+    /// <summary>
+    /// Hàm đếm ngược, truyền thời gian kết thúc vào
+    /// </summary>
+    /// <param name="seconds"></param>
+    /// <returns></returns>
+    public static float Cooldown(float timeEnd)
+    {
+        var timeCooldown = (timeEnd - Time.time);
+        timeCooldown = Mathf.Max(0f, timeCooldown);
+
+        return timeCooldown;
     }
 }

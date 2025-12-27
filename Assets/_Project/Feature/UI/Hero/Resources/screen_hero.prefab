@@ -1028,7 +1028,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.2509804, g: 0.6117647, b: 0.89411765, a: 1}
+  m_Color: {r: 0.24722113, g: 0.46534076, b: 0.6289307, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1285,7 +1285,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.12175144, g: 0.2002916, b: 0.47798735, a: 0.19607843}
+  m_Color: {r: 0.04627976, g: 0.10798611, b: 0.32704395, a: 0.3764706}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1312,8 +1312,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _img: {fileID: 131098024376751430}
-  _x: 0.1
-  _y: 0.1
+  _x: 0.015
+  _y: 0.015
 --- !u!1 &5868902489391789575
 GameObject:
   m_ObjectHideFlags: 0

@@ -36,6 +36,8 @@ public class HeroItemController : MonoBehaviour
     protected GameObject spriteClick;
 
     public HeroModel heroModel;
+    [SerializeField]
+    protected GameObject txtComingSoon;
 
     private void Start()
     {
@@ -74,9 +76,18 @@ public class HeroItemController : MonoBehaviour
         if (HeroManager.ListHeroOwned().TryGetValue(hero.id, out var value)) isLock.SetActive(false);
         else txtPriceHero.text = hero.resource.resQuantity.ToString();
 
-        resourceType.sprite = LoadSpriteResources.LoadSprite("Money/" + hero.resource.resId);
-        txtPriceHero.text = hero.resource.resQuantity.ToString();
-
         if (hero.id == HeroManager.SelectedHero()) isSelected.SetActive(true);
+
+        if (hero.resource.resQuantity == 0)
+        {
+            txtPriceHero.gameObject.SetActive(false);
+            resourceType.gameObject.SetActive(false);
+            txtComingSoon.SetActive(true);
+        }
+        else
+        {
+            resourceType.sprite = LoadSpriteResources.LoadSprite("Money/" + hero.resource.resId);
+            txtPriceHero.text = hero.resource.resQuantity.ToString();
+        }
     }
 }

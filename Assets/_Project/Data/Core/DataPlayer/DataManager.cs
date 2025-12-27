@@ -28,4 +28,5 @@ public class DataManager
     public static FormulaExpBattleCollection FormulaExpBattle => Get<FormulaExpBattleCollection>();
     public static ExpBattleCollection ExpBattle => Get<ExpBattleCollection>();
     public static SkillInfoCollection SkillInfo => Get<SkillInfoCollection>();
+    public static RewardCollection Reward => Get<RewardCollection>();
 }

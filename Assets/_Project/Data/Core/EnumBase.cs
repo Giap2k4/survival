@@ -14,7 +14,8 @@ public class EnumBase
         Main,
 
         SkillInfo,
-        PauseGame
+        PauseGame,
+        Reward
     }
 
     public enum Scenes
