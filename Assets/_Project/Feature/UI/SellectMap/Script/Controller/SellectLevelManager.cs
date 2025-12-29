@@ -8,14 +8,11 @@ public class SellectLevelManager : DataPlayer<SellectLevelData>
     public static int GetLevelMaxUser() => PlayerDataManager.SellectLevel.database.levelMaxUser;
     public static int GetLevelCurrent() => PlayerDataManager.SellectLevel.database.levelCurrent;
     public static int GetIdMap() => PlayerDataManager.SellectLevel.database.idMap;
+    public static int GetLevelTotal() => PlayerDataManager.SellectLevel.database.levelTotal;
     public static void SetLevelCurrent(int level)
     {
         PlayerDataManager.SellectLevel.database.levelCurrent = level;
         PlayerDataManager.SellectLevel.Save();
-
-        var key = "SellectLevelManager"; // ví dụ
-        var json = PlayerPrefs.GetString(key, "(missing)");
-        Debug.Log(json);
     }
 
     public static void SetLevelMaxUser(int level)
@@ -28,10 +25,6 @@ public class SellectLevelManager : DataPlayer<SellectLevelData>
     {
         PlayerDataManager.SellectLevel.database.idMap = id;
         PlayerDataManager.SellectLevel.Save();
-
-        var key = "SellectLevelManager"; // ví dụ
-        var json = PlayerPrefs.GetString(key, "(missing)");
-        Debug.Log(json);
     }
 
     public override void SetDataDefault()
@@ -39,6 +32,7 @@ public class SellectLevelManager : DataPlayer<SellectLevelData>
         PlayerDataManager.SellectLevel.database.levelMaxUser = 1;
         PlayerDataManager.SellectLevel.database.levelCurrent = 1;
         PlayerDataManager.SellectLevel.database.idMap = 1;
+        PlayerDataManager.SellectLevel.database.levelTotal = 20;
         PlayerDataManager.SellectLevel.Save();
     }
 

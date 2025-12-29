@@ -7,4 +7,5 @@ public class SellectLevelData
     public int idMap;
     public int levelMaxUser;
     public int levelCurrent;
+    public int levelTotal;
 }

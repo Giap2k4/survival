@@ -9,6 +9,7 @@ public abstract class DataPlayerBase
     //public static List<DataPlayerBase> listInstance = new List<DataPlayerBase>();
     public abstract void Load();
     public abstract void Save();
+    public virtual void Clear() { }
 
     public static void Init()
     {

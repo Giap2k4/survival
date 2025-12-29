@@ -13,12 +13,6 @@ public abstract class DataPlayer<T> : DataPlayerBase
         database = data;
         SetDataDefault();
         Save();
-        //if (database == null)
-        //{
-        //    Debug.Log("Data null: " + GetType().Name);
-        //    SetDataDefault();
-        //    Save();
-        //}
     }
 
     public override void Load()
@@ -28,19 +22,13 @@ public abstract class DataPlayer<T> : DataPlayerBase
         if (!PlayerPrefs.HasKey(type))
         {
             InitData();
-            //Save();
             return;
         }
 
         string dataJson = PlayerPrefs.GetString(type);
-        //Debug.Log("Manager: " + dataJson);
         database = JsonConvert.DeserializeObject<T>(dataJson);
 
-        if (database == null)
-        {
-            Debug.Log("Data null: " + GetType().Name);
-            InitData();
-        }
+        if (database == null) InitData();
     }
 
     public override void Save()
@@ -51,8 +39,14 @@ public abstract class DataPlayer<T> : DataPlayerBase
         PlayerPrefs.Save();
     }
 
+    public override void Clear()
+    {
+        string type = GetType().Name;
+        PlayerPrefs.DeleteKey(type);
+    }
+
     /// <summary>
-    /// Set data mặc định (k cần gọi hàm lưu)
+    /// Set data mặc định 
     /// </summary>
     public virtual void SetDataDefault() { }
 
