@@ -59,7 +59,8 @@ public class LevelExpController : SingletonTemporary<LevelExpController>
 
     IEnumerator Cooldown()
     {
-        var valueTimeEndCsv = DataManager.SpawnEnemy.GetSpawnEnemyById(BattleManager.idMap).totalTime;
+        var item = SellectLevelManager.GetLevelCurrent();
+        var valueTimeEndCsv = DataManager.SpawnEnemy.GetSpawnEnemyById(item).totalTime;
         var timeEnd = Time.time + valueTimeEndCsv;
 
     Start:

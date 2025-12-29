@@ -30,3 +30,18 @@ MonoBehaviour:
         - resType: 0
           resId: 2
           resQuantity: 100
+    - idMap: 1
+      details:
+      - timeSurvival: 10
+        rewards:
+        - resType: 0
+          resId: 1
+          resQuantity: 100
+      - timeSurvival: 20
+        rewards:
+        - resType: 0
+          resId: 1
+          resQuantity: 200
+        - resType: 0
+          resId: 2
+          resQuantity: 100

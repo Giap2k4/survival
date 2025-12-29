@@ -629,8 +629,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1524801864762400407}
   - component: {fileID: 8061765032729825619}
-  - component: {fileID: 5911545311746349907}
   - component: {fileID: 4343935022897583248}
+  - component: {fileID: 5911545311746349907}
   - component: {fileID: 749585191878740884}
   m_Layer: 5
   m_Name: screen_hero
@@ -669,6 +669,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 846471670547893972}
   m_CullTransparentMesh: 1
+--- !u!114 &4343935022897583248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 846471670547893972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05c873d9f81831548b1d6eb904d1303d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  feature: 1
+  btnClose: {fileID: 81309300427832372}
+  prefab: {fileID: 2288475449062316560, guid: 0e389a922936fe04699ea40ae9b4ee50, type: 3}
+  parentPrefab: {fileID: 5220175210091633420}
+  avatarHero: {fileID: 1851693690676095582}
+  txtNameHero: {fileID: 5214115738089681719}
+  btnOpenDetail: {fileID: 9029549378629545695}
 --- !u!114 &5911545311746349907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -699,24 +718,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &4343935022897583248
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 846471670547893972}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05c873d9f81831548b1d6eb904d1303d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  feature: 1
-  btnClose: {fileID: 81309300427832372}
-  prefab: {fileID: 2288475449062316560, guid: 0e389a922936fe04699ea40ae9b4ee50, type: 3}
-  parentPrefab: {fileID: 5220175210091633420}
-  avatarHero: {fileID: 1851693690676095582}
-  txtNameHero: {fileID: 5214115738089681719}
 --- !u!114 &749585191878740884
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -46,8 +46,8 @@ public class HeroItemController : MonoBehaviour
 
     protected void OnClick()
     {
-        if (OnAnyClicked != null) OnAnyClicked(this);
-        if (fieldHero != null) fieldHero(heroModel);
+        if (OnAnyClicked != null) OnAnyClicked?.Invoke(this);
+        if (fieldHero != null) fieldHero?.Invoke(heroModel);
     }
 
     private void OnEnable()
@@ -76,7 +76,11 @@ public class HeroItemController : MonoBehaviour
         if (HeroManager.ListHeroOwned().TryGetValue(hero.id, out var value)) isLock.SetActive(false);
         else txtPriceHero.text = hero.resource.resQuantity.ToString();
 
-        if (hero.id == HeroManager.SelectedHero()) isSelected.SetActive(true);
+        if (hero.id == HeroManager.SelectedHero())
+        {
+            isSelected.SetActive(true);
+            fieldHero?.Invoke(heroModel);
+        }
 
         if (hero.resource.resQuantity == 0)
         {

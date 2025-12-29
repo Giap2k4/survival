@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class BattleModeBase : MonoBehaviour
 {
-    //public int idMap = 0;
+    public int idMap = 0;
 
     protected int quantityEnemyMax;
     private float _outsideOffset = 0.08f; // Khoảng cách ngoài màn hình
@@ -38,7 +38,8 @@ public abstract class BattleModeBase : MonoBehaviour
 
     protected virtual void SpawnEnemy()
     {
-        var obj = DataManager.SpawnEnemy.GetSpawnEnemyById(BattleManager.idMap);
+        idMap = SellectLevelManager.GetLevelCurrent();
+        var obj = DataManager.SpawnEnemy.GetSpawnEnemyById(idMap);
         int i = 0;
         
         foreach (var item in obj.details)

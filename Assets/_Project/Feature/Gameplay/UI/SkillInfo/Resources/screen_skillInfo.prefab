@@ -56,7 +56,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a9efb4e604037a498524124e89e3ff5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  feature: 6
+  feature: 7
   btnClose: {fileID: 0}
   parentObj: {fileID: 1364781021016857929}
   item: {fileID: 6809547601810162061, guid: a08d97caa9441044f95fcfb4449c915d, type: 3}

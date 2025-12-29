@@ -57,70 +57,53 @@ public class SellectLevelController : MonoBehaviour
 
     public void OnClickLeft()
     {
-        var levelNext = SellectLevelManager.GetLevelCurrent();
-        levelNext--;
+        int level = SellectLevelManager.GetLevelCurrent();
+        level = Mathf.Max(1, level - 1);
+        SellectLevelManager.SetLevelCurrent(level);
 
-        if (levelNext <= 0)
-        {
-            levelNext = 1;
-            SellectLevelManager.SetLevelCurrent(levelNext);
-            return;
-        }
+        int idMap = SellectLevelManager.GetIdMap();
+        idMap = Mathf.Max(1, idMap);
 
-        SellectLevelManager.SetLevelCurrent(levelNext);
-        var idMap = SellectLevelManager.GetIdMap();
-        var data = DataManager.SellectMap.GetById(idMap);
-        txtNameMap.text = levelNext.ToString() + ". " + DataManager.SellectMap.GetById(idMap).nameMap;
+        var map = DataManager.SellectMap.GetById(idMap);
 
-        if (idMap - 1 <= 0)
-        {
-            idMap = 1;
-            txtNameMap.text = levelNext.ToString() + ". " + DataManager.SellectMap.GetById(idMap).nameMap;
-        } 
-        
-
-        if (levelNext < data.levelStart)
+        if (level < map.levelStart && idMap > 1)
         {
             idMap--;
             SellectLevelManager.SetIdMap(idMap);
-            imageSellectMap.sprite = Resources.Load<Sprite>("Icon/icon_map/" + idMap);
-            txtNameMap.text = levelNext.ToString() + ". " + DataManager.SellectMap.GetById(idMap).nameMap;
+            map = DataManager.SellectMap.GetById(idMap);
+
+            imageSellectMap.sprite = Resources.Load<Sprite>($"Icon/icon_map/{idMap}");
         }
+
+        txtNameMap.text = $"{level}. {map.nameMap}";
     }
+
 
     public void OnClickRight()
     {
-        var levelNext = SellectLevelManager.GetLevelCurrent();
-        levelNext++;
+        int level = SellectLevelManager.GetLevelCurrent() + 1;
+        if (level > SellectLevelManager.GetLevelTotal()) return;
 
-        if (levelNext > SellectLevelManager.GetLevelTotal()) return;
+        SellectLevelManager.SetLevelCurrent(level);
 
-        // kiểm tra xem đã đến được leve này chưa
+        int idMap = SellectLevelManager.GetIdMap();
+        idMap = Mathf.Max(1, idMap);
 
-        SellectLevelManager.SetLevelCurrent(levelNext);
-        var idMap = SellectLevelManager.GetIdMap();
-        var data = DataManager.SellectMap.GetById(idMap + 1);
-        txtNameMap.text = levelNext.ToString() + ". " + DataManager.SellectMap.GetById(idMap).nameMap;
+        var map = DataManager.SellectMap.GetById(idMap);
+        if (map == null) return;
 
-        if (data == null)
-        {
-            data = DataManager.SellectMap.GetById(idMap);
-            if (levelNext >= data.levelStart)
-            {
-                SellectLevelManager.SetIdMap(idMap);
-                imageSellectMap.sprite = Resources.Load<Sprite>("Icon/icon_map/" + idMap);
-                txtNameMap.text = levelNext.ToString() + ". " + DataManager.SellectMap.GetById(idMap).nameMap;
-            }
-            return;
-        }
-        
+        var nextMap = DataManager.SellectMap.GetById(idMap + 1);
 
-        if (levelNext >= data.levelStart)
+        if (nextMap != null && level >= nextMap.levelStart)
         {
             idMap++;
             SellectLevelManager.SetIdMap(idMap);
-            imageSellectMap.sprite = Resources.Load<Sprite>("Icon/icon_map/" + idMap);
-            txtNameMap.text = levelNext.ToString() + ". " + DataManager.SellectMap.GetById(idMap).nameMap;
+            map = nextMap;
+
+            imageSellectMap.sprite = Resources.Load<Sprite>($"Icon/icon_map/{idMap}");
         }
+
+        txtNameMap.text = $"{level}. {map.nameMap}";
     }
+
 }

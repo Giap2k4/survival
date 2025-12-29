@@ -495,7 +495,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77c21c984a2614548b12f1a4e0091561, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  feature: 8
+  feature: 9
   btnClose: {fileID: 0}
   btnContinue: {fileID: 4401996612518972123}
   itemRes: {fileID: 8609002434678480563, guid: 54c88bb5bb082164b9b451afffd5b136, type: 3}

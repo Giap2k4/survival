@@ -33,7 +33,8 @@ public class RewardController : FeatureBaseController
 
     public void SetData(float timeSurvival)
     {
-        var reward = DataManager.Reward.GetRewardByIdMap(BattleManager.idMap).ToList();
+        var idMap = SellectLevelManager.GetLevelCurrent();
+        var reward = DataManager.Reward.GetRewardByIdMap(idMap).ToList();
         var rewardClone = DataManager.Reward.Clone(reward);
 
         var rewardCollect = rewardClone.Where(x => x.timeSurvival <= timeSurvival).Select(x => x.rewards).ToArray();

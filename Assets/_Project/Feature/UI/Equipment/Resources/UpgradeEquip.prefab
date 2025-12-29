@@ -1708,6 +1708,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: rate
       objectReference: {fileID: 0}
+    - target: {fileID: 412218605011242464, guid: 61bdb243bf4411944a1b0adfa58024e4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6015741869930649911, guid: 61bdb243bf4411944a1b0adfa58024e4, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
