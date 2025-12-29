@@ -18,6 +18,7 @@ public class EnumBase
         PauseGame,
         Reward,
         HeroDetail,
+        UpgradeEquip
     }
 
     public enum Scenes
@@ -47,6 +48,9 @@ public class EnumBase
         MoveSpeed = 3,
         CritRate = 4,
         CritDamage = 5,
+
+        Cooldown = 6,
+        HealthRegen = 7,
     }
 
     public enum EffectType

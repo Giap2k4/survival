@@ -1,0 +1,5 @@
+﻿id,name,quantityUpgrade,quantityLevelUp,statType,value,description
+1,Găng tay,100,100,Damage,"1, 0.01",Sát thương
+,,,,Cooldown,"1, 0.02",Hồi chiêu
+2,Áo giáp,100,100,Health,"2, 5",Máu tối đa
+,,,,HealthRegen,"1, 0.01",Hồi máu

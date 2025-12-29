@@ -1,18 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
-public class EquipmentCollection : MonoBehaviour
+public class EquipmentCollection : ScriptableObject
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public EquipmentModel[] dataGroups;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public EquipmentModel GetById(int id) => dataGroups.FirstOrDefault(x => x.id == id);
 }

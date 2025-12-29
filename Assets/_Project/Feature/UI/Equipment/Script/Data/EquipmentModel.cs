@@ -1,18 +1,22 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EquipmentModel : MonoBehaviour
+[Serializable]
+public class EquipmentModel
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public int id;
+    public string name;
+    public int quantityUpgrade;
+    public int quantityLevelUp;
+    public EquipmentDetail[] details;
+}
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+[Serializable]
+public class EquipmentDetail
+{
+    public EnumBase.RPGStatType statType;
+    public string value;
+    public string description;
 }
