@@ -17,30 +17,7 @@ public class ScreenMainController : FeatureBaseController
 
     [SerializeField]
     protected TextMeshProUGUI txtGold;
-
-    [SerializeField]
-    protected Image imageSellectMap;
     #endregion
-
-
-    protected override void OnEnable()
-    {
-        base.OnEnable();
-        SellectMapManager.sellectMap += HandleSellectMap;
-    }
-
-    protected override void OnDisable()
-    {
-        base.OnDisable();
-        SellectMapManager.sellectMap -= HandleSellectMap;
-    }
-
-    protected void HandleSellectMap(SellectMapModel model)
-    {
-        // xử lý đổi map
-        imageSellectMap.sprite = Resources.Load<Sprite>("Icon/icon_map/" + model.id);
-    }
-
 
     // xử lý noti ở các btn feature khác
     protected override void Start()
