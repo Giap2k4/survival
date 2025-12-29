@@ -12,6 +12,7 @@ public class EnumBase
         Pet,
         Shop, 
         Main,
+        SellectMap,
 
         SkillInfo,
         PauseGame,

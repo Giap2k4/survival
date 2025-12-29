@@ -1,11 +1,14 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class ScreenMainController : MonoBehaviour
+public class ScreenMainController : FeatureBaseController
 {
+    #region Cấu hình
     [SerializeField]
     protected TextMeshProUGUI txtEnery;
 
@@ -15,8 +18,37 @@ public class ScreenMainController : MonoBehaviour
     [SerializeField]
     protected TextMeshProUGUI txtGold;
 
+    [SerializeField]
+    protected Image imageSellectMap;
+    #endregion
+
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        SellectMapManager.sellectMap += HandleSellectMap;
+    }
+
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        SellectMapManager.sellectMap -= HandleSellectMap;
+    }
+
+    protected void HandleSellectMap(SellectMapModel model)
+    {
+        // xử lý đổi map
+        imageSellectMap.sprite = Resources.Load<Sprite>("Icon/icon_map/" + model.id);
+    }
+
+
     // xử lý noti ở các btn feature khác
-    protected void Start()
+    protected override void Start()
+    {
+        SetDataItem();
+    }
+
+    protected void SetDataItem()
     {
         var enery = PlayerDataManager.Resource.database.resources.FirstOrDefault(x => x.resType == EnumBase.ResourcesType.Money && x.resId == 3).resQuantity;
         txtEnery.text = enery.ToString() + "/150";

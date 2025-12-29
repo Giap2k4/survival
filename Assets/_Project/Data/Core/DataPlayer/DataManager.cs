@@ -29,4 +29,5 @@ public class DataManager
     public static ExpBattleCollection ExpBattle => Get<ExpBattleCollection>();
     public static SkillInfoCollection SkillInfo => Get<SkillInfoCollection>();
     public static RewardCollection Reward => Get<RewardCollection>();
+    public static SellectMapCollection SellectMap => Get<SellectMapCollection>();
 }

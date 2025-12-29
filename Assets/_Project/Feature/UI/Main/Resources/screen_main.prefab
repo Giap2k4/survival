@@ -2040,6 +2040,7 @@ GameObject:
   - component: {fileID: 5705748056122194057}
   - component: {fileID: 8096382475982872502}
   - component: {fileID: 2207831581686412749}
+  - component: {fileID: 5381051093575183292}
   m_Layer: 5
   m_Name: BtnMap
   m_TagString: Untagged
@@ -2148,6 +2149,20 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &5381051093575183292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5752943841123098073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7e79de78880db44ba32c2c393433888, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  btn: {fileID: 2207831581686412749}
+  feature: 6
 --- !u!1 &5847915022595286205
 GameObject:
   m_ObjectHideFlags: 0
@@ -2398,7 +2413,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1920, y: 1920}
+  m_SizeDelta: {x: 1, y: 1920}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1171340132514517139
 CanvasRenderer:
@@ -2436,7 +2451,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.17902762, g: 0.33925322, b: 0.7798742, a: 0.19607843}
+  m_Color: {r: 0.19607843, g: 0.40740553, b: 0.78431374, a: 0.39607844}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3108,7 +3123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.26100624, g: 0.7446745, b: 1, a: 1}
+  m_Color: {r: 0.20392154, g: 0.41530257, b: 0.9137255, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3189,9 +3204,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3a3abd3d52b1ad45ba3f3fa885887f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  feature: 5
+  btnClose: {fileID: 0}
   txtEnery: {fileID: 4251407052906611786}
   txtDiamond: {fileID: 2365769236320293566}
   txtGold: {fileID: 5069370630165626031}
+  imageSellectMap: {fileID: 8096382475982872502}
 --- !u!114 &2244480958140045740
 MonoBehaviour:
   m_ObjectHideFlags: 0
