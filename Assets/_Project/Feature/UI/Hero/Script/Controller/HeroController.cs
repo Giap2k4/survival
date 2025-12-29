@@ -19,6 +19,11 @@ public class HeroController : FeatureBaseController
     [SerializeField]
     protected TextMeshProUGUI txtNameHero;
 
+    [SerializeField] 
+    protected Button btnOpenDetail;
+
+    protected HeroModel heroModel;
+
     protected override void OnEnable()
     {
         base.OnEnable();
@@ -45,11 +50,20 @@ public class HeroController : FeatureBaseController
 
         HeroModel hero = DataManager.Hero.GetHeroById(HeroManager.SelectedHero());
         SetUI(hero);
+
+        btnOpenDetail.onClick.AddListener(OnclickOpenDetail);
     }
 
     public void SetUI(HeroModel model)
     {
+        heroModel = model;
         avatarHero.sprite = LoadSpriteResources.LoadSprite("Hero/" + model.id);
         txtNameHero.text = model.nameHero;
+    }
+
+    public void OnclickOpenDetail()
+    {
+        var obj = UIManager.instance.OpenFeature(EnumBase.Feature.HeroDetail);
+        obj.GetComponent<HeroDetailController>().SetData(heroModel);
     }
 }

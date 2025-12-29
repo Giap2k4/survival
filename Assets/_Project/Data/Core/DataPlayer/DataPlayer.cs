@@ -19,7 +19,11 @@ public abstract class DataPlayer<T> : DataPlayerBase
     {
         string type = GetType().Name;
 
-        if (PlayerPrefs.HasKey(type)) Save();
+        if (!PlayerPrefs.HasKey(type))
+        {
+            InitData();
+            return;
+        }
 
         string dataJson = PlayerPrefs.GetString(type);
         database = JsonConvert.DeserializeObject<T>(dataJson);
@@ -35,6 +39,15 @@ public abstract class DataPlayer<T> : DataPlayerBase
         PlayerPrefs.Save();
     }
 
+    public override void Clear()
+    {
+        string type = GetType().Name;
+        PlayerPrefs.DeleteKey(type);
+    }
+
+    /// <summary>
+    /// Set data mặc định 
+    /// </summary>
     public virtual void SetDataDefault() { }
 
 }

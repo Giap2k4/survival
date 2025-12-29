@@ -36,6 +36,8 @@ public class HeroItemController : MonoBehaviour
     protected GameObject spriteClick;
 
     public HeroModel heroModel;
+    [SerializeField]
+    protected GameObject txtComingSoon;
 
     private void Start()
     {
@@ -44,8 +46,8 @@ public class HeroItemController : MonoBehaviour
 
     protected void OnClick()
     {
-        if (OnAnyClicked != null) OnAnyClicked(this);
-        if (fieldHero != null) fieldHero(heroModel);
+        if (OnAnyClicked != null) OnAnyClicked?.Invoke(this);
+        if (fieldHero != null) fieldHero?.Invoke(heroModel);
     }
 
     private void OnEnable()
@@ -61,13 +63,8 @@ public class HeroItemController : MonoBehaviour
     protected void HandleAnyClicked(HeroItemController clicked)
     {
         bool active = (clicked == this);
-        if (active)
-        {
-            spriteClick.SetActive(true);
-        } else
-        {
-            spriteClick.SetActive(false);
-        }
+        if (active) spriteClick.SetActive(true);
+        else spriteClick.SetActive(false);
     }
 
     public void InitData(HeroModel hero)
@@ -76,18 +73,25 @@ public class HeroItemController : MonoBehaviour
         spriteHero.sprite = LoadSpriteResources.LoadSprite("Hero/" + hero.id);
         txtNameHero.text = hero.nameHero;
 
-        if (HeroManager.ListHeroOwned().TryGetValue(hero.id, out var value))
+        if (HeroManager.ListHeroOwned().TryGetValue(hero.id, out var value)) isLock.SetActive(false);
+        else txtPriceHero.text = hero.resource.resQuantity.ToString();
+
+        if (hero.id == HeroManager.SelectedHero())
         {
-            isLock.SetActive(false);
+            isSelected.SetActive(true);
+            fieldHero?.Invoke(heroModel);
+        }
+
+        if (hero.resource.resQuantity == 0)
+        {
+            txtPriceHero.gameObject.SetActive(false);
+            resourceType.gameObject.SetActive(false);
+            txtComingSoon.SetActive(true);
         }
         else
         {
+            resourceType.sprite = LoadSpriteResources.LoadSprite("Money/" + hero.resource.resId);
             txtPriceHero.text = hero.resource.resQuantity.ToString();
         }
-
-        resourceType.sprite = LoadSpriteResources.LoadSprite("Money/" + hero.resource.resId);
-        txtPriceHero.text = hero.resource.resQuantity.ToString();
-
-        if (hero.id == HeroManager.SelectedHero()) isSelected.SetActive(true);
     }
 }

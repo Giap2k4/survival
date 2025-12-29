@@ -1,0 +1,10 @@
+﻿id,name,description,sharedSkill
+1,Kiếm thần,Các thanh kiếm xoay quanh nhân vật,FALSE
+2,Tên thần,Bắn các mũi tên bay xuyên quái về phía trước,FALSE
+3,Lưỡi đao,Các lưỡi đao xoay tròn và bắn ra nhiều phía,TRUE
+4,Sóng xung kích,1 làn sóng bay ra xuyên qua và đẩy lùi quái,TRUE
+5,Boom,1 quả bom sẽ bay ra và nổ tung kẻ địch,TRUE
+6,Đao phủ,1 lưỡi đao khổng lồ bổ từ trên xuống mạnh mẽ,TRUE
+7,Cầu điện,1 quả cầu điện bay chậm và sẽ gây sát thương các kẻ địch trong vùng,TRUE
+8,Vòng Aura,Xuất hiện 1 vòng tròn hút máu kẻ địch dưới chân mình,TRUE
+9,Độc tố,1 bãi độc xuất hiện ở dưới chân kẻ địch và hút máu chúng,TRUE

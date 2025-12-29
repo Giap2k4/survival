@@ -21,4 +21,13 @@ public class DataManager
 
     public static HeroCollection Hero => Get<HeroCollection>();
     public static ResourceCollection Resource => Get<ResourceCollection>();
+    public static StatsCollection Stats => Get<StatsCollection>();
+    public static SpawnEnemyCollection SpawnEnemy => Get<SpawnEnemyCollection>();
+    public static EnemyCollection Enemy => Get<EnemyCollection>();
+    public static SkillCollection Skill => Get<SkillCollection>();
+    public static FormulaExpBattleCollection FormulaExpBattle => Get<FormulaExpBattleCollection>();
+    public static ExpBattleCollection ExpBattle => Get<ExpBattleCollection>();
+    public static SkillInfoCollection SkillInfo => Get<SkillInfoCollection>();
+    public static RewardCollection Reward => Get<RewardCollection>();
+    public static SellectMapCollection SellectMap => Get<SellectMapCollection>();
 }

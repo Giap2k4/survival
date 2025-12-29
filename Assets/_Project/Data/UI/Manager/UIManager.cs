@@ -61,6 +61,8 @@ public class UIManager : Singleton<UIManager>
                 GameObject.Destroy(trans.gameObject);
             }
         }
+
+        listFeatureOpen.Clear();
     }
 
     public EnumBase.Scenes GetCurrentScene() => currentScene;
@@ -98,7 +100,7 @@ public class UIManager : Singleton<UIManager>
     /// </summary>
     /// <param name="feature"></param>
     /// <param name="grp"></param>
-    public void OpenFeature(EnumBase.Feature feature, UIGroupName grp = UIGroupName.Modal)
+    public GameObject OpenFeature(EnumBase.Feature feature, UIGroupName grp = UIGroupName.Modal)
     {
         string namePrefab = "screen_" + feature.ToString().ToLower();
         GameObject prefab = Resources.Load<GameObject>(namePrefab);
@@ -123,6 +125,8 @@ public class UIManager : Singleton<UIManager>
         canvas.overrideSorting = true;
         canvas.sortingOrder = currentLayer;
         canvas.worldCamera = Camera.main;
+
+        return obj;
     }
 
     public void CloseFeature(EnumBase.Feature feature)

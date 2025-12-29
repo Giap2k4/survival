@@ -33,6 +33,8 @@ public class SceneController : Singleton<SceneController>
 
         // mở các feature trong hàng đợi
         UIManager.instance.OpenFeatureInQueue();
+
+        Time.timeScale = 1.0f;
     }
 
     public void ChangeScene(EnumBase.Scenes scene)

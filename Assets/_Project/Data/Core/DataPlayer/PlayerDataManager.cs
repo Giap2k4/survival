@@ -29,4 +29,16 @@ public class PlayerDataManager
 
         set => _resource = value;
     }
+
+    private static SellectLevelManager _sellectLevel;
+    public static SellectLevelManager SellectLevel
+    {
+        get
+        {
+            if (_sellectLevel == null) _sellectLevel = DataPlayerBase.GetModule<SellectLevelManager>();
+            return _sellectLevel;
+        }
+
+        set => _sellectLevel = value;
+    }
 }

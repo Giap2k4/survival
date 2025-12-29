@@ -10,7 +10,7 @@ using System.Reflection;
 public static class CsvImporter
 {
     private const string CSV_FOLDER = "Assets/_Project/Csv/Feature/";
-    private const string FEATURE_FOLDER = "Assets/_Project/Feature/UI/";
+    private const string FEATURE_FOLDER = "Assets/_Project/Feature/";
 
     [MenuItem("Tools/CSV/Import All %#h")] // Ctrl + Shift + H
     public static void ImportAll()
@@ -41,24 +41,49 @@ public static class CsvImporter
 
     private static void Import(string csvPath)
     {
-        string featureName = Path.GetFileNameWithoutExtension(csvPath);
+        string fileName = Path.GetFileNameWithoutExtension(csvPath);
 
-        string resourcePath = $"{FEATURE_FOLDER}{featureName}/Resources";
-        if (!Directory.Exists(resourcePath))
+        // Xác định typeName và assetName dựa trên cấu trúc folder
+        // - File ở root: Stats.csv → typeName = "Stats", assetName = "Stats"
+        // - File ở subfolder: Skill/Skill_1.csv → typeName = "Skill", assetName = "Skill_1"
+        string relativePath = csvPath.Replace("\\", "/").Replace(CSV_FOLDER, "");
+        string[] pathParts = relativePath.Split('/');
+
+        string typeName;
+        string assetName;
+
+        if (pathParts.Length > 1)
         {
-            Debug.LogWarning($"⚠ Bỏ qua {featureName}. Folder không tồn tại: {resourcePath}");
+            // File ở subfolder → dùng tên folder cho type, tên file cho asset
+            // Ví dụ: Skill/Skill_1.csv → typeName = "Skill", assetName = "Skill_1"
+            typeName = pathParts[0];
+            assetName = fileName;
+        }
+        else
+        {
+            // File ở root → dùng tên file cho type, asset là {typeName}Collection
+            // Ví dụ: Hero.csv → typeName = "Hero", assetName = "HeroCollection"
+            typeName = fileName;
+            assetName = $"{typeName}Collection";
+        }
+
+        // Tìm folder Resources trong tất cả subfolder của Feature
+        string resourcePath = FindResourceFolder(typeName);
+        if (resourcePath == null)
+        {
+            Debug.LogWarning($"⚠ Bỏ qua {fileName}. Không tìm thấy folder: {typeName}/Resources trong {FEATURE_FOLDER}");
             return;
         }
 
         // tìm scriptableObject collection
-        Type collectionType = FindType($"{featureName}Collection");
+        Type collectionType = FindType($"{typeName}Collection");
         if (collectionType == null)
         {
-            Debug.LogWarning($"⚠ Không tìm thấy class: {featureName}Collection");
+            Debug.LogWarning($"⚠ Không tìm thấy class: {typeName}Collection");
             return;
         }
 
-        string assetPath = $"{resourcePath}/{featureName}Collection.asset";
+        string assetPath = $"{resourcePath}/{assetName}.asset";
         ScriptableObject so = AssetDatabase.LoadAssetAtPath(assetPath, collectionType) as ScriptableObject;
 
         if (so == null)
@@ -71,7 +96,7 @@ public static class CsvImporter
         var modelField = collectionType.GetField("dataGroups", BindingFlags.Public | BindingFlags.Instance);
         if (modelField == null)
         {
-            Debug.LogError($"❌ {featureName}Collection không có biến public dataGroups");
+            Debug.LogError($"❌ {typeName}Collection không có biến public dataGroups");
             return;
         }
 
@@ -85,7 +110,24 @@ public static class CsvImporter
         modelField.SetValue(so, modelBuilt);
 
         EditorUtility.SetDirty(so);
-        Debug.Log($"<color=#00d1ff>✔ Imported → {Path.GetFileName(csvPath)}</color>");
+        Debug.Log($"<color=#00d1ff>✔ Imported → {Path.GetFileName(csvPath)} → {assetName}.asset (using {typeName}Collection)</color>");
+    }
+
+    private static string FindResourceFolder(string featureName)
+    {
+        // Tìm tất cả folder có tên featureName trong FEATURE_FOLDER
+        var featureDirs = Directory.GetDirectories(FEATURE_FOLDER, featureName, SearchOption.AllDirectories);
+
+        foreach (var dir in featureDirs)
+        {
+            string resourcePath = Path.Combine(dir, "Resources").Replace("\\", "/");
+            if (Directory.Exists(resourcePath))
+            {
+                return resourcePath;
+            }
+        }
+
+        return null;
     }
 
     private static List<string[]> ParseCsv(string text)
@@ -93,8 +135,41 @@ public static class CsvImporter
         return text.Replace("\r", "")
                    .Split('\n')
                    .Where(l => !string.IsNullOrWhiteSpace(l))
-                   .Select(l => l.Split(','))
+                   .Select(l => ParseCsvLine(l))
                    .ToList();
+    }
+
+    /// <summary>
+    /// Parse 1 dòng CSV, xử lý đúng giá trị có chứa dấu phẩy được bọc trong quotes
+    /// Ví dụ: 1,Damage,"1,0,1",3 → ["1", "Damage", "1,0,1", "3"]
+    /// </summary>
+    private static string[] ParseCsvLine(string line)
+    {
+        var result = new List<string>();
+        bool inQuotes = false;
+        string currentValue = "";
+
+        for (int i = 0; i < line.Length; i++)
+        {
+            char c = line[i];
+
+            if (c == '"')
+            {
+                inQuotes = !inQuotes;
+            }
+            else if (c == ',' && !inQuotes)
+            {
+                result.Add(currentValue);
+                currentValue = "";
+            }
+            else
+            {
+                currentValue += c;
+            }
+        }
+
+        result.Add(currentValue); // Thêm giá trị cuối cùng
+        return result.ToArray();
     }
 
     private static Type FindType(string name)
@@ -106,39 +181,129 @@ public static class CsvImporter
 
     private static object BuildModel(Type modelType, string[] header, List<string[]> rows)
     {
-        // Không dùng header nữa cho mapping, chỉ dùng rows (dữ liệu) + thứ tự field
-
-        // CASE A: dataGroups là MẢNG (ví dụ: HeroModel[])
+        // CASE A: dataGroups là MẢNG
         if (modelType.IsArray)
         {
-            Type elementType = modelType.GetElementType();   // HeroModel
-            int count = rows.Count;
-
-            Array array = Array.CreateInstance(elementType, count);
-
-            for (int i = 0; i < count; i++)
-            {
-                string[] row = rows[i];
-                int colIndex = 0; // luôn bắt đầu từ cột 0 cho mỗi dòng
-
-                object element = BuildObject(elementType, row, ref colIndex);
-                array.SetValue(element, i);
-            }
-
-            return array;
+            Type elementType = modelType.GetElementType();
+            return BuildArrayRecursive(elementType, rows, 0);
         }
 
-        // CASE B: dataGroups là 1 OBJECT (SevenDayLoginModel,...)
-        // Lấy từ dòng đầu tiên
+        // CASE B: dataGroups là 1 OBJECT
         if (rows.Count == 0)
             return null;
 
+        string[] row = rows[0];
+        int colIndex = 0;
+        return BuildObjectWithNestedArray(modelType, rows, ref colIndex, 0);
+    }
+
+    /// <summary>
+    /// Build mảng đệ quy - hỗ trợ mảng lồng mảng
+    /// startCol: cột bắt đầu để check xem row có phải element mới không
+    /// </summary>
+    private static object BuildArrayRecursive(Type elementType, List<string[]> rows, int startCol)
+    {
+        if (rows.Count == 0)
+            return Array.CreateInstance(elementType, 0);
+
+        // Tính số cột của các field đơn giản (không phải array) trong element
+        int simpleFieldCols = CountSimpleFieldColumns(elementType);
+
+        // Group rows theo logic: cột startCol có giá trị = element mới
+        var groups = new List<List<string[]>>();
+        List<string[]> currentGroup = null;
+
+        foreach (var row in rows)
         {
-            string[] row = rows[0];
-            int colIndex = 0;
-            object model = BuildObject(modelType, row, ref colIndex);
-            return model;
+            if (row.Length <= startCol) continue;
+
+            // Cột startCol có giá trị → element mới
+            if (!string.IsNullOrWhiteSpace(row[startCol]))
+            {
+                currentGroup = new List<string[]>();
+                groups.Add(currentGroup);
+            }
+
+            if (currentGroup != null)
+                currentGroup.Add(row);
         }
+
+        // Build từng element
+        Array result = Array.CreateInstance(elementType, groups.Count);
+
+        for (int i = 0; i < groups.Count; i++)
+        {
+            var group = groups[i];
+            int colIndex = startCol;
+            object element = BuildObjectWithNestedArray(elementType, group, ref colIndex, startCol);
+            result.SetValue(element, i);
+        }
+
+        return result;
+    }
+
+    /// <summary>
+    /// Build object có thể chứa nested array
+    /// </summary>
+    private static object BuildObjectWithNestedArray(Type type, List<string[]> rows, ref int colIndex, int startCol)
+    {
+        object obj = Activator.CreateInstance(type);
+        string[] firstRow = rows[0];
+
+        var fields = type.GetFields(BindingFlags.Public | BindingFlags.Instance);
+
+        foreach (var f in fields)
+        {
+            Type ft = f.FieldType;
+
+            if (ft.IsArray)
+            {
+                // Đây là array field → build đệ quy với startCol mới
+                Type arrayElementType = ft.GetElementType();
+                object nestedArray = BuildArrayRecursive(arrayElementType, rows, colIndex);
+                f.SetValue(obj, nestedArray);
+                // Không tăng colIndex ở đây vì array đã xử lý các cột của nó
+            }
+            else if (IsSimpleType(ft))
+            {
+                // Simple type → lấy giá trị từ row đầu tiên
+                if (colIndex < firstRow.Length && !string.IsNullOrWhiteSpace(firstRow[colIndex]))
+                {
+                    object val = ConvertValue(ft, firstRow[colIndex]);
+                    f.SetValue(obj, val);
+                }
+                colIndex++;
+            }
+            else
+            {
+                // Nested object (không phải array) → đệ quy
+                object nested = BuildObjectWithNestedArray(ft, rows, ref colIndex, startCol);
+                f.SetValue(obj, nested);
+            }
+        }
+
+        return obj;
+    }
+
+    /// <summary>
+    /// Đếm số cột của các field đơn giản (không phải array)
+    /// </summary>
+    private static int CountSimpleFieldColumns(Type type)
+    {
+        int count = 0;
+        var fields = type.GetFields(BindingFlags.Public | BindingFlags.Instance);
+
+        foreach (var f in fields)
+        {
+            if (f.FieldType.IsArray)
+                continue; // Bỏ qua array
+
+            if (IsSimpleType(f.FieldType))
+                count++;
+            else
+                count += CountSimpleFieldColumns(f.FieldType);
+        }
+        return count;
     }
 
 

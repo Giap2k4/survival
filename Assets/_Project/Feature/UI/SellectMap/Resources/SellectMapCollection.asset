@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f5d2a606f9428e40998b913c46cdee3, type: 3}
+  m_Name: SellectMapCollection
+  m_EditorClassIdentifier: 
+  dataGroups:
+  - id: 1
+    nameMap: "Sa m\u1EA1c c\u1EB1n c\u1ED7i"
+    levelStart: 1
+  - id: 2
+    nameMap: "R\u1EEBng h\u1EAFc \xE1m"
+    levelStart: 6
+  - id: 3
+    nameMap: "B\u0103ng tuy\u1EBFt l\u1EA1nh l\u1EBDo"
+    levelStart: 11
+  - id: 4
+    nameMap: "N\xFAi l\u1EEDa phun tr\xE0o"
+    levelStart: 16

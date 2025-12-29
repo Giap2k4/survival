@@ -1,0 +1,9 @@
+﻿id,nameSkill,level,mechanicTypes,values
+1,Đao phủ,1,Cooldown,1.5
+,,,Damage,"1, 0, 1"
+,,,ProjectileNumber,1
+,,,ProjectileSpeed,15
+,,,TargetFrom,0
+,,,TargetTo,3
+,,,custom_value_1,120
+,,,effect_1,"5, -1"

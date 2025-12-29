@@ -1,0 +1,98 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ac993d253d0412458fa79a1da876fe0, type: 3}
+  m_Name: Skill_1
+  m_EditorClassIdentifier: 
+  dataGroups:
+    id: 1
+    nameSkill: "Ki\u1EBFm th\u1EA7n"
+    details:
+    - level: 1
+      mechanicType:
+      - mechanicTypes: 3
+        values: 1,0,1
+      - mechanicTypes: 4
+        values: 3.5
+      - mechanicTypes: 6
+        values: 3
+      - mechanicTypes: 7
+        values: 90
+      - mechanicTypes: 9
+        values: 0
+      - mechanicTypes: 10
+        values: 0
+      - mechanicTypes: 8
+        values: 1
+    - level: 2
+      mechanicType:
+      - mechanicTypes: 3
+        values: 1,0,1.2
+      - mechanicTypes: 4
+        values: 4
+      - mechanicTypes: 6
+        values: 4
+      - mechanicTypes: 7
+        values: 90
+      - mechanicTypes: 9
+        values: 0
+      - mechanicTypes: 10
+        values: 0
+      - mechanicTypes: 8
+        values: 1.1
+    - level: 3
+      mechanicType:
+      - mechanicTypes: 3
+        values: 1,0,1.5
+      - mechanicTypes: 4
+        values: 4
+      - mechanicTypes: 6
+        values: 5
+      - mechanicTypes: 7
+        values: 90
+      - mechanicTypes: 9
+        values: 0
+      - mechanicTypes: 10
+        values: 0
+      - mechanicTypes: 8
+        values: 1.2
+    - level: 4
+      mechanicType:
+      - mechanicTypes: 3
+        values: 1,0,1.5
+      - mechanicTypes: 4
+        values: 4
+      - mechanicTypes: 6
+        values: 5
+      - mechanicTypes: 7
+        values: 90
+      - mechanicTypes: 9
+        values: 0
+      - mechanicTypes: 10
+        values: 0
+      - mechanicTypes: 8
+        values: 1.3
+    - level: 5
+      mechanicType:
+      - mechanicTypes: 3
+        values: 1,0,1.5
+      - mechanicTypes: 4
+        values: 4
+      - mechanicTypes: 6
+        values: 6
+      - mechanicTypes: 7
+        values: 90
+      - mechanicTypes: 9
+        values: 0
+      - mechanicTypes: 10
+        values: 0
+      - mechanicTypes: 8
+        values: 1.4

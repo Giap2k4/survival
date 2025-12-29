@@ -9,7 +9,6 @@ public class FeatureBaseController : MonoBehaviour
     [SerializeField]
     protected EnumBase.Feature feature;
 
-    [Header("Cấu hình chung")]
     [SerializeField]
     protected Button btnClose;
 
@@ -25,7 +24,7 @@ public class FeatureBaseController : MonoBehaviour
 
     protected virtual void Start()
     {
-        btnClose.onClick.AddListener(CloseFeature);
+        if (btnClose != null) btnClose.onClick.AddListener(CloseFeature);
         LoadData();
     }
 

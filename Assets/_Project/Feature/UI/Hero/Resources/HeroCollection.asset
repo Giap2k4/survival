@@ -31,3 +31,21 @@ MonoBehaviour:
       resType: 0
       resId: 2
       resQuantity: 200
+  - id: 3
+    nameHero: "S\xE1t th\u1EE7"
+    level: 1
+    powerStat: 1
+    defaultSkill: 3
+    resource:
+      resType: 0
+      resId: 2
+      resQuantity: 0
+  - id: 4
+    nameHero: Ninja
+    level: 1
+    powerStat: 0
+    defaultSkill: 4
+    resource:
+      resType: 0
+      resId: 2
+      resQuantity: 0

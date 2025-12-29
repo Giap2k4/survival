@@ -3,7 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Enemy
+  - Hero
+  - Exp
   layers:
   - Default
   - TransparentFX
@@ -13,10 +16,10 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - Hero
+  - HeroPickup
+  - Enemy
+  - Exp
   - 
   - 
   - 
@@ -40,6 +43,21 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: SkillFirst
+    uniqueID: 3643639737
+    locked: 0
+  - name: Enemy
+    uniqueID: 151991239
+    locked: 0
+  - name: Hero
+    uniqueID: 314891397
+    locked: 0
+  - name: SkillLast
+    uniqueID: 1684858419
+    locked: 0
+  - name: Text
+    uniqueID: 481332873
     locked: 0
   - name: UI
     uniqueID: 4142950931
