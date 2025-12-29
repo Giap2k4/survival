@@ -15,6 +15,10 @@ public class SellectLevelManager : DataPlayer<SellectLevelData>
         PlayerDataManager.SellectLevel.Save();
     }
 
+    /// <summary>
+    /// Set level mà user đã đạt đến
+    /// </summary>
+    /// <param name="level"></param>
     public static void SetLevelMaxUser(int level)
     {
         PlayerDataManager.SellectLevel.database.levelMaxUser = level;

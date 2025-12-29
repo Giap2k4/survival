@@ -61,6 +61,20 @@ public class RewardController : FeatureBaseController
             GameObject obj = Instantiate(itemRes, parentItem);
             obj.GetComponent<ItemResourcesController>().SetData(item);
         }
+
+        CheckLevelUp(rewardClone, timeSurvival);
+    }
+
+    protected void CheckLevelUp(List<RewardTimeGame> reward, float timeSurvival)
+    {
+        var levelCurrent = SellectLevelManager.GetLevelCurrent();
+        var checkLevelUp = reward[reward.Count - 1];
+        if (timeSurvival >= checkLevelUp.timeSurvival && levelCurrent > SellectLevelManager.GetLevelMaxUser())
+        {
+            SellectLevelManager.SetLevelMaxUser(levelCurrent);
+            SellectLevelManager.SetLevelCurrent(levelCurrent + 1);
+            GrowthFundManager.SetMapUnlock(levelCurrent);
+        }
     }
 
     public List<PackageReward> HandleListReward(List<PackageReward> list)

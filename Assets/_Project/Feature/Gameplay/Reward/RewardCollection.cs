@@ -56,6 +56,4 @@ public class RewardCollection : ScriptableObject
 
         return arr;
     }
-
-
 }

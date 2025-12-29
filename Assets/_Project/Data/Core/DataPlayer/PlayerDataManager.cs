@@ -41,4 +41,16 @@ public class PlayerDataManager
 
         set => _sellectLevel = value;
     }
+
+    private static GrowthFundManager _growthFung;
+    public static GrowthFundManager GrowthFund
+    {
+        get
+        {
+            if (_growthFung == null) _growthFung = DataPlayerBase.GetModule<GrowthFundManager>();
+            return _growthFung;
+        }
+
+        set => _growthFung = value;
+    }
 }

@@ -31,4 +31,5 @@ public class DataManager
     public static RewardCollection Reward => Get<RewardCollection>();
     public static SellectMapCollection SellectMap => Get<SellectMapCollection>();
     public static EquipmentCollection Equipment => Get<EquipmentCollection>();
+    public static GrowthFundCollection GrowthFund => Get<GrowthFundCollection>();
 }

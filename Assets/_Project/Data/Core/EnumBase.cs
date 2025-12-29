@@ -18,7 +18,8 @@ public class EnumBase
         PauseGame,
         Reward,
         HeroDetail,
-        UpgradeEquip
+        UpgradeEquip,
+        GrowthFund
     }
 
     public enum Scenes
