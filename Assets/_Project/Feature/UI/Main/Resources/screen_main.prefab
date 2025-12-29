@@ -310,7 +310,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7952890147448353569
 RectTransform:
   m_ObjectHideFlags: 0
@@ -326,10 +326,10 @@ RectTransform:
   - {fileID: 5117181187417204123}
   m_Father: {fileID: 5282078459309757030}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 85.155, y: -440}
+  m_SizeDelta: {x: 120, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7615028238639720265
 CanvasRenderer:
@@ -1190,8 +1190,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -102.25, y: -650.85}
-  m_SizeDelta: {x: 170.31, y: 576.94}
+  m_AnchoredPosition: {x: -102.25, y: -559.14575}
+  m_SizeDelta: {x: 170.31, y: 393.5314}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1037416126550862008
 CanvasRenderer:
@@ -3117,7 +3117,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f10062dcfc2a57043bf5778e325ea13b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 966b452099da74d4db3880dabbab2535, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4131,7 +4131,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8109992978007041058, guid: 61bdb243bf4411944a1b0adfa58024e4, type: 3}
       propertyPath: m_text
-      value: "V\xF2ng quay may m\u1EAFn"
+      value: "Qu\u1EF9 tr\u01B0\u1EDFng th\xE0nh"
       objectReference: {fileID: 0}
     - target: {fileID: 8109992978007041058, guid: 61bdb243bf4411944a1b0adfa58024e4, type: 3}
       propertyPath: m_fontSize
