@@ -32,4 +32,5 @@ public class DataManager
     public static SellectMapCollection SellectMap => Get<SellectMapCollection>();
     public static EquipmentCollection Equipment => Get<EquipmentCollection>();
     public static GrowthFundCollection GrowthFund => Get<GrowthFundCollection>();
+    public static SevenDayLoginCollection SevenDayLogin => Get<SevenDayLoginCollection>();
 }

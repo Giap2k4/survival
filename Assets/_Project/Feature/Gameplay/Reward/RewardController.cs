@@ -73,7 +73,6 @@ public class RewardController : FeatureBaseController
         {
             SellectLevelManager.SetLevelMaxUser(levelCurrent);
             SellectLevelManager.SetLevelCurrent(levelCurrent + 1);
-            GrowthFundManager.SetMapUnlock(levelCurrent);
         }
     }
 

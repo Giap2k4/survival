@@ -2,17 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ResourceController : MonoBehaviour
+public class ResourceController : FeatureBaseController
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]
+    protected GameObject item;
+
+    [SerializeField]
+    protected Transform parent;
+
+
+    public void SetData(List<PackageReward> listRes)
     {
-        
+        foreach (var data in listRes)
+        {
+            GameObject obj = Instantiate(item, parent);
+            obj.GetComponent<ItemResourcesController>().SetData(data);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SetData(PackageReward res)
     {
-        
+        GameObject obj = Instantiate(item, parent);
+        obj.GetComponent<ItemResourcesController>().SetData(res);
     }
 }

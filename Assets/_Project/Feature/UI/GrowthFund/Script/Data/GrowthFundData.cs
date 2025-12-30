@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class GrowthFundData
 {
-    public Dictionary<int, bool> data = new();
+    public HashSet<int> data = new HashSet<int>();// các level đã claim
 }

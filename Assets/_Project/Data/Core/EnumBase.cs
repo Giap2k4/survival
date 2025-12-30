@@ -19,7 +19,9 @@ public class EnumBase
         Reward,
         HeroDetail,
         UpgradeEquip,
-        GrowthFund
+        GrowthFund,
+        SevenDayLogin,
+        Resource
     }
 
     public enum Scenes

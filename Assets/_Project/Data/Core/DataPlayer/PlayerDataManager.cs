@@ -42,15 +42,27 @@ public class PlayerDataManager
         set => _sellectLevel = value;
     }
 
-    private static GrowthFundManager _growthFung;
+    private static GrowthFundManager _growthFund;
     public static GrowthFundManager GrowthFund
     {
         get
         {
-            if (_growthFung == null) _growthFung = DataPlayerBase.GetModule<GrowthFundManager>();
-            return _growthFung;
+            if (_growthFund == null) _growthFund = DataPlayerBase.GetModule<GrowthFundManager>();
+            return _growthFund;
         }
 
-        set => _growthFung = value;
+        set => _growthFund = value;
+    }
+
+    private static SevenDayLoginManager _sevenDayLogin;
+    public static SevenDayLoginManager SevenDayLogin
+    {
+        get
+        {
+            if (_sevenDayLogin == null) _sevenDayLogin = DataPlayerBase.GetModule<SevenDayLoginManager>();
+            return _sevenDayLogin;
+        }
+
+        set => _sevenDayLogin = value;
     }
 }
