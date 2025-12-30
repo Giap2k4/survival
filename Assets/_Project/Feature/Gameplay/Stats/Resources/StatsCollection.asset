@@ -18,7 +18,7 @@ MonoBehaviour:
     statDetail:
     - statType: 1
       valueType: 2
-      statValue: 150
+      statValue: 9000
       bonusValue: 10
     - statType: 2
       valueType: 2

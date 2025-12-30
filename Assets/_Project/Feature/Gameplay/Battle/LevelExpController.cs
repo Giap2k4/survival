@@ -11,7 +11,6 @@ public class LevelExpController : SingletonTemporary<LevelExpController>
 
     [SerializeField]
     protected float expCurrent; // số lượng exp
-    protected float levelExpStart; // level exp trước khi tăng level
     protected float numberSidebar;
     protected FormulaExpBattleModel model;
 
@@ -91,33 +90,36 @@ public class LevelExpController : SingletonTemporary<LevelExpController>
     public void AddExp(int value)
     {
         expCurrent += value;
-        levelExpStart = levelExp;
         CaculaterExp();
+    }
+
+    protected float GetExpRequiredForLevel(float level)
+    {
+        return model.valueBase + (level - 1) * model.bonus;
     }
 
     protected void CaculaterExp()
     {
-        var levelTemp = FormulaEvaluator.EvaluateLevel(expCurrent, model.valueBase, model.bonus);
+        float expRequired = GetExpRequiredForLevel(levelExp);
+        float levelUp = 0;
 
-        levelExp = levelTemp;
-        var levelUp = levelExp - levelExpStart;
-        HandleLevelUp(levelUp);
-        levelExpStart = levelExp;
-        txtLevel.text = levelExp.ToString();
-
-        if (levelExp <= 0)
+        while (expCurrent >= expRequired)
         {
-            levelExp = 1;
-            numberSidebar = expCurrent;
-            float target1 = numberSidebar / 30;
-            fillImage.fillAmount = target1;
-            //fillImage.fillAmount = Mathf.Lerp(fillImage.fillAmount, target1, Time.unscaledDeltaTime * 40);
-            return;
+            expCurrent -= expRequired;
+            levelExp++;
+            levelUp++;
+            expRequired = GetExpRequiredForLevel(levelExp);
         }
-        numberSidebar = expCurrent - FormulaEvaluator.Evaluate(model.formula, model.valueBase, model.bonus, levelExp - 1);
-        float target = numberSidebar / 30;
-        fillImage.fillAmount = target;
-        //fillImage.fillAmount = Mathf.Lerp(fillImage.fillAmount, target, Time.unscaledDeltaTime * 40);
+
+        if (levelUp > 0)
+        {
+            HandleLevelUp(levelUp);
+        }
+
+        txtLevel.text = levelExp.ToString();
+        numberSidebar = expCurrent;
+        float target = numberSidebar / expRequired;
+        fillImage.fillAmount = Mathf.Clamp01(target);
     }
 
     protected void HandleLevelUp(float numberLevel)
