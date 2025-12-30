@@ -19,3 +19,9 @@ MonoBehaviour:
     powerStat: 501
     isBoss: 0
     defaultSkill: 0
+  - id: 2
+    nameEnemy: "S\xF3i c\u1EA7m ki\u1EBFm"
+    typeEnemy: 1
+    powerStat: 501
+    isBoss: 0
+    defaultSkill: 0

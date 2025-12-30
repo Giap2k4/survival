@@ -143,17 +143,76 @@ MonoBehaviour:
         timeStart: 3
         timeEnd: 3
         interval: 0
-      - idEnemy: 1
+      - idEnemy: 2
         levelEnemy: 1
         quantityEnemy: 5
         spawnEnemyType: 4
         timeStart: 4
         timeEnd: 4
         interval: 0
-      - idEnemy: 1
+      - idEnemy: 2
         levelEnemy: 2
-        quantityEnemy: 3
+        quantityEnemy: 2
         spawnEnemyType: 4
         timeStart: 5
         timeEnd: 120
         interval: 2
+      - idEnemy: 2
+        levelEnemy: 2
+        quantityEnemy: 2
+        spawnEnemyType: 3
+        timeStart: 5
+        timeEnd: 120
+        interval: 2
+      - idEnemy: 2
+        levelEnemy: 2
+        quantityEnemy: 2
+        spawnEnemyType: 2
+        timeStart: 5
+        timeEnd: 120
+        interval: 2
+      - idEnemy: 2
+        levelEnemy: 2
+        quantityEnemy: 2
+        spawnEnemyType: 1
+        timeStart: 5
+        timeEnd: 120
+        interval: 2
+      - idEnemy: 1
+        levelEnemy: 2
+        quantityEnemy: 2
+        spawnEnemyType: 4
+        timeStart: 5
+        timeEnd: 120
+        interval: 2
+      - idEnemy: 1
+        levelEnemy: 2
+        quantityEnemy: 2
+        spawnEnemyType: 3
+        timeStart: 5
+        timeEnd: 120
+        interval: 2
+      - idEnemy: 1
+        levelEnemy: 2
+        quantityEnemy: 2
+        spawnEnemyType: 2
+        timeStart: 5
+        timeEnd: 120
+        interval: 2
+      - idEnemy: 1
+        levelEnemy: 2
+        quantityEnemy: 2
+        spawnEnemyType: 1
+        timeStart: 5
+        timeEnd: 120
+        interval: 2
+    - idMap: 3
+      totalTime: 150
+      details:
+      - idEnemy: 2
+        levelEnemy: 1
+        quantityEnemy: 3
+        spawnEnemyType: 1
+        timeStart: 0
+        timeEnd: 150
+        interval: 3
