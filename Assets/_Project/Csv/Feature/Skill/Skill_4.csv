@@ -7,3 +7,35 @@
 ,,,TargetTo,3
 ,,,effect_1,"5, -1"
 ,,,effect_2,"1, 1, 0.5"
+,,2,Cooldown,2
+,,,Damage,"1, 0, 1.2"
+,,,ProjectileNumber,1
+,,,ProjectileSpeed,10
+,,,TargetFrom,0
+,,,TargetTo,3
+,,,effect_1,"5, -1"
+,,,effect_2,"1, 1, 0.5"
+,,3,Cooldown,1.8
+,,,Damage,"1, 0, 1.2"
+,,,ProjectileNumber,1
+,,,ProjectileSpeed,10
+,,,TargetFrom,0
+,,,TargetTo,3
+,,,effect_1,"5, -1"
+,,,effect_2,"1, 1, 0.5"
+,,4,Cooldown,1.6
+,,,Damage,"1, 0, 1.2"
+,,,ProjectileNumber,1
+,,,ProjectileSpeed,10
+,,,TargetFrom,0
+,,,TargetTo,3
+,,,effect_1,"5, -1"
+,,,effect_2,"1, 1, 0.5"
+,,5,Cooldown,1.6
+,,,Damage,"1, 0, 1.4"
+,,,ProjectileNumber,1
+,,,ProjectileSpeed,10
+,,,TargetFrom,0
+,,,TargetTo,3
+,,,effect_1,"5, -1"
+,,,effect_2,"1, 1, 0.5"

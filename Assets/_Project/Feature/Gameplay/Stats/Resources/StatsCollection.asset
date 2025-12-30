@@ -22,7 +22,7 @@ MonoBehaviour:
       bonusValue: 10
     - statType: 2
       valueType: 2
-      statValue: 10
+      statValue: 20
       bonusValue: 5
     - statType: 3
       valueType: 2

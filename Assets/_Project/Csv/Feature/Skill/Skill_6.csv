@@ -7,3 +7,35 @@
 ,,,TargetTo,3
 ,,,custom_value_1,120
 ,,,effect_1,"5, -1"
+,,2,Cooldown,1.4
+,,,Damage,"1, 0, 1"
+,,,ProjectileNumber,1
+,,,ProjectileSpeed,15
+,,,TargetFrom,0
+,,,TargetTo,3
+,,,custom_value_1,120
+,,,effect_1,"5, -1"
+,,3,Cooldown,1.4
+,,,Damage,"1, 0, 1.2"
+,,,ProjectileNumber,1
+,,,ProjectileSpeed,15
+,,,TargetFrom,0
+,,,TargetTo,3
+,,,custom_value_1,120
+,,,effect_1,"5, -1"
+,,4,Cooldown,1.4
+,,,Damage,"1, 0, 1.3"
+,,,ProjectileNumber,1
+,,,ProjectileSpeed,15
+,,,TargetFrom,0
+,,,TargetTo,3
+,,,custom_value_1,120
+,,,effect_1,"5, -1"
+,,5,Cooldown,1.4
+,,,Damage,"1, 0, 1.5"
+,,,ProjectileNumber,1
+,,,ProjectileSpeed,15
+,,,TargetFrom,0
+,,,TargetTo,3
+,,,custom_value_1,120
+,,,effect_1,"5, -1"

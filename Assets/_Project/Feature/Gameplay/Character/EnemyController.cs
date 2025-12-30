@@ -151,6 +151,7 @@ public class EnemyController : CharacterBaseController
             enemyMove.SetIsDie();
             enemyMove.isDie = true;
             hp = 0;
+            SpawnExp();
             PoolingManager.AddEnemyDisable(gameObject);
         }
     }
@@ -165,9 +166,10 @@ public class EnemyController : CharacterBaseController
 
     public void OnDieAnimEnd()
     {
+        
         gameObject.SetActive(false);
         // spawn exp ra vị trí đó luôn (có nhiều loại exp)
-        SpawnExp();
+        
     }
 
     public void SetTypeEnemy(int type) => typeEnemy = type;

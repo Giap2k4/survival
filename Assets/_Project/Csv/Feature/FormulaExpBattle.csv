@@ -1,2 +1,2 @@
 ﻿battleMode,valueBase,bonus,formula,formulaLevel
-LastSurvival,30,30,a + b * (c - 1),(d - a)/b + 1
+LastSurvival,50,50,a + b * (c - 1),(d - a)/b + 1

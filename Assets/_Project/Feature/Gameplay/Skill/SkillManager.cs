@@ -8,10 +8,10 @@ public class SkillManager : SingletonTemporary<SkillManager>
     protected List<SkillBaseController> skill = new(); // các skill đã sở hữu trong lần chơi này
     protected Queue<SkillBaseController> queue = new(); // các skill được lên cấp
     protected List<int> skillRandom = new(); // key: id skill, value: level skill
+    protected const int MAX_SKILL_OWNED = 5;
 
     protected void Start()
     {
-        // add các skill sẽ được random khi lên level exp
         foreach (var item in DataManager.SkillInfo.GetSharedSkill())
         {
             skillRandom.Add(item);
@@ -44,21 +44,36 @@ public class SkillManager : SingletonTemporary<SkillManager>
         var item = skill.FirstOrDefault(x => x.GetIdSkill() == idSkill);
         if (item == null)
         {
-            // spawn skill này ra
             var prefab = Resources.Load<GameObject>("SkillController_" + idSkill);
             GameObject obj = Instantiate(prefab);
             obj.transform.position = Vector3.zero;
             skill.Add(obj.GetComponent<SkillBaseController>());
             obj.GetComponent<SkillBaseController>().HandleLevelUP();
 
+            if (skill.Count >= MAX_SKILL_OWNED)
+            {
+                skillRandom.Clear();
+                foreach (var s in skill)
+                {
+                    if (s.GetLevelCurrent() < 5)
+                    {
+                        skillRandom.Add(s.GetIdSkill());
+                    }
+                }
+            }
+
             return;
         }
 
-        // set level + add hashSet
         item.SetLevelSkill();
         if (item.GetLevelCurrent() >= 5) skillRandom.Remove(item.GetIdSkill());
         if (!queue.Contains(item)) queue.Enqueue(item);
     }
 
     public List<int> GetSkillRandom() => skillRandom;
+
+    public bool IsAllSkillMaxLevel()
+    {
+        return skill.Count >= MAX_SKILL_OWNED && skillRandom.Count == 0;
+    }
 }

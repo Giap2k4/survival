@@ -6,7 +6,7 @@
 ,,,TargetFrom,0
 ,,,TargetTo,0
 ,,,effect_1,"5, -1"
-,,,custom_value_1,0.3
+,,,custom_value_1,0.5
 ,,,Range,2
 ,,,DetectRange,20
 ,,2,Cooldown,2
@@ -16,6 +16,36 @@
 ,,,TargetFrom,0
 ,,,TargetTo,0
 ,,,effect_1,"5, -1"
-,,,custom_value_1,0.3
+,,,custom_value_1,0.5
+,,,Range,2
+,,,DetectRange,20
+,,3,Cooldown,1.8
+,,,Damage,"1, 0, 1.2"
+,,,ProjectileNumber,5
+,,,ProjectileSpeed,15
+,,,TargetFrom,0
+,,,TargetTo,0
+,,,effect_1,"5, -1"
+,,,custom_value_1,0.5
+,,,Range,2
+,,,DetectRange,20
+,,4,Cooldown,1.8
+,,,Damage,"1, 0, 1.4"
+,,,ProjectileNumber,6
+,,,ProjectileSpeed,15
+,,,TargetFrom,0
+,,,TargetTo,0
+,,,effect_1,"5, -1"
+,,,custom_value_1,0.5
+,,,Range,2
+,,,DetectRange,20
+,,5,Cooldown,1.6
+,,,Damage,"1, 0, 1.2"
+,,,ProjectileNumber,6
+,,,ProjectileSpeed,15
+,,,TargetFrom,0
+,,,TargetTo,0
+,,,effect_1,"5, -1"
+,,,custom_value_1,0.5
 ,,,Range,2
 ,,,DetectRange,20

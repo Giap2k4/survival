@@ -66,14 +66,18 @@ public class SkillInfoController : FeatureBaseController
         HandleLevelUp();
     }
 
-    /// <summary>
-    /// random skill và spawn item
-    /// </summary>
     public void HandleLevelUp()
     {
         countLevel++;
         txtCountLevel.text = countLevel.ToString() + "/" + startQuantityLevel.ToString();
         if (quantityLevel <= 0)
+        {
+            LevelExpController.instance.TimeScale();
+            UIManager.instance.CloseFeature(feature);
+            return;
+        }
+
+        if (SkillManager.instance.IsAllSkillMaxLevel())
         {
             LevelExpController.instance.TimeScale();
             UIManager.instance.CloseFeature(feature);
@@ -86,12 +90,12 @@ public class SkillInfoController : FeatureBaseController
         }
         listItem.Clear();
 
-        // random
         var list = SkillManager.instance.GetSkillRandom().ToList();
+        int spawnCount = Mathf.Min(3, list.Count);
 
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < spawnCount; i++)
         {
-            var random = Random.Range(0, list.Count - 1);
+            var random = Random.Range(0, list.Count);
             var idSkill = list[random];
 
             GameObject obj = Instantiate(item, parentObj);

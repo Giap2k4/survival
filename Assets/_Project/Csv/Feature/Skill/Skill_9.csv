@@ -9,3 +9,43 @@
 ,,,DetectRange,5
 ,,,Cooldown,4
 ,,,custom_value_1,1.5
+,,2,Damage,"1, 0, 0.7"
+,,,ProjectileNumber,1
+,,,TargetFrom,2
+,,,TargetTo,0
+,,,effect_1,"5, -1"
+,,,ProjectileSize,1
+,,,Duration,4
+,,,DetectRange,5
+,,,Cooldown,4
+,,,custom_value_1,1.4
+,,3,Damage,"1, 0, 0.8"
+,,,ProjectileNumber,1
+,,,TargetFrom,2
+,,,TargetTo,0
+,,,effect_1,"5, -1"
+,,,ProjectileSize,1
+,,,Duration,4
+,,,DetectRange,5
+,,,Cooldown,4
+,,,custom_value_1,1.4
+,,4,Damage,"1, 0, 0.8"
+,,,ProjectileNumber,1
+,,,TargetFrom,2
+,,,TargetTo,0
+,,,effect_1,"5, -1"
+,,,ProjectileSize,1
+,,,Duration,4
+,,,DetectRange,5
+,,,Cooldown,4
+,,,custom_value_1,1.2
+,,5,Damage,"1, 0, 0.9"
+,,,ProjectileNumber,1
+,,,TargetFrom,2
+,,,TargetTo,0
+,,,effect_1,"5, -1"
+,,,ProjectileSize,1
+,,,Duration,4
+,,,DetectRange,5
+,,,Cooldown,4
+,,,custom_value_1,1.2

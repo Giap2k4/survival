@@ -34,3 +34,75 @@ MonoBehaviour:
         values: 5
       - mechanicTypes: 15
         values: 1.5
+    - level: 2
+      mechanicType:
+      - mechanicTypes: 3
+        values: 1, 0, 0.5
+      - mechanicTypes: 6
+        values: 1
+      - mechanicTypes: 7
+        values: 50
+      - mechanicTypes: 9
+        values: 0
+      - mechanicTypes: 10
+        values: 0
+      - mechanicTypes: 12
+        values: 5, -1
+      - mechanicTypes: 8
+        values: 5.1
+      - mechanicTypes: 15
+        values: 1.5
+    - level: 3
+      mechanicType:
+      - mechanicTypes: 3
+        values: 1, 0, 0.5
+      - mechanicTypes: 6
+        values: 1
+      - mechanicTypes: 7
+        values: 50
+      - mechanicTypes: 9
+        values: 0
+      - mechanicTypes: 10
+        values: 0
+      - mechanicTypes: 12
+        values: 5, -1
+      - mechanicTypes: 8
+        values: 5.2
+      - mechanicTypes: 15
+        values: 1.5
+    - level: 4
+      mechanicType:
+      - mechanicTypes: 3
+        values: 1, 0, 0.7
+      - mechanicTypes: 6
+        values: 1
+      - mechanicTypes: 7
+        values: 50
+      - mechanicTypes: 9
+        values: 0
+      - mechanicTypes: 10
+        values: 0
+      - mechanicTypes: 12
+        values: 5, -1
+      - mechanicTypes: 8
+        values: 5.2
+      - mechanicTypes: 15
+        values: 1.5
+    - level: 5
+      mechanicType:
+      - mechanicTypes: 3
+        values: 1, 0, 0.7
+      - mechanicTypes: 6
+        values: 1
+      - mechanicTypes: 7
+        values: 50
+      - mechanicTypes: 9
+        values: 0
+      - mechanicTypes: 10
+        values: 0
+      - mechanicTypes: 12
+        values: 5, -1
+      - mechanicTypes: 8
+        values: 5.2
+      - mechanicTypes: 15
+        values: 1.3

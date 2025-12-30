@@ -1,6 +1,6 @@
 ﻿idStat,formula,statType,valueType,statValue,bonusValue
 1,a + b * (c - 1),Health,Number,9000,10
-,,Damage,Number,10,5
+,,Damage,Number,20,5
 ,,MoveSpeed,Number,2.5,0
 ,,CritRate,Percent,0.1,0
 ,,CritDamage,Percent,0.2,0

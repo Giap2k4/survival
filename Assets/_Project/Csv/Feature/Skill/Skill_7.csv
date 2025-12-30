@@ -10,3 +10,47 @@
 ,,,custom_value_2,0.3
 ,,,Duration,4
 ,,,DetectRange,20
+,,2,Cooldown,2
+,,,Damage,"1, 0, 1.2"
+,,,ProjectileNumber,1
+,,,ProjectileSpeed,0.7
+,,,TargetFrom,0
+,,,TargetTo,1
+,,,effect_1,"5, -1"
+,,,custom_value_1,1
+,,,custom_value_2,0.3
+,,,Duration,4
+,,,DetectRange,20
+,,3,Cooldown,2
+,,,Damage,"1, 0, 1.2"
+,,,ProjectileNumber,1
+,,,ProjectileSpeed,0.6
+,,,TargetFrom,0
+,,,TargetTo,1
+,,,effect_1,"5, -1"
+,,,custom_value_1,1
+,,,custom_value_2,0.3
+,,,Duration,4
+,,,DetectRange,20
+,,4,Cooldown,1.8
+,,,Damage,"1, 0, 1.2"
+,,,ProjectileNumber,1
+,,,ProjectileSpeed,0.6
+,,,TargetFrom,0
+,,,TargetTo,1
+,,,effect_1,"5, -1"
+,,,custom_value_1,1
+,,,custom_value_2,0.3
+,,,Duration,4
+,,,DetectRange,20
+,,5,Cooldown,1.8
+,,,Damage,"1, 0, 1.4"
+,,,ProjectileNumber,1
+,,,ProjectileSpeed,0.6
+,,,TargetFrom,0
+,,,TargetTo,1
+,,,effect_1,"5, -1"
+,,,custom_value_1,1
+,,,custom_value_2,0.3
+,,,Duration,4
+,,,DetectRange,20

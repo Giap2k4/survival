@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dataGroups:
   - battleMode: 1
-    valueBase: 30
-    bonus: 30
+    valueBase: 50
+    bonus: 50
     formula: a + b * (c - 1)
     formulaLevel: (d - a)/b + 1
