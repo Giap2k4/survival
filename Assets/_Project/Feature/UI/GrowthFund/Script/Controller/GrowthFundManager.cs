@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class GrowthFundManager : DataPlayer<GrowthFundData>
 {
-    public static void ClaimReward(PackageReward res)
-    {
-
-    }
-
     /// <summary>
     /// return TRUE: đã claim
     /// </summary>
@@ -23,6 +18,12 @@ public class GrowthFundManager : DataPlayer<GrowthFundData>
     {
         base.SetDataDefault();
         PlayerDataManager.GrowthFund.database.data.Add(1);
+        PlayerDataManager.GrowthFund.Save();
+    }
+
+    public static void Claimed(int id)
+    {
+        PlayerDataManager.GrowthFund.database.data.Add(id);
         PlayerDataManager.GrowthFund.Save();
     }
 }

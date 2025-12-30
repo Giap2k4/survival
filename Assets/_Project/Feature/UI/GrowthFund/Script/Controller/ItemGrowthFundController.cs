@@ -30,6 +30,11 @@ public class ItemGrowthFundController : MonoBehaviour
     protected PackageReward res;
     protected int level;
 
+    protected void Start()
+    {
+        btnCollect.onClick.AddListener(ClaimReward);
+    }
+
     public void SetData(GrowthFundModel model)
     {
         level = model.levelReward;
@@ -67,5 +72,12 @@ public class ItemGrowthFundController : MonoBehaviour
         glow.SetActive(false);
         objlock.SetActive(true);
         txtCollected.SetActive(false);
+    }
+
+    protected void ClaimReward()
+    {
+        ResourceManager.ResourcesCollect(res);
+        GrowthFundManager.Claimed(level);
+        CollectReward();
     }
 }
