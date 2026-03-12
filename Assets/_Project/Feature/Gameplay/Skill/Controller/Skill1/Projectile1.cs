@@ -34,45 +34,39 @@ public class Projectile1 : ProjectileBaseController
 
     public void SetRotateAndPositionSword()
     {
-        foreach(var item in listSword)
+        foreach (var item in listSword)
         {
             item.SetActive(false);
-            if (!listSwordPooling.Contains(item)) listSwordPooling.Add(item);
         }
-        listSword.Clear();
-        if (listSword.Count < data.projectileNumber)
+
+        int currentCount = listSword.Count;
+        int needed = data.projectileNumber.Value;
+
+        for (int i = currentCount; i < needed; i++)
         {
-            var count = (data.projectileNumber - listSword.Count);
-            for (int i = 0; i < count; i++)
-            {
-                GameObject obj = listSwordPooling.FirstOrDefault(x => x.activeInHierarchy == false);
-                if (obj == null)
-                {
-                    obj = Instantiate(projectileSword, transform);
-                    obj.GetComponent<ProjectileSword1>().SetAttackData(attackData);
-                    listSword.Add(obj);
-                    continue;
-                }
-                obj.GetComponent<ProjectileSword1>().SetAttackData(attackData);
-                obj.SetActive(true);
-                listSword.Add(obj);
-            }
+            GameObject obj = Instantiate(projectileSword, transform);
+            listSword.Add(obj);
         }
 
-        // tính số lượng rồi chia đều kiếm ra
+        for (int i = 0; i < needed; i++)
+        {
+            listSword[i].GetComponent<ProjectileSword1>().SetAttackData(attackData);
+            listSword[i].SetActive(true);
+        }
 
-        float rotate = 360f / listSword.Count;
+        float rotate = 360f / needed;
         float a = 0f;
 
         Vector3 basePos = new Vector3(data.range.Value, 0f, 0f);
+        float size = data.projectileSize.Value;
 
-        for (int i = 0; i < listSword.Count; i++)
+        for (int i = 0; i < needed; i++)
         {
             a = i * rotate;
 
             listSword[i].transform.localRotation = Quaternion.Euler(0f, 0f, a);
             listSword[i].transform.localPosition = Quaternion.Euler(0f, 0f, a) * basePos;
+            listSword[i].transform.localScale = new Vector3(size, size, size);
         }
-
     }
 }

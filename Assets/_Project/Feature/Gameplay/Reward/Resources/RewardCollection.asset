@@ -17,12 +17,12 @@ MonoBehaviour:
     details:
     - idMap: 0
       details:
-      - timeSurvival: 90
+      - timeSurvival: 10
         rewards:
         - resType: 0
           resId: 1
           resQuantity: 50
-      - timeSurvival: 180
+      - timeSurvival: 20
         rewards:
         - resType: 0
           resId: 1
@@ -46,6 +46,36 @@ MonoBehaviour:
           resId: 2
           resQuantity: 100
     - idMap: 2
+      details:
+      - timeSurvival: 10
+        rewards:
+        - resType: 0
+          resId: 1
+          resQuantity: 100
+      - timeSurvival: 20
+        rewards:
+        - resType: 0
+          resId: 1
+          resQuantity: 200
+        - resType: 0
+          resId: 2
+          resQuantity: 100
+    - idMap: 6
+      details:
+      - timeSurvival: 10
+        rewards:
+        - resType: 0
+          resId: 1
+          resQuantity: 100
+      - timeSurvival: 20
+        rewards:
+        - resType: 0
+          resId: 1
+          resQuantity: 200
+        - resType: 0
+          resId: 2
+          resQuantity: 100
+    - idMap: 9
       details:
       - timeSurvival: 10
         rewards:

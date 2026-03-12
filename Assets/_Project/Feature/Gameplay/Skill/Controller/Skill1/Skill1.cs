@@ -43,8 +43,12 @@ public class Skill1 : SkillBaseController
         checkLevelUp = true;
 
         InitAttackData();
-        InitDataProjectile(InitProjectileData(), obj.gameObject);
-        obj.SetRotateAndPositionSword();
 
+        if (obj == null) return;
+
+        var data = InitProjectileData();
+        data.projectileNumber = GetProjectileNumber();
+        obj.SetAttackData(attackData);
+        obj.InitData(data, this);
     }
 }

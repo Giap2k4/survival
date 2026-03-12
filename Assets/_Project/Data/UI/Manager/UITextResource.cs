@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.XR;
 
 public class UITextResource : MonoBehaviour
 {
@@ -22,6 +23,11 @@ public class UITextResource : MonoBehaviour
     protected void OnDisable()
     {
         ResourceManager.eventChangeRes -= UpdateUI;
+    }
+
+    protected void Start()
+    {
+        txt.text = ResourceManager.GetQuantityRes(resType, resIdObj).ToString();
     }
 
     protected void UpdateUI(EnumBase.ResourcesType type ,int resId)

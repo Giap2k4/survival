@@ -310,3 +310,97 @@ MonoBehaviour:
         timeStart: 8
         timeEnd: 120
         interval: 3
+    - idMap: 9
+      totalTime: 120
+      details:
+      - idEnemy: 1
+        levelEnemy: 2
+        quantityEnemy: 2
+        spawnEnemyType: 1
+        timeStart: 0
+        timeEnd: 0
+        interval: 0
+      - idEnemy: 1
+        levelEnemy: 2
+        quantityEnemy: 2
+        spawnEnemyType: 2
+        timeStart: 1
+        timeEnd: 1
+        interval: 0
+      - idEnemy: 1
+        levelEnemy: 2
+        quantityEnemy: 3
+        spawnEnemyType: 3
+        timeStart: 3
+        timeEnd: 3
+        interval: 0
+      - idEnemy: 1
+        levelEnemy: 2
+        quantityEnemy: 3
+        spawnEnemyType: 4
+        timeStart: 4
+        timeEnd: 4
+        interval: 0
+      - idEnemy: 2
+        levelEnemy: 2
+        quantityEnemy: 4
+        spawnEnemyType: 4
+        timeStart: 6
+        timeEnd: 6
+        interval: 0
+      - idEnemy: 2
+        levelEnemy: 7
+        quantityEnemy: 2
+        spawnEnemyType: 4
+        timeStart: 8
+        timeEnd: 120
+        interval: 3
+      - idEnemy: 2
+        levelEnemy: 7
+        quantityEnemy: 2
+        spawnEnemyType: 3
+        timeStart: 8
+        timeEnd: 120
+        interval: 3
+      - idEnemy: 2
+        levelEnemy: 7
+        quantityEnemy: 2
+        spawnEnemyType: 2
+        timeStart: 8
+        timeEnd: 120
+        interval: 3
+      - idEnemy: 2
+        levelEnemy: 7
+        quantityEnemy: 2
+        spawnEnemyType: 1
+        timeStart: 8
+        timeEnd: 120
+        interval: 3
+      - idEnemy: 1
+        levelEnemy: 7
+        quantityEnemy: 2
+        spawnEnemyType: 4
+        timeStart: 8
+        timeEnd: 120
+        interval: 3
+      - idEnemy: 1
+        levelEnemy: 7
+        quantityEnemy: 2
+        spawnEnemyType: 3
+        timeStart: 8
+        timeEnd: 120
+        interval: 3
+      - idEnemy: 1
+        levelEnemy: 7
+        quantityEnemy: 2
+        spawnEnemyType: 2
+        timeStart: 8
+        timeEnd: 120
+        interval: 3
+      - idEnemy: 1
+        levelEnemy: 7
+        quantityEnemy: 2
+        spawnEnemyType: 1
+        timeStart: 8
+        timeEnd: 120
+        interval: 3
