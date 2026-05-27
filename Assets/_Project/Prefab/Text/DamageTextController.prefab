@@ -116,7 +116,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Alo
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: bc3e8b562d5d14547888992767607483, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 177fa14c472140142839049d0d5b1405, type: 2}
   m_sharedMaterial: {fileID: -423214933708947948, guid: bc3e8b562d5d14547888992767607483, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -183,7 +183,7 @@ MonoBehaviour:
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_renderer: {fileID: 5134137644084739359}
   m_maskType: 0
 --- !u!210 &-7108424427011410205
@@ -195,6 +195,6 @@ SortingGroup:
   m_GameObject: {fileID: 5563623351981957407}
   m_Enabled: 1
   m_SortingLayerID: 481332873
-  m_SortingLayer: 6
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_SortAtRoot: 0
