@@ -108,4 +108,10 @@ public class EnumBase
         custom_value_1,
         custom_value_2,
     }
+
+    public enum UI
+    {
+        FullScreen = 0,
+        Popup = 1
+    }
 }

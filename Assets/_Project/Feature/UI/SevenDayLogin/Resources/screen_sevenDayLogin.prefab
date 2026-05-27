@@ -313,6 +313,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   feature: 13
   btnClose: {fileID: 6389635585173723756}
+  screen: 1
+  uiScale: {fileID: 617781355497503393}
   item: {fileID: 1888141652490600126, guid: 3784cc6ec42c1e543a48ee569dff17c9, type: 3}
   parent: {fileID: 5555088615746216338}
 --- !u!222 &1227812342149904567
@@ -336,7 +338,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.81960785}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.8627451}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

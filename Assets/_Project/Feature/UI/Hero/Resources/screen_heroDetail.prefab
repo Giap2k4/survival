@@ -340,6 +340,7 @@ GameObject:
   - component: {fileID: 4395210367170095567}
   - component: {fileID: 7228476084008071214}
   - component: {fileID: 1000958887436147052}
+  - component: {fileID: -7082631012566253632}
   m_Layer: 5
   m_Name: screen_heroDetail
   m_TagString: Untagged
@@ -384,6 +385,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   feature: 10
   btnClose: {fileID: 5332862517109182488}
+  screen: 0
+  uiScale: {fileID: 0}
   avatarHero: {fileID: 1399824117064555634}
   txtNameHero: {fileID: 1424535458687456434}
   avatarSkillDefault: {fileID: 6158178538961204677}
@@ -467,6 +470,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!225 &-7082631012566253632
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1070712863163724133}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1735287695465184805
 GameObject:
   m_ObjectHideFlags: 0

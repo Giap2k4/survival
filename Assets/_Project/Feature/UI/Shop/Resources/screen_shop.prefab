@@ -108,6 +108,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   feature: 4
   btnClose: {fileID: 971834226425526133}
+  screen: 0
+  uiScale: {fileID: 0}
 --- !u!1 &600356578010986441
 GameObject:
   m_ObjectHideFlags: 0
@@ -2449,6 +2451,7 @@ GameObject:
   - component: {fileID: 5193451986138970990}
   - component: {fileID: 1156143538719584494}
   - component: {fileID: 1745984265330078802}
+  - component: {fileID: 6218765058494387503}
   m_Layer: 5
   m_Name: screen_shop
   m_TagString: Untagged
@@ -2552,6 +2555,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!225 &6218765058494387503
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8285277251308681877}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &8330431684698467540
 GameObject:
   m_ObjectHideFlags: 0

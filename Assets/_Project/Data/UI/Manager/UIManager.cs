@@ -125,6 +125,7 @@ public class UIManager : Singleton<UIManager>
         canvas.overrideSorting = true;
         canvas.sortingOrder = currentLayer;
         canvas.worldCamera = Camera.main;
+        obj.GetComponent<FeatureBaseController>().Show();
 
         return obj;
     }
@@ -133,8 +134,11 @@ public class UIManager : Singleton<UIManager>
     {
         if (listFeatureOpen.TryGetValue(feature, out var gameObject))
         {
-            Destroy(gameObject);
-            listFeatureOpen.Remove(feature);
+            gameObject.GetComponent<FeatureBaseController>().Hide(() =>
+            {
+                Destroy(gameObject);
+                listFeatureOpen.Remove(feature);
+            });
         }
     }
 

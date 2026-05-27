@@ -58,6 +58,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   feature: 7
   btnClose: {fileID: 0}
+  screen: 1
+  uiScale: {fileID: 2911779504286889788}
   parentObj: {fileID: 1364781021016857929}
   item: {fileID: 6809547601810162061, guid: a08d97caa9441044f95fcfb4449c915d, type: 3}
   canvas: {fileID: 1094835813452364306}

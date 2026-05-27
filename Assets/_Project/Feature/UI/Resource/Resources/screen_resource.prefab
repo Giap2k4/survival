@@ -1552,6 +1552,7 @@ GameObject:
   - component: {fileID: 4245380848137443679}
   - component: {fileID: 8263856130866690916}
   - component: {fileID: 7908793629710770529}
+  - component: {fileID: -5607849560830818489}
   m_Layer: 5
   m_Name: screen_resource
   m_TagString: Untagged
@@ -1595,6 +1596,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   feature: 14
   btnClose: {fileID: 6737343915529370944}
+  screen: 0
+  uiScale: {fileID: 0}
   item: {fileID: 8609002434678480563, guid: 54c88bb5bb082164b9b451afffd5b136, type: 3}
   parent: {fileID: 1251928756489696549}
 --- !u!223 &1302010256194396215
@@ -1673,3 +1676,15 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!225 &-5607849560830818489
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8858278070638468029}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
