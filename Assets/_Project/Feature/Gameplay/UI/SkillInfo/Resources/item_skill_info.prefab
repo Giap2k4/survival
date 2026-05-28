@@ -237,6 +237,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2509938065392561656}
+  - component: {fileID: 8689264382229230579}
   - component: {fileID: 8852031204567363863}
   - component: {fileID: 8590725649594308590}
   - component: {fileID: 8758028985490563931}
@@ -266,6 +267,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &8689264382229230579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5494377428097851543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03d62ca096dd0274cb5d91636908cfbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 5285262814157661760}
+  pressScale: 0.9
+  duration: 0.1
 --- !u!114 &8852031204567363863
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -306,7 +322,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 8758028985490563931}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []

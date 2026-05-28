@@ -5,6 +5,8 @@ public class ButtonShine : MonoBehaviour
 {
     [SerializeField] private RectTransform shine;
 
+    private Sequence sequence;
+
     private void Start()
     {
         PlayShine();
@@ -12,20 +14,27 @@ public class ButtonShine : MonoBehaviour
 
     private void PlayShine()
     {
-        Sequence seq = DOTween.Sequence();
+        if (shine == null) return;
 
-        seq.AppendCallback(() =>
-        {
-            shine.anchoredPosition = new Vector2(-500, 0);
-        });
+        sequence?.Kill();
 
-        seq.Append(
+        shine.anchoredPosition = new Vector2(-500, 0);
+
+        sequence = DOTween.Sequence();
+
+        sequence.Append(
             shine.DOAnchorPosX(700, 1f)
                 .SetEase(Ease.Linear)
         );
 
-        seq.AppendInterval(1.5f);
+        sequence.AppendInterval(1.5f);
 
-        seq.SetLoops(-1);
+        sequence.SetLoops(-1, LoopType.Restart)
+                .SetLink(gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        sequence?.Kill();
     }
 }

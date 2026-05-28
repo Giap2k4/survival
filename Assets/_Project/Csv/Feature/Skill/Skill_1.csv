@@ -1,6 +1,6 @@
 ﻿id,nameSkill,level,mechanicTypes,values
 1,Kiếm thần,1,Damage,"1,0,1"
-,,,Range,4
+,,,Range,4.5
 ,,,ProjectileNumber,3
 ,,,ProjectileSpeed,90
 ,,,TargetFrom,0

@@ -21,7 +21,7 @@ MonoBehaviour:
       - mechanicTypes: 3
         values: 1,0,1
       - mechanicTypes: 4
-        values: 4
+        values: 4.5
       - mechanicTypes: 6
         values: 3
       - mechanicTypes: 7
