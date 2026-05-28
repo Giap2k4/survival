@@ -28,7 +28,8 @@ public class ButtonScaleEffect : MonoBehaviour,
 
         target.DOScale(defaultScale * pressScale, duration)
             .SetEase(Ease.OutQuad)
-            .SetUpdate(true);
+            .SetUpdate(true)
+            .SetLink(gameObject);
     }
 
     public void OnPointerUp(PointerEventData eventData)
@@ -47,6 +48,12 @@ public class ButtonScaleEffect : MonoBehaviour,
 
         target.DOScale(defaultScale, duration)
             .SetEase(Ease.OutBack)
-            .SetUpdate(true);
+            .SetUpdate(true)
+            .SetLink(gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        target.DOKill();
     }
 }
