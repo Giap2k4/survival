@@ -67,7 +67,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isDie: 0
   moveSpeed: 0
-  animator: {fileID: 0}
+  animator: {fileID: 1190886793230229458}
   hero: {fileID: 0}
   spriteRenderer: {fileID: 1047042132697253444}
   col: {fileID: 2938081321833489717}
