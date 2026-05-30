@@ -217,190 +217,225 @@ MonoBehaviour:
         timeEnd: 150
         interval: 3
     - idMap: 6
-      totalTime: 120
+      totalTime: 300
+      details:
+      - idEnemy: 8
+        levelEnemy: 1
+        quantityEnemy: 3
+        spawnEnemyType: 2
+        timeStart: 0
+        timeEnd: 300
+        interval: 4
+    - idMap: 7
+      totalTime: 300
       details:
       - idEnemy: 1
-        levelEnemy: 2
+        levelEnemy: 1
         quantityEnemy: 2
         spawnEnemyType: 1
         timeStart: 0
-        timeEnd: 0
-        interval: 0
-      - idEnemy: 1
-        levelEnemy: 2
+        timeEnd: 20
+        interval: 2
+      - idEnemy: 3
+        levelEnemy: 1
         quantityEnemy: 2
         spawnEnemyType: 2
-        timeStart: 1
-        timeEnd: 1
-        interval: 0
-      - idEnemy: 1
-        levelEnemy: 2
+        timeStart: 10
+        timeEnd: 30
+        interval: 2
+      - idEnemy: 4
+        levelEnemy: 1
         quantityEnemy: 3
         spawnEnemyType: 3
-        timeStart: 3
-        timeEnd: 3
-        interval: 0
+        timeStart: 20
+        timeEnd: 40
+        interval: 2
+      - idEnemy: 8
+        levelEnemy: 1
+        quantityEnemy: 3
+        spawnEnemyType: 4
+        timeStart: 40
+        timeEnd: 60
+        interval: 3
       - idEnemy: 1
         levelEnemy: 2
         quantityEnemy: 3
         spawnEnemyType: 4
-        timeStart: 4
-        timeEnd: 4
-        interval: 0
-      - idEnemy: 2
+        timeStart: 60
+        timeEnd: 90
+        interval: 2
+      - idEnemy: 3
         levelEnemy: 2
+        quantityEnemy: 3
+        spawnEnemyType: 4
+        timeStart: 60
+        timeEnd: 90
+        interval: 2
+      - idEnemy: 6
+        levelEnemy: 1
+        quantityEnemy: 2
+        spawnEnemyType: 1
+        timeStart: 65
+        timeEnd: 90
+        interval: 4
+      - idEnemy: 7
+        levelEnemy: 1
+        quantityEnemy: 2
+        spawnEnemyType: 2
+        timeStart: 70
+        timeEnd: 90
+        interval: 4
+      - idEnemy: 1
+        levelEnemy: 3
         quantityEnemy: 4
         spawnEnemyType: 4
-        timeStart: 6
-        timeEnd: 6
-        interval: 0
-      - idEnemy: 2
-        levelEnemy: 7
-        quantityEnemy: 2
-        spawnEnemyType: 4
-        timeStart: 8
-        timeEnd: 120
-        interval: 3
-      - idEnemy: 2
-        levelEnemy: 7
-        quantityEnemy: 2
-        spawnEnemyType: 3
-        timeStart: 8
-        timeEnd: 120
-        interval: 3
-      - idEnemy: 2
-        levelEnemy: 7
-        quantityEnemy: 2
-        spawnEnemyType: 2
-        timeStart: 8
-        timeEnd: 120
-        interval: 3
-      - idEnemy: 2
-        levelEnemy: 7
-        quantityEnemy: 2
-        spawnEnemyType: 1
-        timeStart: 8
-        timeEnd: 120
-        interval: 3
-      - idEnemy: 1
-        levelEnemy: 7
-        quantityEnemy: 2
-        spawnEnemyType: 4
-        timeStart: 8
-        timeEnd: 120
-        interval: 3
-      - idEnemy: 1
-        levelEnemy: 7
-        quantityEnemy: 2
-        spawnEnemyType: 3
-        timeStart: 8
-        timeEnd: 120
-        interval: 3
-      - idEnemy: 1
-        levelEnemy: 7
-        quantityEnemy: 2
-        spawnEnemyType: 2
-        timeStart: 8
-        timeEnd: 120
-        interval: 3
-      - idEnemy: 1
-        levelEnemy: 7
-        quantityEnemy: 2
-        spawnEnemyType: 1
-        timeStart: 8
-        timeEnd: 120
-        interval: 3
-    - idMap: 9
-      totalTime: 120
-      details:
-      - idEnemy: 1
-        levelEnemy: 2
-        quantityEnemy: 2
-        spawnEnemyType: 1
-        timeStart: 0
-        timeEnd: 0
-        interval: 0
-      - idEnemy: 1
-        levelEnemy: 2
-        quantityEnemy: 2
-        spawnEnemyType: 2
-        timeStart: 1
-        timeEnd: 1
-        interval: 0
-      - idEnemy: 1
-        levelEnemy: 2
-        quantityEnemy: 3
-        spawnEnemyType: 3
-        timeStart: 3
-        timeEnd: 3
-        interval: 0
-      - idEnemy: 1
-        levelEnemy: 2
-        quantityEnemy: 3
-        spawnEnemyType: 4
-        timeStart: 4
-        timeEnd: 4
-        interval: 0
-      - idEnemy: 2
-        levelEnemy: 2
+        timeStart: 90
+        timeEnd: 180
+        interval: 2
+      - idEnemy: 3
+        levelEnemy: 3
         quantityEnemy: 4
         spawnEnemyType: 4
-        timeStart: 6
-        timeEnd: 6
+        timeStart: 90
+        timeEnd: 180
+        interval: 2
+      - idEnemy: 4
+        levelEnemy: 3
+        quantityEnemy: 5
+        spawnEnemyType: 4
+        timeStart: 100
+        timeEnd: 180
+        interval: 2
+      - idEnemy: 8
+        levelEnemy: 3
+        quantityEnemy: 5
+        spawnEnemyType: 4
+        timeStart: 110
+        timeEnd: 180
+        interval: 2
+      - idEnemy: 6
+        levelEnemy: 2
+        quantityEnemy: 3
+        spawnEnemyType: 4
+        timeStart: 100
+        timeEnd: 180
+        interval: 3
+      - idEnemy: 7
+        levelEnemy: 2
+        quantityEnemy: 3
+        spawnEnemyType: 4
+        timeStart: 110
+        timeEnd: 180
+        interval: 3
+      - idEnemy: 5
+        levelEnemy: 1
+        quantityEnemy: 2
+        spawnEnemyType: 1
+        timeStart: 120
+        timeEnd: 180
+        interval: 5
+      - idEnemy: 1
+        levelEnemy: 4
+        quantityEnemy: 5
+        spawnEnemyType: 4
+        timeStart: 180
+        timeEnd: 270
+        interval: 1
+      - idEnemy: 3
+        levelEnemy: 4
+        quantityEnemy: 5
+        spawnEnemyType: 4
+        timeStart: 180
+        timeEnd: 270
+        interval: 1
+      - idEnemy: 4
+        levelEnemy: 4
+        quantityEnemy: 6
+        spawnEnemyType: 4
+        timeStart: 180
+        timeEnd: 270
+        interval: 1
+      - idEnemy: 8
+        levelEnemy: 4
+        quantityEnemy: 6
+        spawnEnemyType: 4
+        timeStart: 180
+        timeEnd: 270
+        interval: 1
+      - idEnemy: 6
+        levelEnemy: 3
+        quantityEnemy: 4
+        spawnEnemyType: 4
+        timeStart: 180
+        timeEnd: 270
+        interval: 2
+      - idEnemy: 7
+        levelEnemy: 3
+        quantityEnemy: 4
+        spawnEnemyType: 4
+        timeStart: 190
+        timeEnd: 270
+        interval: 2
+      - idEnemy: 5
+        levelEnemy: 2
+        quantityEnemy: 3
+        spawnEnemyType: 4
+        timeStart: 200
+        timeEnd: 270
+        interval: 3
+      - idEnemy: 1
+        levelEnemy: 5
+        quantityEnemy: 6
+        spawnEnemyType: 4
+        timeStart: 270
+        timeEnd: 300
+        interval: 1
+      - idEnemy: 3
+        levelEnemy: 5
+        quantityEnemy: 6
+        spawnEnemyType: 4
+        timeStart: 270
+        timeEnd: 300
+        interval: 1
+      - idEnemy: 4
+        levelEnemy: 5
+        quantityEnemy: 6
+        spawnEnemyType: 4
+        timeStart: 270
+        timeEnd: 300
+        interval: 1
+      - idEnemy: 8
+        levelEnemy: 5
+        quantityEnemy: 6
+        spawnEnemyType: 4
+        timeStart: 270
+        timeEnd: 300
+        interval: 1
+      - idEnemy: 6
+        levelEnemy: 4
+        quantityEnemy: 5
+        spawnEnemyType: 4
+        timeStart: 270
+        timeEnd: 300
+        interval: 2
+      - idEnemy: 7
+        levelEnemy: 4
+        quantityEnemy: 5
+        spawnEnemyType: 4
+        timeStart: 270
+        timeEnd: 300
+        interval: 2
+      - idEnemy: 5
+        levelEnemy: 3
+        quantityEnemy: 4
+        spawnEnemyType: 4
+        timeStart: 270
+        timeEnd: 300
+        interval: 2
+      - idEnemy: 1000
+        levelEnemy: 1
+        quantityEnemy: 1
+        spawnEnemyType: 1
+        timeStart: 285
+        timeEnd: 285
         interval: 0
-      - idEnemy: 2
-        levelEnemy: 7
-        quantityEnemy: 2
-        spawnEnemyType: 4
-        timeStart: 8
-        timeEnd: 120
-        interval: 3
-      - idEnemy: 2
-        levelEnemy: 7
-        quantityEnemy: 2
-        spawnEnemyType: 3
-        timeStart: 8
-        timeEnd: 120
-        interval: 3
-      - idEnemy: 2
-        levelEnemy: 7
-        quantityEnemy: 2
-        spawnEnemyType: 2
-        timeStart: 8
-        timeEnd: 120
-        interval: 3
-      - idEnemy: 2
-        levelEnemy: 7
-        quantityEnemy: 2
-        spawnEnemyType: 1
-        timeStart: 8
-        timeEnd: 120
-        interval: 3
-      - idEnemy: 1
-        levelEnemy: 7
-        quantityEnemy: 2
-        spawnEnemyType: 4
-        timeStart: 8
-        timeEnd: 120
-        interval: 3
-      - idEnemy: 1
-        levelEnemy: 7
-        quantityEnemy: 2
-        spawnEnemyType: 3
-        timeStart: 8
-        timeEnd: 120
-        interval: 3
-      - idEnemy: 1
-        levelEnemy: 7
-        quantityEnemy: 2
-        spawnEnemyType: 2
-        timeStart: 8
-        timeEnd: 120
-        interval: 3
-      - idEnemy: 1
-        levelEnemy: 7
-        quantityEnemy: 2
-        spawnEnemyType: 1
-        timeStart: 8
-        timeEnd: 120
-        interval: 3

@@ -12,6 +12,7 @@ public class EnemyMove : MoveSystemBase
 
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] protected Collider2D col;
+    [SerializeField] protected bool isQuaterionLeft;
 
     protected override void OnEnable()
     {
@@ -33,6 +34,13 @@ public class EnemyMove : MoveSystemBase
         if (isDie) return;
 
         transform.position = Vector3.MoveTowards(transform.position, hero.transform.position, moveSpeed * Time.deltaTime);
+
+        if (isQuaterionLeft)
+        {
+            if (hero.transform.position.x <= transform.position.x + 0.1f) spriteRenderer.flipX = false;
+            else spriteRenderer.flipX = true;
+            return;
+        }
 
         if (hero.transform.position.x <= transform.position.x + 0.1f) spriteRenderer.flipX = true;
         else spriteRenderer.flipX = false;

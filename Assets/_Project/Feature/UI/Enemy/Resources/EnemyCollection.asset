@@ -25,3 +25,45 @@ MonoBehaviour:
     powerStat: 501
     isBoss: 0
     defaultSkill: 0
+  - id: 3
+    nameEnemy: "Bong b\xF3ng"
+    typeEnemy: 1
+    powerStat: 503
+    isBoss: 0
+    defaultSkill: 0
+  - id: 4
+    nameEnemy: "Ng\u01B0\u1EDDi x\u01B0\u01A1ng nh\u1ECF"
+    typeEnemy: 1
+    powerStat: 501
+    isBoss: 0
+    defaultSkill: 0
+  - id: 5
+    nameEnemy: "Ng\u01B0\u1EDDi s\xF3i xanh"
+    typeEnemy: 1
+    powerStat: 505
+    isBoss: 0
+    defaultSkill: 0
+  - id: 6
+    nameEnemy: "B\xE9o l\xF9n"
+    typeEnemy: 1
+    powerStat: 506
+    isBoss: 0
+    defaultSkill: 0
+  - id: 7
+    nameEnemy: "Ng\u01B0\u1EDDi x\u01B0\u01A1ng m\u1EB7c gi\xE1p"
+    typeEnemy: 1
+    powerStat: 507
+    isBoss: 0
+    defaultSkill: 0
+  - id: 8
+    nameEnemy: "Nh\u1EC7n \u0111\u1ED9c"
+    typeEnemy: 1
+    powerStat: 508
+    isBoss: 0
+    defaultSkill: 0
+  - id: 1000
+    nameEnemy: "B\xF2 \u0111i\xEAn"
+    typeEnemy: 1
+    powerStat: 1000
+    isBoss: 1
+    defaultSkill: 0

@@ -1,3 +1,10 @@
 ﻿id,nameEnemy,typeNumber,powerStat,isBoss,defaultSkill
 1,Sói con,1,501,FALSE,0
 2,Sói cầm kiếm,1,501,FALSE,0
+3,Bong bóng,1,503,FALSE,0
+4,Người xương nhỏ,1,501,FALSE,0
+5,Người sói xanh,1,505,FALSE,0
+6,Béo lùn,1,506,FALSE,0
+7,Người xương mặc giáp,1,507,FALSE,0
+8,Nhện độc,1,508,FALSE,0
+1000,Bò điên,1,1000,TRUE,0

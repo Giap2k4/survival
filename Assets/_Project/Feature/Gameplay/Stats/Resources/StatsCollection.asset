@@ -18,8 +18,8 @@ MonoBehaviour:
     statDetail:
     - statType: 1
       valueType: 2
-      statValue: 9000
-      bonusValue: 10
+      statValue: 10000
+      bonusValue: 20
     - statType: 2
       valueType: 2
       statValue: 20
@@ -70,6 +70,111 @@ MonoBehaviour:
       valueType: 2
       statValue: 7
       bonusValue: 5
+    - statType: 3
+      valueType: 2
+      statValue: 1
+      bonusValue: 0
+  - idStat: 503
+    formula: a + b * (c - 1)
+    statDetail:
+    - statType: 1
+      valueType: 2
+      statValue: 50
+      bonusValue: 7
+    - statType: 2
+      valueType: 2
+      statValue: 5
+      bonusValue: 3
+    - statType: 3
+      valueType: 2
+      statValue: 2
+      bonusValue: 0
+  - idStat: 504
+    formula: a + b * (c - 1)
+    statDetail:
+    - statType: 1
+      valueType: 2
+      statValue: 80
+      bonusValue: 7
+    - statType: 2
+      valueType: 2
+      statValue: 7
+      bonusValue: 5
+    - statType: 3
+      valueType: 2
+      statValue: 1
+      bonusValue: 0
+  - idStat: 505
+    formula: a + b * (c - 1)
+    statDetail:
+    - statType: 1
+      valueType: 2
+      statValue: 100
+      bonusValue: 10
+    - statType: 2
+      valueType: 2
+      statValue: 10
+      bonusValue: 8
+    - statType: 3
+      valueType: 2
+      statValue: 1
+      bonusValue: 0
+  - idStat: 506
+    formula: a + b * (c - 1)
+    statDetail:
+    - statType: 1
+      valueType: 2
+      statValue: 80
+      bonusValue: 7
+    - statType: 2
+      valueType: 2
+      statValue: 10
+      bonusValue: 8
+    - statType: 3
+      valueType: 2
+      statValue: 1
+      bonusValue: 0
+  - idStat: 507
+    formula: a + b * (c - 1)
+    statDetail:
+    - statType: 1
+      valueType: 2
+      statValue: 90
+      bonusValue: 7
+    - statType: 2
+      valueType: 2
+      statValue: 10
+      bonusValue: 5
+    - statType: 3
+      valueType: 2
+      statValue: 1
+      bonusValue: 0
+  - idStat: 508
+    formula: a + b * (c - 1)
+    statDetail:
+    - statType: 1
+      valueType: 2
+      statValue: 50
+      bonusValue: 7
+    - statType: 2
+      valueType: 2
+      statValue: 5
+      bonusValue: 3
+    - statType: 3
+      valueType: 2
+      statValue: 2
+      bonusValue: 0
+  - idStat: 1000
+    formula: a + b * (c - 1)
+    statDetail:
+    - statType: 1
+      valueType: 2
+      statValue: 500
+      bonusValue: 30
+    - statType: 2
+      valueType: 2
+      statValue: 20
+      bonusValue: 10
     - statType: 3
       valueType: 2
       statValue: 1

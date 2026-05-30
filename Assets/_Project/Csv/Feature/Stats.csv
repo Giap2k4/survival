@@ -1,5 +1,5 @@
 ﻿idStat,formula,statType,valueType,statValue,bonusValue
-1,a + b * (c - 1),Health,Number,9000,10
+1,a + b * (c - 1),Health,Number,10000,20
 ,,Damage,Number,20,5
 ,,MoveSpeed,Number,2.5,0
 ,,CritRate,Percent,0.1,0
@@ -9,6 +9,27 @@
 ,,MoveSpeed,Number,2.5,0
 ,,CritRate,Percent,0.1,0
 ,,CritDamage,Percent,0.2,0
-501,a + b * (c - 1),1,2,70,10
-,,2,2,7,5
-,,3,2,1,0
+501,a + b * (c - 1),Health,2,70,10
+,,Damage,2,7,5
+,,MoveSpeed,2,1,0
+503,a + b * (c - 1),Health,2,50,7
+,,Damage,2,5,3
+,,MoveSpeed,2,2,0
+504,a + b * (c - 1),Health,2,80,7
+,,Damage,2,7,5
+,,MoveSpeed,2,1,0
+505,a + b * (c - 1),Health,2,100,10
+,,Damage,2,10,8
+,,MoveSpeed,2,1,0
+506,a + b * (c - 1),Health,2,80,7
+,,Damage,2,10,8
+,,MoveSpeed,2,1,0
+507,a + b * (c - 1),Health,2,90,7
+,,Damage,2,10,5
+,,MoveSpeed,2,1,0
+508,a + b * (c - 1),Health,2,50,7
+,,Damage,2,5,3
+,,MoveSpeed,2,2,0
+1000,a + b * (c - 1),Health,2,500,30
+,,Damage,2,20,10
+,,MoveSpeed,2,1,0
