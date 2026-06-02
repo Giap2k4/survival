@@ -1,36 +1,36 @@
 ﻿id,nameSkill,level,mechanicTypes,values
-1,Boom,1,Cooldown,1.5
+1,Boom,1,Cooldown,2.5
 ,,,Damage,"1, 0, 1"
 ,,,ProjectileNumber,1
-,,,ProjectileSpeed,15
+,,,ProjectileSpeed,5
 ,,,TargetFrom,0
 ,,,TargetTo,1
 ,,,DetectRange,20
-,,2,Cooldown,1.5
+,,2,Cooldown,2.5
 ,,,Damage,"1, 0, 1.2"
 ,,,ProjectileNumber,1
-,,,ProjectileSpeed,15
+,,,ProjectileSpeed,5
 ,,,TargetFrom,0
 ,,,TargetTo,1
 ,,,DetectRange,20
-,,3,Cooldown,1.4
+,,3,Cooldown,2.4
 ,,,Damage,"1, 0, 1.2"
 ,,,ProjectileNumber,1
-,,,ProjectileSpeed,15
+,,,ProjectileSpeed,5
 ,,,TargetFrom,0
 ,,,TargetTo,1
 ,,,DetectRange,20
-,,4,Cooldown,1.4
+,,4,Cooldown,2.4
 ,,,Damage,"1, 0, 1.5"
 ,,,ProjectileNumber,1
-,,,ProjectileSpeed,15
+,,,ProjectileSpeed,5
 ,,,TargetFrom,0
 ,,,TargetTo,1
 ,,,DetectRange,20
-,,5,Cooldown,1.3
+,,5,Cooldown,2.2
 ,,,Damage,"1, 0, 1.5"
 ,,,ProjectileNumber,1
-,,,ProjectileSpeed,15
+,,,ProjectileSpeed,5
 ,,,TargetFrom,0
 ,,,TargetTo,1
 ,,,DetectRange,20

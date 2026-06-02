@@ -10,6 +10,7 @@ public static class PoolingManager
     private static List<GameObject> _enemyActive = new List<GameObject>();
     private static List<GameObject> _enemyDisable = new List<GameObject>();
     private static List<GameObject> _exp = new List<GameObject>();
+    private static List<GameObject> _boomSkill5 = new List<GameObject>();
 
     public static GameObject GetProjectile(string nameProjectile)
     {
@@ -84,6 +85,21 @@ public static class PoolingManager
         return null;
     }
 
+    public static GameObject GetBoomSkill5 ()
+    {
+        GameObject obj = _boomSkill5.FirstOrDefault(x => !x.activeSelf);
+        if (obj != null) return obj;
+
+        GameObject prefab = GameObject.Instantiate(Resources.Load<GameObject>("_Prefab/Skill/boom"));
+        _boomSkill5.Add(prefab);
+        return prefab;
+    }
+
+    public static void AddBoomSkill5Pool (GameObject obj)
+    {
+        if (!_boomSkill5.Contains(obj)) _boomSkill5.Add(obj);
+    }
+
     public static void Clear()
     {
         _listDamageText.Clear();
@@ -91,5 +107,6 @@ public static class PoolingManager
         _enemyActive.Clear();
         _enemyDisable.Clear();
         _exp.Clear();
+        _boomSkill5.Clear();
     }
 }

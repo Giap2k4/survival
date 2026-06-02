@@ -19,7 +19,7 @@ MonoBehaviour:
     - level: 1
       mechanicType:
       - mechanicTypes: 1
-        values: 2
+        values: 4
       - mechanicTypes: 3
         values: 1, 0, 1
       - mechanicTypes: 6
@@ -43,7 +43,7 @@ MonoBehaviour:
     - level: 2
       mechanicType:
       - mechanicTypes: 1
-        values: 2
+        values: 4
       - mechanicTypes: 3
         values: 1, 0, 1.2
       - mechanicTypes: 6
@@ -67,7 +67,7 @@ MonoBehaviour:
     - level: 3
       mechanicType:
       - mechanicTypes: 1
-        values: 2
+        values: 4
       - mechanicTypes: 3
         values: 1, 0, 1.2
       - mechanicTypes: 6
@@ -91,7 +91,7 @@ MonoBehaviour:
     - level: 4
       mechanicType:
       - mechanicTypes: 1
-        values: 1.8
+        values: 4
       - mechanicTypes: 3
         values: 1, 0, 1.2
       - mechanicTypes: 6
@@ -115,7 +115,7 @@ MonoBehaviour:
     - level: 5
       mechanicType:
       - mechanicTypes: 1
-        values: 1.8
+        values: 4
       - mechanicTypes: 3
         values: 1, 0, 1.4
       - mechanicTypes: 6
