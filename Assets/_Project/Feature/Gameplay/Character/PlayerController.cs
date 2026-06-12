@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using DG.Tweening;
+using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -20,6 +21,11 @@ public class PlayerController : CharacterBaseController
 
     protected int defaultSkill; // id default skill
 
+    [SerializeField]
+    protected GameObject parentHp;
+    [SerializeField]
+    protected SpriteRenderer HpScale;
+
     protected override void SetData()
     {
         base.SetData();
@@ -37,6 +43,17 @@ public class PlayerController : CharacterBaseController
             EndGame();
         }
         // xử lý khi bị trừ HP (gọi hàm đến battleController xử lý)
+
+        float hpPercent = dmg / hp;
+
+        float targetWidth;
+        if (hpPercent >= 1) targetWidth = 0;
+        else targetWidth = HpScale.size.x * (1 - hpPercent);
+
+        DOTween.To(() => HpScale.size.x,
+            x => HpScale.size = new Vector2(x, HpScale.size.y),
+            targetWidth,
+            0.2f).SetEase(Ease.OutQuad); 
     }
 
     public void SetIsDie()

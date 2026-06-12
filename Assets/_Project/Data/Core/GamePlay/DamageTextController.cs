@@ -8,6 +8,7 @@ public class DamageTextController : MonoBehaviour, IUpdateManager
     [SerializeField]
     protected TextMeshPro txt;
 
+    [SerializeField]
     protected Vector3 posY;
     protected Vector3 scale = new Vector3(1.5f, 1.5f, 1.5f);
     protected bool checkTime;
@@ -27,9 +28,9 @@ public class DamageTextController : MonoBehaviour, IUpdateManager
         checkTime = false;
     }
 
-    public void Init()
+    public void Init(Vector3 pos)
     {
-        posY = transform.position + new Vector3(0, 0.4f, 0);
+        posY = pos + new Vector3(0, 0.4f, 0);
     }
 
     public void SetText(string text, bool isCrit = false)
@@ -49,7 +50,7 @@ public class DamageTextController : MonoBehaviour, IUpdateManager
 
         float distance = Vector3.Distance(transform.position, posY);
 
-        if (distance < 0.01f)
+        if (distance <= 0.1f)
         {
             if (!checkTime) StartCoroutine(WaitText());
         }

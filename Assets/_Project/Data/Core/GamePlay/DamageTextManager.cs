@@ -13,7 +13,7 @@ public class DamageTextManager : SingletonTemporary<DamageTextManager>
         obj.transform.SetParent(transform, false);
         obj.transform.position = pos;
         obj.SetActive(true);
-        obj.GetComponent<DamageTextController>().Init();
+        obj.GetComponent<DamageTextController>().Init(pos);
         return obj;
     }
 }

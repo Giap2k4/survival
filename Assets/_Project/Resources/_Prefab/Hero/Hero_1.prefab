@@ -55,6 +55,8 @@ MonoBehaviour:
   colPickup: {fileID: 4476301785658226854}
   hp: 0
   colliderHero: {fileID: 7728043496426646021}
+  parentHp: {fileID: 6325038499834507623}
+  HpScale: {fileID: 7065562359072222379}
 --- !u!114 &8968647089899670069
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -358,7 +360,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 10
+  m_Radius: 6
 --- !u!114 &8169829427193472791
 MonoBehaviour:
   m_ObjectHideFlags: 0
