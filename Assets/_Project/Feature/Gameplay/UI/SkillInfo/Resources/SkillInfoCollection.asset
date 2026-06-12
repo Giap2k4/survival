@@ -21,7 +21,7 @@ MonoBehaviour:
     name: "T\xEAn th\u1EA7n"
     description: "B\u1EAFn c\xE1c m\u0169i t\xEAn bay xuy\xEAn qu\xE1i v\u1EC1 ph\xEDa
       tr\u01B0\u1EDBc"
-    sharedSkill: 0
+    sharedSkill: 1
   - id: 3
     name: "L\u01B0\u1EE1i \u0111ao"
     description: "C\xE1c l\u01B0\u1EE1i \u0111ao xoay tr\xF2n v\xE0 b\u1EAFn ra nhi\u1EC1u
@@ -40,7 +40,7 @@ MonoBehaviour:
     name: "\u0110ao ph\u1EE7"
     description: "1 l\u01B0\u1EE1i \u0111ao kh\u1ED5ng l\u1ED3 b\u1ED5 t\u1EEB tr\xEAn
       xu\u1ED1ng m\u1EA1nh m\u1EBD"
-    sharedSkill: 1
+    sharedSkill: 0
   - id: 7
     name: "C\u1EA7u \u0111i\u1EC7n"
     description: "1 qu\u1EA3 c\u1EA7u \u0111i\u1EC7n bay ch\u1EADm v\xE0 s\u1EBD
@@ -50,7 +50,7 @@ MonoBehaviour:
     name: "V\xF2ng Aura"
     description: "Xu\u1EA5t hi\u1EC7n 1 v\xF2ng tr\xF2n h\xFAt m\xE1u k\u1EBB \u0111\u1ECBch
       d\u01B0\u1EDBi ch\xE2n m\xECnh"
-    sharedSkill: 1
+    sharedSkill: 0
   - id: 9
     name: "\u0110\u1ED9c t\u1ED1"
     description: "1 b\xE3i \u0111\u1ED9c xu\u1EA5t hi\u1EC7n \u1EDF d\u01B0\u1EDBi
