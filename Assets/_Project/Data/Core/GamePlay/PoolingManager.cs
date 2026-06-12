@@ -100,6 +100,25 @@ public static class PoolingManager
         if (!_boomSkill5.Contains(obj)) _boomSkill5.Add(obj);
     }
 
+    public static GameObject GetDamageText (GameObject prefab)
+    {
+        GameObject obj = _listDamageText.FirstOrDefault(x => !x.activeSelf);
+        if (obj != null) return obj;
+
+        GameObject obj2 = GameObject.Instantiate(prefab);
+        _listDamageText.Add(obj2);
+        return obj2;
+    }
+
+    public static void AddDamageTextPool(GameObject obj)
+    {
+        if (!_listDamageText.Contains(obj)) 
+        {
+            _listDamageText.Add(obj);
+            obj.SetActive(false);
+        }
+    }
+
     public static void Clear()
     {
         _listDamageText.Clear();

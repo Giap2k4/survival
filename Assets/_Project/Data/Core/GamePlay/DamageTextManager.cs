@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,6 +8,12 @@ public class DamageTextManager : SingletonTemporary<DamageTextManager>
     protected GameObject txt;
     public GameObject DamageText(Vector3 pos)
     {
-        return Instantiate(txt, pos, Quaternion.identity, transform);
+        // lấy txt ở pool
+        GameObject obj = PoolingManager.GetDamageText(txt);
+        obj.transform.SetParent(transform, false);
+        obj.transform.position = pos;
+        obj.SetActive(true);
+        obj.GetComponent<DamageTextController>().Init();
+        return obj;
     }
 }

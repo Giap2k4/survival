@@ -24,8 +24,12 @@ public class DamageTextController : MonoBehaviour, IUpdateManager
         txt.color = Color.white;
         txt.fontSize = 2;
 
-        posY = transform.position + new Vector3(0, 0.4f, 0f);
         checkTime = false;
+    }
+
+    public void Init()
+    {
+        posY = transform.position + new Vector3(0, 0.4f, 0);
     }
 
     public void SetText(string text, bool isCrit = false)
@@ -56,5 +60,6 @@ public class DamageTextController : MonoBehaviour, IUpdateManager
         checkTime = true;
         yield return new WaitForSeconds(0.2f);
         gameObject.SetActive(false);
+        PoolingManager.AddDamageTextPool(gameObject);
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DG.Tweening;
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -20,12 +21,18 @@ public class EnemyController : CharacterBaseController
     protected float damageInterval;
     protected float nextDamageTime = 0f;
 
+    [SerializeField]
+    protected GameObject parentHp;
+    [SerializeField]
+    protected SpriteRenderer HpScale;
+
     protected override void OnEnable()
     {
         base.OnEnable();
         // add modify stat nếu có level > 1
         //SetData();
         enemyMove = gameObject.GetComponent<EnemyMove>();
+        HpScale.size = new Vector2(3.39f, 0.34f); 
     }
 
     public override void SetLevel(int level) => this.level = level;
@@ -148,6 +155,7 @@ public class EnemyController : CharacterBaseController
         hp -= dmg;
         if (hp <= 0)
         {
+            parentHp.SetActive(false);
             enemyMove.SetIsDie();
             enemyMove.isDie = true;
             hp = 0;
@@ -159,17 +167,30 @@ public class EnemyController : CharacterBaseController
     protected void UpdateUI(float dmg, bool isCrit)
     {
         // bật thanh hp, hiện text HP bị trừ
-        GameObject obj = DamageTextManager.instance.DamageText(transform.position);
+        GameObject obj = DamageTextManager.instance.DamageText(transform.localPosition);
 
         obj.GetComponent<DamageTextController>().SetText(Convert.ToString(dmg), isCrit);
-    }
 
+        parentHp.SetActive(true);
+        float hpPercent = dmg / hp;
+
+        float targetWidth;
+        if (hpPercent >= 1) targetWidth = 0;
+        else targetWidth = HpScale.size.x * (1 - hpPercent);
+
+        DOTween.To(() => HpScale.size.x, 
+            x => HpScale.size = new Vector2(x, HpScale.size.y),
+            targetWidth,
+            0.2f).SetEase(Ease.OutQuad);
+    }
+     
     public void OnDieAnimEnd()
     {
         
         gameObject.SetActive(false);
         // spawn exp ra vị trí đó luôn (có nhiều loại exp)
         
+
     }
 
     public void SetTypeEnemy(int type) => typeEnemy = type;
