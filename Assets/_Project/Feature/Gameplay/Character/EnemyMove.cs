@@ -8,18 +8,19 @@ public class EnemyMove : MoveSystemBase
     protected Animator animator;
 
     [SerializeField]
-    protected GameObject hero;
+    public GameObject hero;
 
     [SerializeField] private SpriteRenderer spriteRenderer;
-    [SerializeField] protected Collider2D col;
+    [SerializeField] public Collider2D col;
     [SerializeField] protected bool isQuaterionLeft;
+    public bool attacking;
 
     protected override void OnEnable()
     {
         base.OnEnable();
         col.enabled = true;
         animator.ResetTrigger("IsDead");
-        animator.Play("run");
+        //animator.Play("run");
         isDie = false;
     }
 
@@ -52,5 +53,9 @@ public class EnemyMove : MoveSystemBase
         col.enabled = false;
         animator.SetTrigger("IsDead");
     }
+
+    public virtual void Process() { }
+
+    public virtual void AfterAttack() { }
 
 }

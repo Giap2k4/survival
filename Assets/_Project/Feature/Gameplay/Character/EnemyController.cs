@@ -14,6 +14,7 @@ public class EnemyController : CharacterBaseController
     protected float damage;
 
     protected AttackData attackData;
+    [SerializeField]
     protected EnemyMove enemyMove;
     protected int typeEnemy;
     protected bool checkDmgAttack; // kiểm tra đã đủ thời gian gây dmg chưa
@@ -31,7 +32,6 @@ public class EnemyController : CharacterBaseController
         base.OnEnable();
         // add modify stat nếu có level > 1
         //SetData();
-        enemyMove = gameObject.GetComponent<EnemyMove>();
         HpScale.size = new Vector2(3.39f, 0.34f); 
     }
 

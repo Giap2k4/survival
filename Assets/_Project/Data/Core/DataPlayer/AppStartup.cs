@@ -9,4 +9,4 @@ public class AppStartup : Singleton<AppStartup>
         base.Awake();
         DataPlayerBase.Init();
     }
-}
+}  

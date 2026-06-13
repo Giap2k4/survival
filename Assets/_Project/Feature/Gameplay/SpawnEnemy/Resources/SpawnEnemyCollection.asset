@@ -219,13 +219,13 @@ MonoBehaviour:
     - idMap: 6
       totalTime: 300
       details:
-      - idEnemy: 8
+      - idEnemy: 1000
         levelEnemy: 1
-        quantityEnemy: 3
+        quantityEnemy: 1
         spawnEnemyType: 2
         timeStart: 0
         timeEnd: 300
-        interval: 4
+        interval: 300
     - idMap: 7
       totalTime: 300
       details:

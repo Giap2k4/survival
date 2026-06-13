@@ -32,4 +32,4 @@
 ,,MoveSpeed,2,2,0
 1000,a + b * (c - 1),Health,2,500,30
 ,,Damage,2,20,10
-,,MoveSpeed,2,1,0
+,,MoveSpeed,2,1.3,0
