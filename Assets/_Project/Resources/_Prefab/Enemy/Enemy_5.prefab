@@ -306,6 +306,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 0
   damage: 0
+  enemyMove: {fileID: 4589584980555835918}
   damageInterval: 1
   parentHp: {fileID: 1056411778588755885}
   HpScale: {fileID: 1567006225388039087}
@@ -323,11 +324,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isDie: 0
   moveSpeed: 0
+  moveSpeedFirst: 0
   animator: {fileID: 5868813191793129281}
   hero: {fileID: 0}
   spriteRenderer: {fileID: 8060955177606871323}
   col: {fileID: 4883780385490883022}
   isQuaterionLeft: 0
+  attacking: 0
 --- !u!212 &8060955177606871323
 SpriteRenderer:
   m_ObjectHideFlags: 0

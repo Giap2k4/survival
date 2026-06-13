@@ -10,10 +10,10 @@ public class DamageTextManager : SingletonTemporary<DamageTextManager>
     {
         // lấy txt ở pool
         GameObject obj = PoolingManager.GetDamageText(txt);
-        obj.transform.SetParent(transform, false);
+        //obj.transform.SetParent(transform, false);
         obj.transform.position = pos;
-        obj.SetActive(true);
         obj.GetComponent<DamageTextController>().Init(pos);
+        obj.SetActive(true);
         return obj;
     }
 }
