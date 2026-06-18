@@ -59,7 +59,7 @@ public class DamageTextController : MonoBehaviour, IUpdateManager
     IEnumerator WaitText()
     {
         checkTime = true;
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.3f);
         gameObject.SetActive(false);
         PoolingManager.AddDamageTextPool(gameObject);
     }
