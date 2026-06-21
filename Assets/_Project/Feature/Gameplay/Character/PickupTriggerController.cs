@@ -11,14 +11,16 @@ public class PickupTriggerController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Exp")
         {
-            var type = collision.gameObject.GetComponent<ItemExpBattleController>().GetTypeExp();
+            var component = collision.gameObject.GetComponent<ItemExpBattleController>();
+            var type = component.GetTypeExp();
             var exp = DataManager.ExpBattle.GetExpBattleById(type);
             LevelExpController.instance.AddExp(exp.expNumber);
 
             // cho obj exp vào pooling
-            collision.gameObject.SetActive(false);
-            PoolingManager.AddExpPooling(collision.gameObject);
+            //collision.gameObject.SetActive(false);
+            //PoolingManager.AddExpPooling(collision.gameObject);
+            component.CanMoveTargetHero();
+
         }
-        else if (collision.gameObject.tag == "Enemy") return;
     }
 }

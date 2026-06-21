@@ -216,7 +216,7 @@ MonoBehaviour:
         timeStart: 0
         timeEnd: 150
         interval: 3
-    - idMap: 6
+    - idMap: 7
       totalTime: 300
       details:
       - idEnemy: 1
@@ -226,7 +226,7 @@ MonoBehaviour:
         timeStart: 0
         timeEnd: 300
         interval: 1
-    - idMap: 7
+    - idMap: 6
       totalTime: 300
       details:
       - idEnemy: 1
@@ -436,6 +436,6 @@ MonoBehaviour:
         levelEnemy: 1
         quantityEnemy: 1
         spawnEnemyType: 1
-        timeStart: 285
-        timeEnd: 285
+        timeStart: 200
+        timeEnd: 200
         interval: 0

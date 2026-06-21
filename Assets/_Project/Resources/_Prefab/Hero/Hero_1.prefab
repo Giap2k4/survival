@@ -71,6 +71,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isDie: 0
   moveSpeed: 2.5
+  moveSpeedFirst: 0
   rb: {fileID: 0}
   animator: {fileID: 6799326765245375188}
   spriteRenderer: {fileID: 6745802836686835528}
@@ -360,7 +361,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 6
+  m_Radius: 5
 --- !u!114 &8169829427193472791
 MonoBehaviour:
   m_ObjectHideFlags: 0

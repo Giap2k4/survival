@@ -71,6 +71,7 @@ public static class PoolingManager
 
     public static void AddExpPooling(GameObject obj)
     {
+        if (!obj.activeSelf) obj.SetActive(false);
         if (!_exp.Contains(obj)) _exp.Add(obj);
     }
 
