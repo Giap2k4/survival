@@ -1,5 +1,5 @@
 ﻿id,nameSkill,level,mechanicTypes,values
-1,Cầu điện,1,Cooldown,4
+7,Cầu điện,1,Cooldown,3
 ,,,Damage,"1, 0, 1"
 ,,,ProjectileNumber,1
 ,,,ProjectileSpeed,0.7
@@ -10,7 +10,7 @@
 ,,,custom_value_2,0.3
 ,,,Duration,4
 ,,,DetectRange,20
-,,2,Cooldown,4
+,,2,Cooldown,3
 ,,,Damage,"1, 0, 1.2"
 ,,,ProjectileNumber,1
 ,,,ProjectileSpeed,0.7
@@ -21,7 +21,7 @@
 ,,,custom_value_2,0.3
 ,,,Duration,4
 ,,,DetectRange,20
-,,3,Cooldown,4
+,,3,Cooldown,3
 ,,,Damage,"1, 0, 1.2"
 ,,,ProjectileNumber,1
 ,,,ProjectileSpeed,0.6
@@ -32,7 +32,7 @@
 ,,,custom_value_2,0.3
 ,,,Duration,4
 ,,,DetectRange,20
-,,4,Cooldown,4
+,,4,Cooldown,3
 ,,,Damage,"1, 0, 1.2"
 ,,,ProjectileNumber,1
 ,,,ProjectileSpeed,0.6
@@ -43,7 +43,7 @@
 ,,,custom_value_2,0.3
 ,,,Duration,4
 ,,,DetectRange,20
-,,5,Cooldown,4
+,,5,Cooldown,3
 ,,,Damage,"1, 0, 1.4"
 ,,,ProjectileNumber,1
 ,,,ProjectileSpeed,0.6

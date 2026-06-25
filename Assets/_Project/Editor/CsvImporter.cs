@@ -322,7 +322,6 @@ public static class CsvImporter
             return t.IsValueType ? Activator.CreateInstance(t) : null;
 
         value = value.Trim();
-        value = value.Replace(',', '.');
 
         if (t.IsEnum)
             return Enum.Parse(t, value, true);
@@ -335,6 +334,9 @@ public static class CsvImporter
 
         if (t == typeof(decimal))
             return decimal.Parse(value, CultureInfo.InvariantCulture);
+
+        if (t == typeof(string))
+            return value; // giữ nguyên
 
         return Convert.ChangeType(value, t, CultureInfo.InvariantCulture);
     }

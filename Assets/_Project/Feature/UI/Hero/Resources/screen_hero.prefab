@@ -229,7 +229,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.24722113, g: 0.46534076, b: 0.6289307, a: 1}
+  m_Color: {r: 0.21960784, g: 0.27450982, b: 0.31764707, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -960,7 +960,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1356008044785561500
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1575,7 +1575,7 @@ MonoBehaviour:
   m_StartCorner: 0
   m_StartAxis: 0
   m_CellSize: {x: 320, y: 430}
-  m_Spacing: {x: 35, y: 80}
+  m_Spacing: {x: 35, y: 35}
   m_Constraint: 0
   m_ConstraintCount: 2
 --- !u!1 &6775689079974012218

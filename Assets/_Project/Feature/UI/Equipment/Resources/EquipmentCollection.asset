@@ -19,10 +19,10 @@ MonoBehaviour:
     quantityLevelUp: 100
     details:
     - statType: 2
-      value: 1. 0.01
+      value: 1, 0.01
       description: "S\xE1t th\u01B0\u01A1ng"
     - statType: 6
-      value: 1. 0.02
+      value: 1, 0.02
       description: "H\u1ED3i chi\xEAu"
   - id: 2
     name: "\xC1o gi\xE1p"
@@ -30,8 +30,8 @@ MonoBehaviour:
     quantityLevelUp: 100
     details:
     - statType: 1
-      value: 2. 5
+      value: 2, 5
       description: "M\xE1u t\u1ED1i \u0111a"
     - statType: 7
-      value: 1. 0.01
+      value: 1, 0.01
       description: "H\u1ED3i m\xE1u"

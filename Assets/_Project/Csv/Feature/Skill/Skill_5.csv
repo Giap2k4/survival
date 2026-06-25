@@ -1,5 +1,5 @@
 ﻿id,nameSkill,level,mechanicTypes,values
-1,Boom,1,Cooldown,2.5
+5,Boom,1,Cooldown,2.5
 ,,,Damage,"1, 0, 1"
 ,,,ProjectileNumber,1
 ,,,ProjectileSpeed,5

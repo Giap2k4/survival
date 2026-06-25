@@ -1,5 +1,5 @@
 ﻿id,nameSkill,level,mechanicTypes,values
-1,Lưỡi đao,1,Cooldown,2
+3,Lưỡi đao,1,Cooldown,2
 ,,,Damage,"1, 0, 1"
 ,,,ProjectileNumber,3
 ,,,ProjectileSpeed,15

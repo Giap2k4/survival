@@ -1,5 +1,5 @@
 ﻿id,nameSkill,level,mechanicTypes,values
-1,Aura,1,Damage,"1, 0, 0.5"
+8,Aura,1,Damage,"1, 0, 0.5"
 ,,,ProjectileNumber,1
 ,,,ProjectileSpeed,50
 ,,,TargetFrom,0
