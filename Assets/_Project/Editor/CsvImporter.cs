@@ -1,11 +1,12 @@
 ﻿#if UNITY_EDITOR
-using UnityEngine;
-using UnityEditor;
 using System;
-using System.Linq;
-using System.IO;
 using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
+using System.Linq;
 using System.Reflection;
+using UnityEditor;
+using UnityEngine;
 
 public static class CsvImporter
 {
@@ -317,16 +318,25 @@ public static class CsvImporter
 
     private static object ConvertValue(Type t, string value)
     {
-        if (string.IsNullOrEmpty(value))
+        if (string.IsNullOrWhiteSpace(value))
             return t.IsValueType ? Activator.CreateInstance(t) : null;
 
-        if (t.IsEnum)
-        {
-            // ignore case: "Money", "money", "MONEY" đều được
-            return Enum.Parse(t, value, true);
-        }
+        value = value.Trim();
+        value = value.Replace(',', '.');
 
-        return Convert.ChangeType(value, t);
+        if (t.IsEnum)
+            return Enum.Parse(t, value, true);
+
+        if (t == typeof(float))
+            return float.Parse(value, CultureInfo.InvariantCulture);
+
+        if (t == typeof(double))
+            return double.Parse(value, CultureInfo.InvariantCulture);
+
+        if (t == typeof(decimal))
+            return decimal.Parse(value, CultureInfo.InvariantCulture);
+
+        return Convert.ChangeType(value, t, CultureInfo.InvariantCulture);
     }
 
     /// <summary>

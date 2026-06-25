@@ -22,6 +22,7 @@ public class Projectile1 : ProjectileBaseController
 
     protected override void UpdateProjectile()
     {
+        
         transform.Rotate(0, 0, 90 * Time.deltaTime, Space.World);
     }
 

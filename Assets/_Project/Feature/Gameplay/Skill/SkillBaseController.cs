@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using UnityEngine;
 
@@ -31,6 +32,9 @@ public class SkillBaseController : MonoBehaviour
     {
         string nameSkill = "Skill_" + idSkill; 
         skillModel = Resources.Load<SkillCollection>(nameSkill).dataGroups;
+        //skillModel = Resources.Load<SkillCollection>(nameSkill).dataGroups;
+        //Debug.Log(JsonUtility.ToJson(skillModel, true));
+
         characterBaseController = BattleController.instance.GetPlayer().GetComponent<CharacterBaseController>();
 
         if (startSpawnProjectile == null) startSpawnProjectile = StartCoroutine(StartSpawnProjectile());
@@ -42,7 +46,7 @@ public class SkillBaseController : MonoBehaviour
     /// <returns></returns>
     protected virtual IEnumerator StartSpawnProjectile()
     {
-        if (!checkLevelUp)
+            if (!checkLevelUp)
         {
             skillDetails = skillModel.details.First(x => x.level == levelCurrent);
             cooldown = skillDetails.mechanicType.FirstOrDefault(x => x.mechanicTypes == EnumBase.MechanicTypes.Cooldown);
@@ -59,7 +63,7 @@ public class SkillBaseController : MonoBehaviour
         }
         else
         {
-            float cooldownConvert = float.Parse(cooldown.values);
+            float cooldownConvert = float.Parse(cooldown.values, CultureInfo.InvariantCulture);
             if (cooldownConvert > 0)
             {
                 yield return new WaitForSeconds(cooldownConvert);
@@ -107,7 +111,6 @@ public class SkillBaseController : MonoBehaviour
             prefab.SetActive(true);
             if (GetProjectileSize() != null) prefab.transform.localScale = new Vector3(GetProjectileSize().Value, GetProjectileSize().Value, GetProjectileSize().Value);
             //listProjectile.Add(prefab);
-
             return;
         }
 
@@ -136,7 +139,8 @@ public class SkillBaseController : MonoBehaviour
 
         // add các giá trị stat cần (nhân với chỉ số đã config trong csv)
         var valueDmg = GetValueStat(EnumBase.RPGStatType.Damage);
-        float[] value = FormulaEvaluator.ConvertStringToFloat(skillDetails.mechanicType.FirstOrDefault(x => x.mechanicTypes == EnumBase.MechanicTypes.Damage).values);
+        //float[] value = FormulaEvaluator.ConvertStringToFloat(skillDetails.mechanicType.FirstOrDefault(x => x.mechanicTypes == EnumBase.MechanicTypes.Damage).values);
+        float[] value = GetDamage();
         if (value[0] == 1) valueDmg *= value[2];
         else valueDmg = value[2];
 
@@ -212,15 +216,19 @@ public class SkillBaseController : MonoBehaviour
     /// </summary>
     /// <param name="skillDetails"></param>
     /// <returns></returns>
-    protected virtual float? GetCooldown()
+    protected virtual float?  GetCooldown()
     {
-        var cooldown = skillDetails.mechanicType.FirstOrDefault(x => x.mechanicTypes == EnumBase.MechanicTypes.Cooldown);
+        var cooldown = skillDetails.mechanicType.FirstOrDefault(
+            x => x.mechanicTypes == EnumBase.MechanicTypes.Cooldown);
 
         if (cooldown != null)
         {
-            var value = float.Parse(cooldown.values);
-            return value;
+            return float.Parse(
+                cooldown.values,
+                CultureInfo.InvariantCulture
+            );
         }
+
         return null;
     }
 
@@ -231,13 +239,17 @@ public class SkillBaseController : MonoBehaviour
     /// <returns></returns>
     protected virtual float? GetDuration()
     {
-        var duration = skillDetails.mechanicType.FirstOrDefault(x => x.mechanicTypes == EnumBase.MechanicTypes.Duration);
+        var duration = skillDetails.mechanicType.FirstOrDefault(
+            x => x.mechanicTypes == EnumBase.MechanicTypes.Duration);
 
         if (duration != null)
         {
-            var value = float.Parse(duration.values);
-            return value;
+            return float.Parse(
+                duration.values,
+                CultureInfo.InvariantCulture
+            );
         }
+
         return null;
     }
 
@@ -248,7 +260,15 @@ public class SkillBaseController : MonoBehaviour
     /// <returns></returns>
     protected virtual float[] GetDamage()
     {
-        float[] damage = (skillDetails.mechanicType.FirstOrDefault(x => x.mechanicTypes == EnumBase.MechanicTypes.Damage).values).Split(',').Select(s => float.Parse(s.Trim())).ToArray();
+        float[] damage = skillDetails.mechanicType
+            .FirstOrDefault(x => x.mechanicTypes == EnumBase.MechanicTypes.Damage)
+            .values
+            .Split(',')
+            .Select(s => float.Parse(
+                s.Trim(),
+                CultureInfo.InvariantCulture))
+            .ToArray();
+
         return damage;
     }
 
@@ -259,13 +279,17 @@ public class SkillBaseController : MonoBehaviour
     /// <returns></returns>
     protected virtual float? GetRange()
     {
-        var range = skillDetails.mechanicType.FirstOrDefault(x => x.mechanicTypes == EnumBase.MechanicTypes.Range);
+        var range = skillDetails.mechanicType.FirstOrDefault(
+            x => x.mechanicTypes == EnumBase.MechanicTypes.Range);
 
         if (range != null)
         {
-            var value = float.Parse(range.values);
-            return value;
+            return float.Parse(
+                range.values,
+                System.Globalization.CultureInfo.InvariantCulture
+            );
         }
+
         return null;
     }
 
@@ -276,13 +300,17 @@ public class SkillBaseController : MonoBehaviour
     /// <returns></returns>
     protected virtual float? GetDetectRange()
     {
-        var detectRange = skillDetails.mechanicType.FirstOrDefault(x => x.mechanicTypes == EnumBase.MechanicTypes.DetectRange);
+        var detectRange = skillDetails.mechanicType.FirstOrDefault(
+            x => x.mechanicTypes == EnumBase.MechanicTypes.DetectRange);
 
         if (detectRange != null)
         {
-            var value = float.Parse(detectRange.values);
-            return value;
+            return float.Parse(
+                detectRange.values,
+                System.Globalization.CultureInfo.InvariantCulture
+            );
         }
+
         return null;
     }
 
@@ -316,13 +344,19 @@ public class SkillBaseController : MonoBehaviour
     /// <returns></returns>
     protected virtual float? GetProjectileSpeed()
     {
-        var ProjectileSpeed = skillDetails.mechanicType.FirstOrDefault(x => x.mechanicTypes == EnumBase.MechanicTypes.ProjectileSpeed);
+        var ProjectileSpeed = skillDetails.mechanicType
+            .FirstOrDefault(x => x.mechanicTypes == EnumBase.MechanicTypes.ProjectileSpeed);
 
         if (ProjectileSpeed != null)
         {
-            var value = float.Parse(ProjectileSpeed.values);
+            var value = float.Parse(
+                ProjectileSpeed.values,
+                CultureInfo.InvariantCulture
+            );
+
             return value;
         }
+
         return null;
     }
 
@@ -333,13 +367,17 @@ public class SkillBaseController : MonoBehaviour
     /// <returns></returns>
     protected virtual float? GetProjectileSize()
     {
-        var projectileSize = skillDetails.mechanicType.FirstOrDefault(x => x.mechanicTypes == EnumBase.MechanicTypes.ProjectileSize);
+        var projectileSize = skillDetails.mechanicType.FirstOrDefault(
+            x => x.mechanicTypes == EnumBase.MechanicTypes.ProjectileSize);
 
         if (projectileSize != null)
         {
-            var value = float.Parse(projectileSize.values);
-            return value;
+            return float.Parse(
+                projectileSize.values,
+                System.Globalization.CultureInfo.InvariantCulture
+            );
         }
+
         return null;
     }
 
@@ -411,13 +449,17 @@ public class SkillBaseController : MonoBehaviour
     /// <returns></returns>
     protected virtual float? GetFireRate()
     {
-        var fireRate = skillDetails.mechanicType.FirstOrDefault(x => x.mechanicTypes == EnumBase.MechanicTypes.FireRate);
+        var fireRate = skillDetails.mechanicType.FirstOrDefault(
+            x => x.mechanicTypes == EnumBase.MechanicTypes.FireRate);
 
         if (fireRate != null)
         {
-            var value = float.Parse(fireRate.values);
-            return value;
+            return float.Parse(
+                fireRate.values,
+                CultureInfo.InvariantCulture
+            );
         }
+
         return null;
     }
 
@@ -594,13 +636,21 @@ public class SkillBaseController : MonoBehaviour
 
     public virtual float HandleCustomValue1()
     {
-        return float.Parse( skillDetails.mechanicType.FirstOrDefault(x => x.mechanicTypes == EnumBase.MechanicTypes.custom_value_1).values);
-        
+        return float.Parse(
+            skillDetails.mechanicType.FirstOrDefault(
+                x => x.mechanicTypes == EnumBase.MechanicTypes.custom_value_1
+            ).values,
+            CultureInfo.InvariantCulture
+        );
     }
 
     public virtual float HandleCustomValue2()
     {
-        return float.Parse(skillDetails.mechanicType.FirstOrDefault(x => x.mechanicTypes == EnumBase.MechanicTypes.custom_value_2).values);
-
+        return float.Parse(
+            skillDetails.mechanicType.FirstOrDefault(
+                x => x.mechanicTypes == EnumBase.MechanicTypes.custom_value_2
+            ).values,
+            CultureInfo.InvariantCulture
+        );
     }
 }

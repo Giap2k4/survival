@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Skill_6
   m_EditorClassIdentifier: 
   dataGroups:
-    id: 1
+    id: 6
     nameSkill: "\u0110ao ph\u1EE7"
     details:
     - level: 1

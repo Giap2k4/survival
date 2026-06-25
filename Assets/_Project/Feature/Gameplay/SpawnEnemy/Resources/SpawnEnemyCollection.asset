@@ -225,7 +225,7 @@ MonoBehaviour:
         spawnEnemyType: 2
         timeStart: 0
         timeEnd: 300
-        interval: 1
+        interval: 15
     - idMap: 6
       totalTime: 300
       details:

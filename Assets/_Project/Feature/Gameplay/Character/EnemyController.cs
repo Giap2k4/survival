@@ -10,6 +10,9 @@ public class EnemyController : CharacterBaseController
     [SerializeField]
     protected float hp;
 
+    [SerializeField] 
+    protected float hpFirst;
+
     [SerializeField]
     protected float damage;
 
@@ -40,6 +43,7 @@ public class EnemyController : CharacterBaseController
     protected override void SetData()
     {
         hp = stats.GetOrCreateStat(EnumBase.RPGStatType.Health).valueStat;
+        hpFirst = hp;
         damage = stats.GetOrCreateStat(EnumBase.RPGStatType.Damage).valueStat;
     }
 
@@ -68,9 +72,9 @@ public class EnemyController : CharacterBaseController
         bool isCrit = UnityEngine.Random.Range(0, 101) < critRate * 100;
 
         if (isCrit) dmg += critDmg * dmg;
-        IsDead(dmg);
+        hp -= dmg;
         UpdateUI(dmg, isCrit);
-
+        IsDead(dmg);
     }
 
     /// <summary>
@@ -152,14 +156,14 @@ public class EnemyController : CharacterBaseController
     protected override void IsDead(float dmg)
     {
         base.IsDead(dmg);
-        hp -= dmg;
+        
         if (hp <= 0)
         {
             parentHp.SetActive(false);
             enemyMove.SetIsDie();
             enemyMove.isDie = true;
             hp = 0;
-            SpawnExp();
+            SpawnExp(); 
             PoolingManager.AddEnemyDisable(gameObject);
         }
     }
@@ -172,11 +176,11 @@ public class EnemyController : CharacterBaseController
         obj.GetComponent<DamageTextController>().SetText(Convert.ToString(dmg), isCrit);
 
         parentHp.SetActive(true);
-        float hpPercent = dmg / hp;
+        float hpPercent = hp / hpFirst;
 
         float targetWidth;
-        if (hpPercent >= 1) targetWidth = 0;
-        else targetWidth = HpScale.size.x * (1 - hpPercent);
+        if (hpPercent <= 0) targetWidth = 0;
+        else targetWidth = HpScale.size.x * hpPercent;
 
         DOTween.To(() => HpScale.size.x, 
             x => HpScale.size = new Vector2(x, HpScale.size.y),

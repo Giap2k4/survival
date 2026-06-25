@@ -9,12 +9,6 @@ public class Projectile7 : ProjectileBaseController
     protected AttackData dataProjectile;
     protected bool checkCloneData;
 
-    protected override void ProjectileMove()
-    {
-        base.ProjectileMove();
-        //transform.Rotate(0, 0, 50 * Time.deltaTime);
-    }
-
     protected override void ResetData()
     {
         base.ResetData();

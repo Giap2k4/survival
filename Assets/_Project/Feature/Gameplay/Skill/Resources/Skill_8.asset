@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Skill_8
   m_EditorClassIdentifier: 
   dataGroups:
-    id: 1
+    id: 8
     nameSkill: Aura
     details:
     - level: 1

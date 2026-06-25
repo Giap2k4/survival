@@ -48,7 +48,13 @@ public static class FormulaEvaluator
     /// <param name="value"></param>
     /// <returns></returns>
     public static float[] ConvertStringToFloat(string value)
-    { 
-        return value.Split(',').Select(s => float.Parse(s.Trim())).ToArray();
+    {
+        return value
+            .Split(',')
+            .Select(s => float.Parse(
+                s.Trim(),
+                CultureInfo.InvariantCulture
+            ))
+            .ToArray();
     }
 }

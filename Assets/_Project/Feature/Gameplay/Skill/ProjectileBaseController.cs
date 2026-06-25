@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -105,7 +106,13 @@ public class ProjectileBaseController : MonoBehaviour, IUpdateManager
     protected virtual float GetDuration() => data.duration.GetValueOrDefault(0);
     protected virtual float GetProjectileSize() => data.projectileSize.Value;
 
-    protected virtual float GetProjectileSpeed() => data.projectileSpeed.Value;
+    protected virtual float GetProjectileSpeed()
+    {
+        //speed = data.projectileSpeed.Value;
+        //return speed;
+        
+        return data.projectileSpeed.Value;
+    }
 
     protected virtual Vector2 GetDirection() => data.direction;
     protected virtual float GetRange() => data.range.GetValueOrDefault(0);

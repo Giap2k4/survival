@@ -65,6 +65,6 @@ public class Projectile3 : ProjectileBaseController
         yield return new WaitForSeconds(skillBaseController.HandleCustomValue1());
         //yield return new WaitForSeconds(0.1f);
         checkLimitRange = false;
-        checkGoBack = true;
+        checkGoBack = true; 
     }
 }
