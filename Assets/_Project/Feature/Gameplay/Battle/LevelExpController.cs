@@ -95,7 +95,7 @@ public class LevelExpController : SingletonTemporary<LevelExpController>
 
     protected float GetExpRequiredForLevel(float level)
     {
-        return model.valueBase + (level - 1) * model.bonus;
+        return model.valueBase * Mathf.Pow(1.6f, level - 1); 
     }
 
     protected void CaculaterExp()

@@ -18,7 +18,7 @@ MonoBehaviour:
     statDetail:
     - statType: 1
       valueType: 2
-      statValue: 10000
+      statValue: 7000
       bonusValue: 20
     - statType: 2
       valueType: 2
@@ -64,11 +64,11 @@ MonoBehaviour:
     statDetail:
     - statType: 1
       valueType: 2
-      statValue: 70
+      statValue: 100
       bonusValue: 10
     - statType: 2
       valueType: 2
-      statValue: 7
+      statValue: 15
       bonusValue: 5
     - statType: 3
       valueType: 2
@@ -79,11 +79,11 @@ MonoBehaviour:
     statDetail:
     - statType: 1
       valueType: 2
-      statValue: 50
+      statValue: 70
       bonusValue: 7
     - statType: 2
       valueType: 2
-      statValue: 5
+      statValue: 15
       bonusValue: 3
     - statType: 3
       valueType: 2
@@ -94,11 +94,11 @@ MonoBehaviour:
     statDetail:
     - statType: 1
       valueType: 2
-      statValue: 80
+      statValue: 100
       bonusValue: 7
     - statType: 2
       valueType: 2
-      statValue: 7
+      statValue: 15
       bonusValue: 5
     - statType: 3
       valueType: 2
@@ -109,11 +109,11 @@ MonoBehaviour:
     statDetail:
     - statType: 1
       valueType: 2
-      statValue: 100
-      bonusValue: 10
+      statValue: 130
+      bonusValue: 12
     - statType: 2
       valueType: 2
-      statValue: 10
+      statValue: 20
       bonusValue: 8
     - statType: 3
       valueType: 2
@@ -124,11 +124,11 @@ MonoBehaviour:
     statDetail:
     - statType: 1
       valueType: 2
-      statValue: 80
-      bonusValue: 7
+      statValue: 100
+      bonusValue: 10
     - statType: 2
       valueType: 2
-      statValue: 10
+      statValue: 20
       bonusValue: 8
     - statType: 3
       valueType: 2
@@ -139,11 +139,11 @@ MonoBehaviour:
     statDetail:
     - statType: 1
       valueType: 2
-      statValue: 90
-      bonusValue: 7
+      statValue: 120
+      bonusValue: 11
     - statType: 2
       valueType: 2
-      statValue: 10
+      statValue: 20
       bonusValue: 5
     - statType: 3
       valueType: 2
@@ -154,11 +154,11 @@ MonoBehaviour:
     statDetail:
     - statType: 1
       valueType: 2
-      statValue: 50
-      bonusValue: 7
+      statValue: 70
+      bonusValue: 8
     - statType: 2
       valueType: 2
-      statValue: 5
+      statValue: 10
       bonusValue: 3
     - statType: 3
       valueType: 2
@@ -169,12 +169,12 @@ MonoBehaviour:
     statDetail:
     - statType: 1
       valueType: 2
-      statValue: 500
-      bonusValue: 30
+      statValue: 2000
+      bonusValue: 50
     - statType: 2
       valueType: 2
-      statValue: 20
-      bonusValue: 10
+      statValue: 100
+      bonusValue: 20
     - statType: 3
       valueType: 2
       statValue: 1.3

@@ -43,8 +43,80 @@ MonoBehaviour:
   - id: 4
     nameHero: Ninja
     level: 1
-    powerStat: 0
+    powerStat: 1
     defaultSkill: 4
+    resource:
+      resType: 0
+      resId: 2
+      resQuantity: 0
+  - id: 5
+    nameHero: "K\u1EF9 s\u01B0 \u0111\u1ECBa ch\u1EA5t"
+    level: 1
+    powerStat: 1
+    defaultSkill: 5
+    resource:
+      resType: 0
+      resId: 2
+      resQuantity: 0
+  - id: 6
+    nameHero: "T\u01B0 t\u1EBF m\u1EB7t tr\u1EDDi"
+    level: 1
+    powerStat: 1
+    defaultSkill: 6
+    resource:
+      resType: 0
+      resId: 2
+      resQuantity: 0
+  - id: 7
+    nameHero: "H\u1EA7u v\u01B0\u01A1ng"
+    level: 1
+    powerStat: 1
+    defaultSkill: 7
+    resource:
+      resType: 0
+      resId: 2
+      resQuantity: 0
+  - id: 8
+    nameHero: "Nh\xE0 h\xF3a h\u1ECDc"
+    level: 1
+    powerStat: 1
+    defaultSkill: 8
+    resource:
+      resType: 0
+      resId: 2
+      resQuantity: 0
+  - id: 9
+    nameHero: "Th\u1EA7n r\u1EEBng"
+    level: 1
+    powerStat: 1
+    defaultSkill: 9
+    resource:
+      resType: 0
+      resId: 2
+      resQuantity: 0
+  - id: 10
+    nameHero: "Th\u1EE7y linh"
+    level: 1
+    powerStat: 1
+    defaultSkill: 9
+    resource:
+      resType: 0
+      resId: 2
+      resQuantity: 0
+  - id: 11
+    nameHero: "Phong h\xE0nh gi\u1EA3"
+    level: 1
+    powerStat: 1
+    defaultSkill: 9
+    resource:
+      resType: 0
+      resId: 2
+      resQuantity: 0
+  - id: 12
+    nameHero: "\xC1o cho\xE0ng l\u1EEDa"
+    level: 1
+    powerStat: 1
+    defaultSkill: 9
     resource:
       resType: 0
       resId: 2

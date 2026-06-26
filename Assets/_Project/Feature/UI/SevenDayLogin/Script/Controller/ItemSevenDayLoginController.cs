@@ -27,6 +27,18 @@ public class ItemSevenDayLoginController : MonoBehaviour
     [SerializeField]
     protected GameObject txtCollected;
 
+    [SerializeField]
+    protected LayoutElement element;
+
+    [SerializeField]
+    protected RectTransform rect;
+
+    [SerializeField]
+    protected Sprite spritePurple;
+
+    [SerializeField]
+    protected Image img;
+
     protected PackageReward res;
 
     protected void Start()
@@ -53,6 +65,7 @@ public class ItemSevenDayLoginController : MonoBehaviour
 
         var dayProgress = SevenDayLoginManager.GetSevenDayProgress();
         CheckCanClaim(dayProgress, model.day);
+        if (model.day == 7) CheckSevenDay(model.day);
     }
 
     protected void CheckCanClaim(int dayProgress, int dayCurrent)
@@ -89,5 +102,26 @@ public class ItemSevenDayLoginController : MonoBehaviour
         var day = SevenDayLoginManager.GetSevenDayProgress();
         SevenDayLoginManager.SetDayProgress(day + 1);
         Claimed();
+    }
+
+    protected void CheckSevenDay (int day)
+    {
+        element.ignoreLayout = true;
+        // Anchor
+        rect.anchorMin = new Vector2(0.5f, 0f);
+        rect.anchorMax = new Vector2(0.5f, 0f);
+
+        // Pivot
+        rect.pivot = new Vector2(0.5f, 0.5f);
+
+        // Width = 810 (giữ nguyên Height)
+        rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 810f);
+
+        // Pos Y = 490 (giữ nguyên X)
+        Vector2 pos = rect.anchoredPosition;
+        pos.y = 490f;
+        rect.anchoredPosition = pos;
+
+        img.sprite = spritePurple;
     }
 }

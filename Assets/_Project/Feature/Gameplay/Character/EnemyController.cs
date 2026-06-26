@@ -30,6 +30,17 @@ public class EnemyController : CharacterBaseController
     [SerializeField]
     protected SpriteRenderer HpScale;
 
+    [SerializeField]
+    protected float scaleXFirst;
+    [SerializeField]
+    protected float scaleYFirst;
+
+    protected void Start()
+    {
+        scaleXFirst = 3.39f;
+        scaleYFirst = 0.34f;
+    }
+
     protected override void OnEnable()
     {
         base.OnEnable();
@@ -180,7 +191,7 @@ public class EnemyController : CharacterBaseController
 
         float targetWidth;
         if (hpPercent <= 0) targetWidth = 0;
-        else targetWidth = HpScale.size.x * hpPercent;
+        else targetWidth = scaleXFirst * hpPercent;
 
         DOTween.To(() => HpScale.size.x, 
             x => HpScale.size = new Vector2(x, HpScale.size.y),
