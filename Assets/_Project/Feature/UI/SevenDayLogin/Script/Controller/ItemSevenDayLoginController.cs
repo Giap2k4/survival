@@ -74,6 +74,7 @@ public class ItemSevenDayLoginController : MonoBehaviour
         if (dayCurrent <= dayProgress) Claimed();
         // check xem qua ngày hay chưa
         else if (dayCurrent == dayProgress + 1) CheckNextDay();
+        else if (dayProgress == 0 && dayCurrent == 1) { }
         else LockReward();
     }
 

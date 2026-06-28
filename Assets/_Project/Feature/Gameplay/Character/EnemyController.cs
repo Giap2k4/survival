@@ -196,7 +196,8 @@ public class EnemyController : CharacterBaseController
         DOTween.To(() => HpScale.size.x, 
             x => HpScale.size = new Vector2(x, HpScale.size.y),
             targetWidth,
-            0.2f).SetEase(Ease.OutQuad);
+            0.2f).SetEase(Ease.OutQuad)
+            .SetLink(gameObject);
     }
      
     public void OnDieAnimEnd()
